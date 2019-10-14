@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=cyrillic');
+
+
+
+body{
+    padding: 0;
+    margin: 0;
+
+}
+.home header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+.section_baner{
+    background-image: url(../img/bg.png);
+    padding-top: 100px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-bottom: 100px;
+    background-position: center;
+    background-size: cover;
+}
+h1.baner_h1 {
+    text-align: center;
+    color: #ffffff;
+    font-family: "Open Sans";
+    font-size: 48px;
+    font-weight: 700;
+}
+.header_left {
+    display: flex;
+    align-items: center;
+}
+.header_left .city_blok {
+    margin-left: 20px;
+    color: #ffffff;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: 400;
+}
+.header_left .city_blok img {
+    margin-left: 10px;
+}
+.header_right {
+    display: flex;
+    align-items: center;
+}
+.header_right a {
+    color: #ffffff;
+    font-family: "Open Sans";
+    font-size: 24px;
+    font-weight: 400;
+}
+.header_right a.login {
+    font-weight: bold;
+    margin-right: 50px;
+}
+.header_right a.login_block {
+    display: flex;
+    align-items: center;
+}
+.header_right a.login_block img {
+    margin-right: 10px;
+}
+.banner_item_block {
+    display: flex;
+    justify-content: center;
+}
+
+.banner_item {
+    padding: 0 50px;
+    text-align: center;
+    position: relative;
+    /* width: 100%; */
+}
+
+.section_banner_bottom {
+    box-shadow: 14px 4px 54px rgba(51, 51, 51, 0.25);
+    background-color: #ffffff;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+.banner_item img {
+    height: 65px;
+    margin-bottom: 20px;
+}
+
+.banner_menu_title {
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.banner_menu_number {
+    color: #4b4b4b;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: 400;
+}
+.banner_item:after {content: "";height: 80%;width: 1px;background-color: #c4c4c4;position: absolute;right: -0.5px;top: 50%;transform: translateY(-50%);}
+.banner_item:before {content: "";height: 80%;width: 1px;background-color: #c4c4c4;position: absolute;left: -0.5px;top: 50%;transform: translateY(-50%);}
+.section_title {
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+}
+h4.baner_h4 {text-align: center;margin-top: 30px;color: #fff;margin-bottom: 20px;}
+
+
+
+
+@media (max-width: 767px) {
+	h1.baner_h1 {
+		font-size: 30px;
+	}
+	.timer * {
+		font-size: 50px !important;
+	}
+	.timer .timer-element > span:nth-child(2) {
+		font-size: 12px !important;
+	}
+	.timer > div {
+		min-width: 100% !important;
+	}
+}
