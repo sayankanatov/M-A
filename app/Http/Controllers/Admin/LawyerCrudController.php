@@ -48,6 +48,12 @@ class LawyerCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'name' => 'patronymic',
+            'label' => "Отчество",
+            'type' => 'text'
+        ]);
+
+        $this->crud->addField([
             'label' => "Фотография",
             'name' => 'logo',
             'type' => 'browse',
@@ -67,6 +73,13 @@ class LawyerCrudController extends CrudController
             'name' => 'telephone',
             'label' => "Телефон",
             'type' => 'text'
+        ]);
+
+        $this->crud->addField([
+            'name' => 'extra_telephone',
+            'label' => "Дополнительный телефон",
+            'type' => 'text',
+            'hint' => 'Поле необязательно для заполнения',
         ]);
 
         $this->crud->addField([
@@ -190,6 +203,13 @@ class LawyerCrudController extends CrudController
             'options'     => Config::get('constants.is_member'),
             // optional
             'inline'      => true, // show the radios all on the same line?
+        ]);
+
+        $this->crud->addField([
+            'name' => 'member_title',
+            'label' => "Ассоциации (союзы, объединения) юридические фирмы",
+            'type' => 'text',
+            'hint' => 'Если да, то перечислите их',
         ]);
 
         $this->crud->addField([

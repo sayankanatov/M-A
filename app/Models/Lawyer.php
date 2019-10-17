@@ -22,10 +22,12 @@ class Lawyer extends Model
     protected $fillable = [
         'last_name',
         'first_name',
+        'patronymic',
         'image',
         'company',
         'address',
         'telephone',
+        'extra_telephone',
         'email',
         'link',
         'worktime',
@@ -40,6 +42,7 @@ class Lawyer extends Model
         'services',
         'is_free',
         'is_member',
+        'member_title',
         'price',
         'user_id'
     ];

@@ -2,6 +2,56 @@
 
 All notable changes to `laravel-backup` will be documented in this file.
 
+## 6.7.1 - 2019-10-16
+
+- fix deps
+
+## 6.7.0 - 2019-10-16
+
+- handle database urls for database connections (#980)
+
+## 6.6.1 - 2019-10-09
+
+- fix working with large backups on 32bit PHP installations
+
+## 6.6.0 - 2019-10-08
+
+- add disk getter function on Backup (#974)
+
+## 6.5.1 - 2019-10-07
+
+- fix email notifications not being sent #973
+
+## 6.5.0 - 2019-10-07
+
+**THIS VERSION CONTAINS A BREAKING BUG, DO NOT USE**
+
+- add custom from address for mail notifications (#967)
+
+## 6.4.2 - 2019-09-30
+
+- fix for customized lang paths (#964)
+
+## 6.4.1 - 2019-09-25
+
+- fix backup stopping on notification failure (#960)
+
+## 6.4.0 - 2019-09-04
+
+- make compatible with Laravel 6
+
+## 6.3.1 - 2019-07-16
+
+- fix typo in zh-TW backup notification
+
+## 6.3.0 - 2019-07-08
+
+- add zh-CN & zh-TW
+
+## 6.2.1 - 2019-07-01
+
+- prevent excessive IO calls by caching backup properties
+
 ## 6.2.0 - 2019-04-25
 
 - add support to add custom dumpers to DbDumperFactory (#900)

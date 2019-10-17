@@ -5,10 +5,12 @@ namespace App\Models;
 use App\User;
 use Backpack\Base\app\Models\Traits\InheritsRelationsFromParentModel;
 use Backpack\Base\app\Notifications\ResetPasswordNotification as ResetPasswordNotification;
+use Backpack\CRUD\CrudTrait;
 
 class BackpackUser extends User
 {
     use InheritsRelationsFromParentModel;
+    use CrudTrait;
 
     protected $table = 'users';
 
@@ -32,5 +34,10 @@ class BackpackUser extends User
     public function getEmailForPasswordReset()
     {
         return $this->email;
+    }
+
+    public function role() 
+    {
+        return $this->belongsTo('App\Models\Role','role_id');
     }
 }

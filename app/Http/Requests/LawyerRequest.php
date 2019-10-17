@@ -26,10 +26,10 @@ class LawyerRequest extends FormRequest
     public function rules()
     {
         return [
-            'last_name' => 'required',
-            'first_name' => 'required',
+            'last_name' => 'required|min:1|max:50',
+            'first_name' => 'required|min:1|max:50',
             'telephone' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             // 'user_id' => 'required'
         ];
     }

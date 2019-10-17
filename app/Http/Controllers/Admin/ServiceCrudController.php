@@ -43,6 +43,15 @@ class ServiceCrudController extends CrudController
             'type' => 'text'
         ]);
 
+        $this->crud->addField([
+            'label' => "Выберите категорию",
+            'type' => 'select',
+            'name' => 'category_id', // the db column for the foreign key
+            'entity' => 'categories', // the method that defines the relationship in your Model
+            'attribute' => 'name_ru', // foreign key attribute that is shown to user
+            'model' => "App\Models\ServiceCategory" // foreign key model
+        ]);
+
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
         // $this->crud->denyAccess(['create', 'delete']);

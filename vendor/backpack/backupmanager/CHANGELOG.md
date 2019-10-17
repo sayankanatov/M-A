@@ -2,22 +2,16 @@
 
 All Notable changes to `backupmanager` will be documented in this file
 
-## NEXT - YYYY-MM-DD
+## [1.4.10] - 2019-09-01
 
 ### Added
-- Nothing
+- #70 - Russian language file;
 
-### Deprecated
-- Nothing
+
+## [1.4.9] - 2019-08-23
 
 ### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+- changed config file to fit latest spatie/laravel-backup config file model;
 
 
 ## [1.4.8] - 2019-04-23

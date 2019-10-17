@@ -41,10 +41,12 @@
         </ul>
 
         {{-- The results will be stored here --}}
-        <div id="{{ $field['name'] }}_results"></div>
+        <div id="{{ $field['name'] }}_results">
+            @foreach ($values as $key)
+                <input type="hidden" name="{{ $field['name'] }}[]" value="{{ $key }}">
+            @endforeach
+        </div>
     </div>
-
-
 
     {{-- HINT --}}
     @if (isset($field['hint']))
@@ -112,7 +114,7 @@
     @endpush
 
     @push('crud_fields_scripts')
-    <script src="{{ asset('vendor/adminlte/bower_components/jquery-ui/ui/sortable.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
     @endpush
 
 @endif

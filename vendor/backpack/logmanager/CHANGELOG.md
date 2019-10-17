@@ -21,6 +21,12 @@ All Notable changes to `LogManager` will be documented in this file
 
 ---
 
+## [2.3.27] - 2019-09-04
+
+### Added
+- Laravel 6 support;
+
+
 ## [2.3.26] - 2019-04-11
 
 - changed filename encryption & decryption to Laravel's default AES-256-CBC encryption instead of Base64, so that malicious admins cannot possibly download private files;

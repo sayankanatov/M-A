@@ -2,7 +2,13 @@
 
 namespace Backpack\CRUD\Tests\Unit\CrudPanel;
 
+use Doctrine\DBAL\DBALException;
 use Backpack\CRUD\Tests\Unit\Models\ColumnType;
+
+class MyColumnTypeWithOtherConnection extends ColumnType
+{
+    protected $connection = 'testing_2';
+}
 
 class CrudPanelAutoSetTest extends BaseDBCrudPanelTest
 {
@@ -11,7 +17,7 @@ class CrudPanelAutoSetTest extends BaseDBCrudPanelTest
     private $expectedFieldTypeFromColumnType = [
         'bigIntegerCol' => 'number',
         'binaryCol' => 'text',
-        'booleanCol' => 'text',
+        'booleanCol' => 'boolean',
         'charCol' => 'text',
         'dateCol' => 'date',
         'dateTimeCol' => 'datetime',
@@ -180,7 +186,7 @@ class CrudPanelAutoSetTest extends BaseDBCrudPanelTest
             'label' => 'BooleanCol',
             'value' => null,
             'default' => null,
-            'type' => 'text',
+            'type' => 'boolean',
             'values' => [],
             'attributes' => [],
             'autoset' => true,
@@ -463,7 +469,7 @@ class CrudPanelAutoSetTest extends BaseDBCrudPanelTest
             'label' => 'BooleanCol',
             'value' => null,
             'default' => null,
-            'type' => 'text',
+            'type' => 'boolean',
             'values' => [],
             'attributes' => [],
             'autoset' => true,
@@ -804,5 +810,30 @@ class CrudPanelAutoSetTest extends BaseDBCrudPanelTest
         $columnNames = $this->crudPanel->getDbColumnsNames();
 
         $this->assertEquals(array_keys($this->expectedColumnTypes), $columnNames);
+    }
+
+    public function testSetDoctrineTypesMapping()
+    {
+        $original_db_config = $this->app['config']->get('database.connections.testing');
+        $new_model_db_config = array_merge($original_db_config, ['prefix' => 'testing2']);
+
+        $this->app['config']->set('database.connections.testing_2', $new_model_db_config);
+
+        $original_db_platform = $this->crudPanel->getModel()->getConnection()->getDoctrineConnection()->getDatabasePlatform();
+        $this->crudPanel->setDoctrineTypesMapping();
+        $type = $original_db_platform->getDoctrineTypeMapping('enum');
+
+        $this->crudPanel->setModel(MyColumnTypeWithOtherConnection::class);
+        $new_model_db_platform = $this->crudPanel->getModel()->getConnection()->getDoctrineConnection()->getDatabasePlatform();
+
+        try {
+            $new_model_db_platform->getDoctrineTypeMapping('enum');
+        } catch (DBALException $e) {
+            $this->assertInstanceOf(DBALException::class, $e);
+        }
+        $this->crudPanel->setDoctrineTypesMapping();
+
+        $type = $new_model_db_platform->getDoctrineTypeMapping('enum');
+        $this->assertEquals('string', $type);
     }
 }

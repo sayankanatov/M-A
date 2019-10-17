@@ -36,9 +36,8 @@ class MenuItemCrudController extends CrudController
 
         $this->crud->addField([
                                 'name' => 'name',
-                                'label' => 'Название'
+                                'label' => 'Label',
                             ]);
-
         $this->crud->addField([
                                 'label' => 'Parent',
                                 'type' => 'select',
@@ -46,14 +45,12 @@ class MenuItemCrudController extends CrudController
                                 'entity' => 'parent',
                                 'attribute' => 'name',
                                 'model' => "\Backpack\MenuCRUD\app\Models\MenuItem",
-                                'hint' => 'Выберите родительскую вкладку',
                             ]);
         $this->crud->addField([
                                 'name' => 'type',
                                 'label' => 'Type',
                                 'type' => 'page_or_link',
                                 'page_model' => '\Backpack\PageManager\app\Models\Page',
-                                'hint' => 'Выберите внутреннюю ссылку для страницы и напишите ее машинное имя, если внешнюю ссылку то начните с http',
                             ]);
     }
 

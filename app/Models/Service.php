@@ -48,6 +48,11 @@ class Service extends Model
         return $this->belongsToMany('App\Models\Lawyer');
     }
 
+    public function categories()
+    {
+        return $this->belongsTo('App\Models\ServiceCategory','category_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

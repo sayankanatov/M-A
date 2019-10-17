@@ -17,8 +17,10 @@ trait AutoSet
      */
     public function setFromDb()
     {
-        $this->setDoctrineTypesMapping();
-        $this->getDbColumnTypes();
+        if (! $this->driverIsMongoDb()) {
+            $this->setDoctrineTypesMapping();
+            $this->getDbColumnTypes();
+        }
 
         array_map(function ($field) {
             $new_field = [
@@ -125,8 +127,8 @@ trait AutoSet
             //     return 'enum';
             // break;
 
-            case 'tinyint':
-                return 'active';
+            case 'boolean':
+                return 'boolean';
                 break;
 
             case 'text':
@@ -158,7 +160,7 @@ trait AutoSet
     public function setDoctrineTypesMapping()
     {
         $types = ['enum' => 'string'];
-        $platform = \DB::getDoctrineConnection()->getDatabasePlatform();
+        $platform = $this->getSchema()->getConnection()->getDoctrineConnection()->getDatabasePlatform();
         foreach ($types as $type_key => $type_value) {
             if (! $platform->hasDoctrineTypeMappingFor($type_key)) {
                 $platform->registerDoctrineTypeMapping($type_key, $type_value);
@@ -211,12 +213,17 @@ trait AutoSet
      */
     public function getDbColumnsNames()
     {
-        // Automatically-set columns should be both in the database, and in the $fillable variable on the Eloquent Model
-        $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
         $fillable = $this->model->getFillable();
 
-        if (! empty($fillable)) {
-            $columns = array_intersect($columns, $fillable);
+        if ($this->driverIsMongoDb()) {
+            $columns = $fillable;
+        } else {
+            // Automatically-set columns should be both in the database, and in the $fillable variable on the Eloquent Model
+            $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
+
+            if (! empty($fillable)) {
+                $columns = array_intersect($columns, $fillable);
+            }
         }
 
         // but not updated_at, deleted_at

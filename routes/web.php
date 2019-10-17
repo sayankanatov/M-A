@@ -10,19 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Auth::routes();
-
 Route::get('/', function () {
 	return redirect('/'. App\Http\Middleware\LocaleMiddleware::$mainLanguage);
 });
 
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
+
+    Auth::routes();
 	
     Route::get('/', 'PageController@index')->name('main');
-});
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 
 //Переключение языков
 Route::get('setlocale/{lang}', function ($lang) {

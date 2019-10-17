@@ -23,6 +23,61 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 -------
 
+## [1.1.13] - 2019-09-17
+
+### Added
+- japanese translation;
+
+
+## [1.1.12] - 2019-09-14
+
+### Fixed
+- install a specific version of backpack/generators - 1.2.x, otherwise composer might fail to fall back to it;
+
+
+## [1.1.11] - 2019-09-06
+
+### Fixed
+- inc.topbar_right_content.blade.php wasn't loaded when the auth routes were turned off;
+
+
+## [1.1.10] - 2019-09-04
+
+### Fixed
+- required laravel/helpers;
+
+
+## [1.1.9] - 2019-09-04
+
+### Added
+- merged #403 - support for Laravel 6;
+
+
+## [1.1.8] - 2019-09-01
+
+### Fixed
+- fixes #401 - Register event now triggered when registering;
+
+
+## [1.1.7] - 2019-08-11
+
+### Fixed
+- merges #392 - updates to InheritsRelationsFromParentModel trait from tightenco/parental;
+
+
+## [1.1.6] - 2019-08-11
+
+### Fixed
+- fixes #393, merges #394 - placehold avatar always had the A letter;
+
+
+## [1.1.5] - 2019-06-24
+
+### Fixed
+- fixes #379 - error when username is empty;
+
+
+
 ## [1.1.4] - 2019-03-19
 
 ### Fixed

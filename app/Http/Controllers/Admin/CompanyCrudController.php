@@ -57,6 +57,13 @@ class CompanyCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'name' => 'extra_telephone',
+            'label' => "Дополнительный телефон",
+            'type' => 'text',
+            'hint' => 'Поле необязательно для заполнения',
+        ]);
+
+        $this->crud->addField([
             'name' => 'email',
             'label' => "Электронная почта",
             'type' => 'text'
@@ -159,6 +166,13 @@ class CompanyCrudController extends CrudController
             'options'     => Config::get('constants.is_member'),
             // optional
             'inline'      => true, // show the radios all on the same line?
+        ]);
+
+        $this->crud->addField([
+            'name' => 'member_title',
+            'label' => "Ассоциации (союзы, объединения) юридические фирмы",
+            'type' => 'text',
+            'hint' => 'Если да, то перечислите их',
         ]);
 
         $this->crud->addField([

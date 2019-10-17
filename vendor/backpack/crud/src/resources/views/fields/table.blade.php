@@ -3,7 +3,7 @@
 <?php
     $max = isset($field['max']) && (int) $field['max'] > 0 ? $field['max'] : -1;
     $min = isset($field['min']) && (int) $field['min'] > 0 ? $field['min'] : -1;
-    $item_name = strtolower(isset($field['entity_singular']) && !empty($field['entity_singular']) ? $field['entity_singular'] : $field['label']);
+    $item_name = strtolower(isset($field['entity_singular']) && ! empty($field['entity_singular']) ? $field['entity_singular'] : $field['label']);
 
     $items = old(square_brackets_to_dots($field['name'])) ?? $field['value'] ?? $field['default'] ?? '';
 
@@ -15,9 +15,16 @@
         } else {
             $items = '[]';
         }
-    } elseif (is_string($items) && !is_array(json_decode($items))) {
+    } elseif (is_string($items) && ! is_array(json_decode($items))) {
         $items = '[]';
     }
+
+    // define how an empty row should look like (all columns blank)
+    $empty_row = $field['columns'];
+    foreach ($field['columns'] as $key => $column) {
+        $empty_row[$key] = '';
+    }
+    $empty_row = json_encode($empty_row);
 
 ?>
 <div ng-app="backPackTableApp" ng-controller="tableController" @include('crud::inc.field_wrapper_attributes') >
@@ -29,7 +36,7 @@
 
     <div class="array-container form-group">
 
-        <table class="table table-bordered table-striped m-b-0" ng-init="field = '#{{ $field['name'] }}'; items = {{ $items }}; max = {{$max}}; min = {{$min}}; maxErrorTitle = '{{trans('backpack::crud.table_cant_add', ['entity' => $item_name])}}'; maxErrorMessage = '{{trans('backpack::crud.table_max_reached', ['max' => $max])}}'">
+        <table class="table table-bordered table-striped m-b-0" ng-init="field = '#{{ $field['name'] }}'; items = {{ $items }}; max = {{$max}}; min = {{$min}}; maxErrorTitle = '{{trans('backpack::crud.table_cant_add', ['entity' => $item_name])}}'; maxErrorMessage = '{{trans('backpack::crud.table_max_reached', ['max' => $max])}}'; emptyRow='{{ $empty_row }}';">
 
             <thead>
                 <tr>
@@ -118,8 +125,7 @@
 
                     if( $scope.max > -1 ){
                         if( $scope.items.length < $scope.max ){
-                            var item = {};
-                            $scope.items.push(item);
+                            $scope.items.push(JSON.parse($scope.emptyRow));
                         } else {
                             new PNotify({
                                 title: $scope.maxErrorTitle,
@@ -129,8 +135,7 @@
                         }
                     }
                     else {
-                        var item = {};
-                        $scope.items.push(item);
+                        $scope.items.push(JSON.parse($scope.emptyRow));
                     }
                 }
 

@@ -9,7 +9,6 @@
         $primary_dependency = $field['subfields']['primary'];
         $secondary_dependency = $field['subfields']['secondary'];
 
-
         //all items with relation
         $dependencies = $primary_dependency['model']::with($primary_dependency['entity_secondary'])->get();
 
@@ -24,42 +23,39 @@
         }
 
       //for update form, get initial state of the entity
-      if( isset($id) && $id ){
+      if (isset($id) && $id) {
 
         //get entity with relations for primary dependency
-        $entity_dependencies = $entity_model->with($primary_dependency['entity'])
+          $entity_dependencies = $entity_model->with($primary_dependency['entity'])
           ->with($primary_dependency['entity'].'.'.$primary_dependency['entity_secondary'])
           ->find($id);
 
-            $secondaries_from_primary = [];
+          $secondaries_from_primary = [];
 
-            //convert relation in array
-            $primary_array = $entity_dependencies->{$primary_dependency['entity']}->toArray();
+          //convert relation in array
+          $primary_array = $entity_dependencies->{$primary_dependency['entity']}->toArray();
 
-            $secondary_ids = [];
+          $secondary_ids = [];
 
-            //create secondary dependency from primary relation, used to check what chekbox must be check from second checklist
-            if (old($primary_dependency['name'])) {
-                foreach (old($primary_dependency['name']) as $primary_item) {
-                    foreach ($dependencyArray[$primary_item] as $second_item) {
-                        $secondary_ids[$second_item] = $second_item;
-                    }
-                }
-            } else { //create dependecies from relation if not from validate error
-                foreach ($primary_array as $primary_item) {
-                    foreach ($primary_item[$secondary_dependency['entity']] as $second_item) {
-                        $secondary_ids[$second_item['id']] = $second_item['id'];
-                    }
-                }
-            }
-        }
+          //create secondary dependency from primary relation, used to check what chekbox must be check from second checklist
+          if (old($primary_dependency['name'])) {
+              foreach (old($primary_dependency['name']) as $primary_item) {
+                  foreach ($dependencyArray[$primary_item] as $second_item) {
+                      $secondary_ids[$second_item] = $second_item;
+                  }
+              }
+          } else { //create dependecies from relation if not from validate error
+              foreach ($primary_array as $primary_item) {
+                  foreach ($primary_item[$secondary_dependency['entity']] as $second_item) {
+                      $secondary_ids[$second_item['id']] = $second_item['id'];
+                  }
+              }
+          }
+      }
 
         //json encode of dependency matrix
         $dependencyJson = json_encode($dependencyArray);
     ?>
-    <script>
-        var  {{ $field['field_unique_name'] }} = {!! $dependencyJson !!};
-    </script>
 
     <div class="row" >
 
@@ -168,6 +164,13 @@
 {{-- ########################################## --}}
 {{-- Extra CSS and JS for this particular field --}}
 {{-- If a field type is shown multiple times on a form, the CSS and JS will only be loaded once --}}
+
+@push('crud_fields_scripts')
+    <script>
+        var  {{ $field['field_unique_name'] }} = {!! $dependencyJson !!};
+    </script>
+@endpush
+
 @if ($crud->checkIfFieldIsFirstOfItsType($field))
 
     {{-- FIELD CSS - will be loaded in the after_styles section --}}

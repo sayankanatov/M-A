@@ -9,7 +9,7 @@
 [![Style CI](https://styleci.io/repos/53581270/shield)](https://styleci.io/repos/53581270)
 [![Total Downloads](https://img.shields.io/packagist/dt/backpack/crud.svg?style=flat-square)](https://packagist.org/packages/backpack/crud)
 
-Quickly build an admin interface for your Eloquent models, using Laravel 5. Erect a complete CMS at 10 minutes/model, max.
+Quickly build an admin interface for your Eloquent models, using Laravel 6 or 5.8. Erect a complete CMS at 10 minutes/model, max.
 
 Features:
 - 49+ field types
@@ -40,8 +40,8 @@ Installation guides:
 - [Install Backpack on Laravel 5.2](https://laravel-backpack.readme.io/docs/installation) - deprecated, lacks a lot of features;
 - [Install Backpack on Laravel 5.3](https://laravel-backpack.readme.io/docs/installation-on-laravel-53) - last feature update was 02 Feb 2017;
 - [Install Backpack on Laravel 5.4](https://laravel-backpack.readme.io/docs/install-on-laravel-54) - last feature update was 27 Sep 2017;
-- [Install Backpack on Laravel 5.5, 5.6, 5.7 or 5.8](https://backpackforlaravel.com/docs/3.5/installation) - recommended;
-
+- [Install Backpack on Laravel 5.5, 5.6, 5.7](https://backpackforlaravel.com/docs/3.5/installation) - last feature update was 27th Feb 2019;
+- [Install Backpack on Laravel 5.8 or 6.x](https://backpackforlaravel.com/docs/3.6/installation) - recommended;
 
 ## Features
 
@@ -91,9 +91,9 @@ Please **[subscribe to the Backpack Newsletter](http://backpackforlaravel.com/ne
 
 - [Cristian Tabacitu](http://tabacitu.ro) - architect, designer, manager, main coder, PR guy, customer service guy & chief honcho;
 - [Owen Melbourne](https://github.com/OwenMelbz) - new features, bug fixing and support;
-- [Cristian Tone](http://updivision.com) - architecture improvements;
-- [Marius Constantin](http://updivision.com) - bug fixing & improvements;
-- [Federico Liva](https://github.com/fede91it) - bug fixing;
+- [Oliver Ziegler](https://github.com/OliverZiegler) - new features, bug fixing and support;
+- [Thomas Swonke](https://github.com/tswonke) - new features, bug fixing and support;
+- [Catalin Tudorache](https://github.com/tumf87) - new features, bug fixing and support;
 - [All Contributors][link-contributors]
 
 Special thanks go to:
@@ -104,6 +104,14 @@ Special thanks go to:
 ## License
 
 Backpack is free for non-commercial use and 49 EUR/project for commercial use. Please see [License File](LICENSE.md) and [backpackforlaravel.com](https://backpackforlaravel.com/#pricing) for more information.
+
+
+## Hire us
+
+We've spend more than 50.000 hours creating, polishing and maintaining administration panels on Laravel. We've developed e-Commerce, e-Learning, ERPs, social networks, payment gateways and much more. We've worked on admin panels _so much_, that we've created one of the most popular software in its niche - just from making public what was repetitive in our projects.
+
+If you are looking for a developer/team to help you build an admin panel on Laravel, look no further. You'll have a difficult time finding someone with more experience & enthusiasm for this. This is _what we do_. [Contact us](https://backpackforlaravel.com/need-freelancer-or-development-team).
+
 
 [ico-version]: https://img.shields.io/packagist/v/dick/crud.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
