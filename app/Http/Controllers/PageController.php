@@ -29,10 +29,10 @@ class PageController extends Controller
         $lawyer_count = Lawyer::count();
         $service_count = Service::count();
 
-        $service_categories = ServiceCategory::all();
+        $services = Service::take(15)->get();
         $faq = Faq::all();
 
-        return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','service_categories','faq'));
+        return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq'));
     }
 
     public function city($city)
@@ -44,10 +44,10 @@ class PageController extends Controller
             $lawyer_count = Lawyer::count();
             $service_count = Service::count();
 
-            $service_categories = ServiceCategory::all();
+            $services = Service::take(15)->get();
             $faq = Faq::all();
 
-            return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','service_categories','faq'));
+            return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq'));
         }else{
             return redirect(route('main'));
         }
@@ -85,7 +85,6 @@ class PageController extends Controller
     {   
         $city = City::where('alias',$city)->first();
         if($city){
-            
 
             return view('pages.services',compact('city'));
         }else{
@@ -99,8 +98,12 @@ class PageController extends Controller
         
         if($city){
             $service = Service::find($id);
+
+            $lawyers = Lawyer::getByServices($city->id, $id);
+
+            $count = count($lawyers);
             
-            return view('pages.service',compact('service','city'));
+            return view('pages.service',compact('service','city','lawyers','count'));
         }else{
             return redirect(route('main'));
         }

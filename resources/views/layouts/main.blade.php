@@ -95,15 +95,15 @@
                 @endif
                 
 
-                @if($service_categories)
+                @if($services)
                 <div class="offcanvas__links">
                     <a class="offcanvas__link offcanvas__link_perents">
                         Специалисты
                     </a>
                     <div class="offcanvas__link-list hidden" id="specialtiesList">
                         <a href="{{route('lawyers',['city'=>$city->alias])}}">Все cпециалисты</a>
-                        @foreach($service_categories as $category)
-                        <a class="offcanvas__link-item" href="{{$category->id}}">{{app()->getLocale() == 'ru' ? $category->name_ru : $category->name_kz}}</a>
+                        @foreach($services as $service)
+                        <a class="offcanvas__link-item" href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</a>
                         @endforeach
                     </div>
                 </div>
@@ -227,7 +227,7 @@
         </div>     
     </div>
 
-    @if($service_categories)
+    @if($services)
     <div class="sectoion">
 
         <div class="section_title">
@@ -238,11 +238,11 @@
             
             <div class="row">
 
-                @foreach($service_categories as $category)
+                @foreach($services as $service)
                 <div class="col-xl-4 col-lg-6 col-md-12">
                     <div class="a-special-item-li">
-                        <a href="{{route('service',['city'=>$city->id,'id'=>$category->id])}}">
-                            {{app()->getLocale() == 'ru' ? $category->name_ru : $category->name_kz}} <span>({{$category->services->count()}})</span>
+                        <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
+                            {{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}} <span>({{$service->lawyers->count()}})</span>
                         </a>
                     </div>
                 </div>
