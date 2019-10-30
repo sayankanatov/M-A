@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Бесплатный сервис по поиску адвокатов/юристов по всему Казахстану</title>
+    <title>Document</title>
 
-    <link rel="stylesheet" href="{{asset('front/style/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="/style/bootstrap.min.css">
 
-    <link rel="stylesheet" href="{{asset('front/style/style.css')}}">
-    <link rel="stylesheet" href="{{asset('front/style/media.css')}}">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/media.css">
 </head>
 <body class="home">
     
@@ -19,38 +19,27 @@
 
                 <div class="header_left">
                     <div class="logo">
-                        <a href="{{route('main')}}">
-                            <img src="{{asset('front/img/logo.png')}}" alt="">
+                        <a href="/">
+                            <img src="/img/logo.png" alt="">
                         </a>
                     </div>
-                    @if($cities)
                     <div class="city_blok">
-                        @if($city)
                         <div class="city_blok_title">
-                            {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
+                            Астана
                         </div>
-                        @endif
-                        
                         <ul class="city_list">
-                            @foreach($cities as $c)
-                            <li>
-                                <a href="{{route('city',['city'=>$c->alias])}}">
-                                {{app()->getLocale() == 'ru' ? $c->name_ru : $c->name_kz}}
-                                </a>
-                            </li>
-                            @endforeach
+                            <li><a href="/Астана">Астана</a></li>
+                            <li><a href="/Алматы">Алматы</a></li>
                         </ul>
-                        
                     </div>
-                    @endif
                 </div>
                 <div class="header_right">
-                    <a href="{{route('login')}}" class="login login_block">
-                        <img src="{{asset('front/img/friends.png')}}" alt="">
+                    <a href="/" class="login login_block">
+                        <img src="/img/friends.png" alt="">
                         Вход
                     </a>
-                    <a href="{{route('register')}}" class="register login_block">
-                        <img src="{{asset('front/img/voter.png')}}" alt="">
+                    <a href="/" class="register login_block">
+                        <img src="/img/voter.png" alt="">
                         Регистрация 
                     </a>
                 </div>
@@ -68,54 +57,37 @@
         <div class="header_mobile_menu">
             <div class="header_mobile_menu_ul">
                 <div class="offcanvas__links">
-                    <a class="offcanvas__link" href="{{route('main')}}">
+                    <a class="offcanvas__link" href="/">
                         Главная
                     </a>
                 </div>
-
-                @if($cities)
                 <div class="city_blok">
-                    
-                    @if($city)  
                     <div class="city_blok_title">
-                        {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
+                        Астана
                     </div>
-                    @endif
-
                     <ul class="city_list">
-                    @foreach($cities as $c)
-                        <li>
-                            <a href="{{route('city',['city'=>$c->alias])}}">
-                                {{app()->getLocale() == 'ru' ? $c->name_ru : $c->name_kz}}
-                            </a>
-                        </li>
-                    @endforeach
+                        <li><a href="/Астана">Астана</a></li>
+                        <li><a href="/Алматы">Алматы</a></li>
                     </ul>
-                </div>
-                @endif
-                
-
-                @if($service_categories)
+                </div> 
                 <div class="offcanvas__links">
                     <a class="offcanvas__link offcanvas__link_perents">
-                        Специалисты
+                        Врачи
                     </a>
                     <div class="offcanvas__link-list hidden" id="specialtiesList">
-                        <a href="{{route('lawyers',['city'=>$city->alias])}}">Все cпециалисты</a>
-                        @foreach($service_categories as $category)
-                        <a class="offcanvas__link-item" href="{{$category->id}}">{{app()->getLocale() == 'ru' ? $category->name_ru : $category->name_kz}}</a>
-                        @endforeach
+                        <a href="/doctors/astana">Все врачи</a>
+                        <a class="offcanvas__link-item" href="/">Бракоразводное право</a>
+                        <a class="offcanvas__link-item" href="/">Бракоразводное право</a>
+                        <a class="offcanvas__link-item" href="/">Бракоразводное право</a>
                     </div>
                 </div>
-                @endif
-
                 <div class="offcanvas__links">
-                    <a class="offcanvas__link" href="{{route('companies',['city'=>$city->alias])}}">
+                    <a class="offcanvas__link" href="/">
                         Компании
                     </a>
                 </div>
                 <div class="offcanvas__links">
-                    <a class="offcanvas__link" href="{{route('services',['city'=>$city->alias])}}">
+                    <a class="offcanvas__link" href="/">
                         Услуги
                     </a>
                 </div>
@@ -136,27 +108,17 @@
                 <div class="col-sm-12">
                     <h1 class="baner_h1">
                         Быстрый поиск юристов через <br>
-                        Юриста / Адвокат в {{$city->id == Config::get('constants.city') ? "Астане" : "Алматы"}}
+                        Юриста / Адвокат в Астане
                     </h1>
                     <div class="baner_sity">
                         <div class="city_blok">
-                            @if($city)
                             <div class="city_blok_title">
-                                {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
+                                Астана
                             </div>
-                            @endif
-
-                            @if($cities)
                             <ul class="city_list">
-                                @foreach($cities as $c)
-                                <li>
-                                    <a href="{{route('city',['city'=>$c->alias])}}">
-                                        {{app()->getLocale() == 'ru' ? $c->name_ru : $c->name_kz}}
-                                    </a>
-                                </li>
-                                @endforeach
+                                <li><a href="/Астана">Астана</a></li>
+                                <li><a href="/Алматы">Алматы</a></li>
                             </ul>
-                            @endif
                         </div>
                     </div>
                     <div class="serch_home serch">
@@ -177,35 +139,35 @@
                 <div class="col-sm-12">
                     <div class="banner_item_block">
                         <div class="banner_item">
-                            <img src="{{asset('front/img/court.png')}}" alt="">
+                            <img src="/img/court.png" alt="">
                             <div class="banner_item_block-body">
                                 <div class="banner_menu_title">
                                     Специалисты
                                 </div>
                                 <div class="banner_menu_number">
-                                    Всего юристов {{$lawyer_count ?? '538'}}
+                                    Всего юристов 538
                                 </div>
                             </div>
                         </div>
                         <div class="banner_item">
-                            <img src="{{asset('front/img/law.png')}}" alt="">
+                            <img src="/img/law.png" alt="">
                             <div class="banner_item_block-body">
                                 <div class="banner_menu_title">
                                     Юридические компании
                                 </div>
                                 <div class="banner_menu_number">
-                                    Всего компании {{$company_count ?? '538'}}
+                                    Всего компании 538
                                 </div>
                             </div>
                         </div>
                         <div class="banner_item">
-                            <img src="{{asset('front/img/support.png')}}" alt="">
+                            <img src="/img/support.png" alt="">
                             <div class="banner_item_block-body">
                                 <div class="banner_menu_title">
                                     Услуги
                                 </div>
                                 <div class="banner_menu_number">
-                                    Всего услуг {{$service_count ?? '538'}}
+                                    Всего услуг 538
                                 </div>
                             </div>
                         </div>
@@ -226,8 +188,6 @@
             </div>
         </div>     
     </div>
-
-    @if($service_categories)
     <div class="sectoion">
 
         <div class="section_title">
@@ -237,30 +197,77 @@
         <div class="container">
             
             <div class="row">
-
-                @foreach($service_categories as $category)
                 <div class="col-xl-4 col-lg-6 col-md-12">
                     <div class="a-special-item-li">
-                        <a href="{{route('service',['city'=>$city->id,'id'=>$category->id])}}">
-                            {{app()->getLocale() == 'ru' ? $category->name_ru : $category->name_kz}} <span>({{$category->services->count()}})</span>
-                        </a>
+                        <a href="/">Бракоразводное право <span>(2)</span></a>
                     </div>
                 </div>
-                @endforeach
-                
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="a-special-item-li">
+                        <a href="">Бракоразводное право <span>(2)</span></a>
+                    </div>
+                </div>
             </div>
 
         </div>  
 
     </div>
-    @endif
-
     <div class="sectoion sectoion-advantages">
 
         <div class="section_title">
             <span>«Мой Адвокат»</span><br>
             - удобный сервис по подбору <br>
-            юристов / адвокатов в {{$city->id == Config::get('constants.city') ? "Астане" : "Алматы"}}
+            юристов / адвокатов в Астане
         </div>
 
         <div class="container">
@@ -269,7 +276,7 @@
                 <div class="col-sm-4 col-md-12">
                     <div class="advan_item">
                         <div class="advan_item-img">
-                            <img src="{{asset('front/img/advan1.png')}}" alt="">
+                            <img src="/img/advan1.png" alt="">
                         </div>
                         <div class="advan_item_title">
                             Вы оставляете заявку
@@ -283,7 +290,7 @@
                 <div class="col-sm-4 col-md-12">
                     <div class="advan_item">
                         <div class="advan_item-img">
-                            <img src="{{asset('front/img/advan2.png')}}" alt="">
+                            <img src="/img/advan2.png" alt="">
                         </div>
                         <div class="advan_item_title">
                             Мы находим кандидатов
@@ -298,7 +305,7 @@
                 <div class="col-sm-4 col-md-12">
                     <div class="advan_item">
                         <div class="advan_item-img">
-                            <img src="{{asset('front/img/advan3.png')}}" alt="">
+                            <img src="/img/advan3.png" alt="">
                         </div>
                         <div class="advan_item_title">
                             Юрист решает задачу
@@ -313,8 +320,6 @@
             </div>
         </div>
     </div>
-
-    @if($faq)
     <div class="sectoion sectoion-question">
 
         <div class="section_title">
@@ -323,27 +328,75 @@
 
         <div class="container">
             <div class="row">
-                @foreach($faq as $item)
+
                 <div class="col-sm-12">
                     <div class="question-item">
                         <div class="question-item-title">
-                            <img src="{{asset('front/img/quest-icon.png')}}" alt=""> {{app()->getLocale() == 'ru' ? $item->question_ru : $item->question_kz}}
+                            <img src="/img/quest-icon.png" alt=""> Вопрос по недвижимости
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <div class="col-sm-12">
+                    <div class="question-item">
+                        <div class="question-item-title">
+                            <img src="/img/quest-icon.png" alt=""> Вопрос по недвижимости
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="question-item">
+                        <div class="question-item-title">
+                            <img src="/img/quest-icon.png" alt=""> Вопрос по недвижимости
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="question-item">
+                        <div class="question-item-title">
+                            <img src="/img/quest-icon.png" alt=""> Вопрос по недвижимости
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>
     </div>
 
-    @endif
+    <footer>
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="header_left">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="/img/footer-logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="footer_menu">
+                        <ul class="menu">
+                            <li><a href="/">Специалисты</a></li>
+                            <li><a href="/">Услуги</a></li>
+                            <li><a href="/">Юридические компании</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="header_right">
+                    <a href="/" class="login login_block">
+                        <img src="/img/friends.png" alt="">
+                        Вход
+                    </a>
+                    <a href="/" class="register login_block">
+                        <img src="/img/voter.png" alt="">
+                        Регистрация 
+                    </a>
+                </div>
 
-    @include('includes.footer')
+            </div>
+        </div>
+    </footer>
 
-    <script src="{{asset('front/script/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('front/script/popper.min.js')}}"></script>
-    <script src="{{asset('front/script/bootstrap.min.js')}}"></script>
-    <script src="{{asset('front/script/script.js')}}"></script>
+    <script src="/script/jquery-3.3.1.min.js"></script>
+    <script src="/script/popper.min.js"></script>
+    <script src="/script/bootstrap.min.js"></script>
+    <script src="/script/script.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Role extends Model
+class Faq extends Model
 {
     use CrudTrait;
 
@@ -15,12 +15,15 @@ class Role extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'roles';
+    protected $table = 'faq';
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $guarded = ['id'];
     protected $fillable = [
-        'name'
+        'question_ru',
+        'question_kz',
+        'answer_ru',
+        'answer_kz'
     ];
     // protected $hidden = [];
     // protected $dates = [];
@@ -36,16 +39,6 @@ class Role extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    public function user() 
-    {
-        return $this->belongsTo('App\Models\BackpackUser','role_id');
-    }
-
-    public function userRole() 
-    {
-        return $this->belongsTo('App\User','role_id');
-    }
 
     /*
     |--------------------------------------------------------------------------

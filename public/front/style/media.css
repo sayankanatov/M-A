@@ -1,0 +1,294 @@
+@media screen and (max-width: 2000px) {
+
+}
+@media screen and (max-width: 1920px) {
+
+}
+@media screen and (max-width: 1536px) {
+
+}
+@media screen and (max-width: 1366px) {
+
+}
+@media screen and (max-width: 1200px) {
+    .banner_menu_title {
+        font-size: 24px;
+    }
+    .section_title {
+        font-size: 30px;
+    }
+    .advan_item_title {
+        font-size: 20px;
+    }
+    .advan_item_text {
+        font-size: 16px;
+    }
+    h1.baner_h1 {
+        font-size: 35px;
+    }
+
+    .second-page .header_right {
+        display: none;
+    }
+    .second-page .header_right-burger {
+        display: block;
+    }
+    
+    
+}
+@media screen and (max-width: 1024px) {
+
+}
+@media screen and (max-width: 992px) {
+    .serch_home.serch {
+        width: 100%;
+        max-width: 100%;
+    }
+    .city_blok {
+        display: none;
+    }
+    .baner_sity {
+        display: block;
+    }
+    .baner_sity .city_blok {
+        display: inline-block;
+    }
+    .baner_sity {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .section_baner {
+        height: 90vh;
+    }
+    .banner_item {
+        display: flex;
+        padding: 40px 50px;
+    }
+    
+    .banner_item_block {
+        flex-direction: column;
+    }
+    
+    .banner_item:before {
+        display: none;
+    }
+    
+    .banner_item:after {
+        display: none;
+    }
+    
+    .section_banner_bottom {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    .banner_item img {
+        margin-right: 40px;
+    }
+    
+    .banner_menu_title {
+        text-align: left;
+    }
+    
+    .banner_menu_number {
+        font-size: 16px;
+        text-align: left;
+    }
+    
+    .banner_item_block-body {
+        position: relative;
+        width: 100%;
+    }
+    .sectoion.sectoion-advantages {
+        box-shadow: 0 0 0 rgba(51, 51, 51, 0.23);
+    }
+    .advan_item {
+        box-shadow: 4px 7px 76px rgba(51, 51, 51, 0.11);
+        background-color: #ffffff;
+        padding: 40px 20px;
+        margin-bottom: 30px;
+        max-width: 300px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .banner_item_block-body:before {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: #4b4b4b;
+        opacity: 0.33;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .sectoion.sectoion-advantages {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+    }
+    .sectoion {
+        margin-bottom: 30px;
+    }
+    footer .header_right {
+        display: none;
+    }
+
+    .second-page header .serch_home.serch {
+        display: none;
+    }
+
+    body.second-page header {
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    body.second-page {
+        padding-top: 90px;
+    }
+
+    .content_item_li-left {
+        font-size: 16px;
+    }
+    .content_item_li {
+        font-size: 16px;
+    }
+    .content_item-title {
+        font-size: 25px;
+    }
+    
+}
+@media screen and (max-width: 768px) {
+    .header_right {
+        display: none;
+    }
+    h1.baner_h1 {
+        font-size: 24px;
+    }
+    .header_right-burger{
+        display: block;
+    }
+    .header_right {
+        display: none;
+    }
+    header {
+        padding: 10px 15px;
+        position: fixed !important;
+        z-index: 5;
+        background-image: url(../img/bg.png);
+        background-position: top;
+        top: 0;
+        width: 100%;
+    }
+    header .logo img {
+        max-width: 120px;
+    }
+
+    
+    .footer_menu .menu a {
+        font-size: 16px;
+    }
+    .section_title {
+        font-size: 24px;
+    }
+    footer {
+        padding: 30px 20px;
+    }
+    .section_title {
+        font-size: 24px;
+    }
+    #form-serch {
+        flex-direction: column;
+    }
+    #form-serch input.submit-serch {
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+    #form-serch .input-serch {
+        border-radius: 5px;
+    }
+    
+}
+@media screen and (max-width: 480px) {
+    .banner_item {
+        padding: 20px 0px;
+        align-items: flex-start;
+    }
+    .banner_item img {
+        width: 50px;
+        height: auto;
+        margin-right: 0;
+    }
+    .banner_menu_title {
+        font-size: 20px;
+    }
+    .banner_item_block-body {
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+    .a-special-item-li a {
+        font-size: 17px;
+    }
+    .sectoion {
+        padding: 20px 0 20px;
+    }
+    .question-item-title {
+        font-size: 16px;
+    }
+    .section_title br {
+        display: none;
+    }
+    #form-serch .input-serch {
+        font-size: 12px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .section_baner {
+        height: 100vh;
+    }
+
+
+    .header_menu-block {
+        display: none;
+    }
+    h1.content-h1 {
+        font-size: 25px;
+    }
+    .content-desc {
+        font-size: 16px;
+    }
+    .content_item_li-right {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .content_item_li-left {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .content_item_li-cont {
+        font-size: 14px;
+        padding: 5px 10px;
+        margin-right: 10px;
+    }
+    a.content_item-connect {
+        display: table;
+        margin: auto;
+        margin-top: 20px;
+    }
+    a.content_item-connect {
+        font-size: 16px;
+    }
+    .content_item_li-cont {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+}

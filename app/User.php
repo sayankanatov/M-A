@@ -37,13 +37,36 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function company() 
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function company()
     {
         return $this->belongsTo('App\Models\Company','user_id');
     }
 
-    public function lawyer() 
+    public function lawyer()
     {
         return $this->belongsTo('App\Models\Lawyer','user_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role','role_id');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public static function hasRole($user_id)
+    {
+        $user = self::find($user_id);
+        return $user->role_id ?? false;
     }
 }

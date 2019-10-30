@@ -29,4 +29,11 @@ return [
 		'1' => 'Да',
 		'0' => 'Нет'
 	],
+	'city' => 1,
+
+	'pagination' => [
+		'lawyers' => 10,
+		'services' => 10,
+		'companies' => 10,
+	],
 ];

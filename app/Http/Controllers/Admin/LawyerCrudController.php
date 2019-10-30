@@ -34,6 +34,7 @@ class LawyerCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->addColumn('last_name');
+        $this->crud->addColumn('first_name');
 
         $this->crud->addField([
             'name' => 'last_name',
@@ -55,7 +56,7 @@ class LawyerCrudController extends CrudController
 
         $this->crud->addField([
             'label' => "Фотография",
-            'name' => 'logo',
+            'name' => 'image',
             'type' => 'browse',
             'hint' => 'Желательно загружать в папку lawyers во вкладке "Файловый менеджер" '
         ]);

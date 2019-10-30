@@ -28,3 +28,4 @@
 <li><a href='{{ backpack_url('company') }}'><i class='fa fa-building'></i> <span>Компании</span></a></li>
 
 <li><a href='{{ backpack_url('lawyer') }}'><i class='fa fa-address-book'></i> <span>Юристы</span></a></li>
+<li><a href='{{ backpack_url('faq') }}'><i class='fa fa-question'></i> <span>Часто задаваемые вопросы</span></a></li>

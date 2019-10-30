@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\CityRequest as StoreRequest;
-use App\Http\Requests\CityRequest as UpdateRequest;
+use App\Http\Requests\FaqRequest as StoreRequest;
+use App\Http\Requests\FaqRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 
 /**
@@ -14,7 +14,7 @@ use Backpack\CRUD\CrudPanel;
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class CityCrudController extends CrudController
+class FaqCrudController extends CrudController
 {
     public function setup()
     {
@@ -23,9 +23,9 @@ class CityCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\City');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/city');
-        $this->crud->setEntityNameStrings('город', 'города');
+        $this->crud->setModel('App\Models\Faq');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/faq');
+        $this->crud->setEntityNameStrings('вопрос', 'вопросы');
 
         /*
         |--------------------------------------------------------------------------
@@ -33,23 +33,28 @@ class CityCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        $this->crud->addColumn('name_ru');
+        $this->crud->addColumn('question_ru');
 
-        $this->crud->addField([ //
-            'name' => 'name_ru',
-            'label' => "Название на русском",
-            'type' => 'text'
-        ]);
-        $this->crud->addField([ //
-            'name' => 'name_kz',
-            'label' => "Название на казахском",
-            'type' => 'text'
-        ]);
-        $this->crud->addField([ //
-            'name' => "alias",
-            'label' => "URL города",
+        $this->crud->addField([ // base64_image
+            'name' => 'question_ru',
+            'label' => "Вопрос RU",
             'type' => 'text',
-            'hint' => 'Будет отображаться в адресной строке, писать латинскими и маленькими буквами'
+        ]);
+        $this->crud->addField([ // base64_image
+            'name' => 'question_kz',
+            'label' => "Вопрос KZ",
+            'type' => 'text',
+        ]);
+
+        $this->crud->addField([ // base64_image
+            'name' => 'answer_ru',
+            'label' => "Ответ RU",
+            'type' => 'ckeditor',
+        ]);
+        $this->crud->addField([ // base64_image
+            'name' => 'answer_kz',
+            'label' => "Ответ KZ",
+            'type' => 'ckeditor',
         ]);
 
         // TODO: remove setFromDb() and manually define Fields and Columns
