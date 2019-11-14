@@ -1,6 +1,12 @@
 <?php
 
 return [
+	'roles' => [
+		'individual' => 1,
+		'entity' => 2,
+		'company' => 3,
+	],
+
 	'worktime' => [
 		'1' => 'пн - пт',
 		'2' => 'пн - cб',

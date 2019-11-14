@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="{{asset('front/style/media.css')}}">
 </head>
 <body class="second-page">
+
+    @php
+
+        if(isset($city)){}
+
+        else{$city = App\Models\City::find(Config::get('constants.city'));}
+        
+    @endphp
     
     <header>
         <div class="container">
@@ -58,9 +66,11 @@
         <div class="header_mobile_menu">
             <ul class="menu">
                 <li><a href="/">Главная</a></li>
+
                 <li><a href="{{route('lawyers',['city'=>$city->alias])}}">Специалисты</a></li>
                 <li><a href="{{route('companies',['city'=>$city->alias])}}">Юридические компании</a></li>
                 <li><a href="{{route('services',['city'=>$city->alias])}}">Услуги</a></li>
+                
             </ul>
         </div>
     </header>
@@ -70,6 +80,7 @@
                 <div class="col-sm-12">
                     <div class="header_menu">
                         <ul class="menu">
+
                             <li>
                                 <a href="{{route('lawyers',['city'=>$city->alias])}}">Специалисты</a>
                             </li>
@@ -79,6 +90,7 @@
                             <li>
                                 <a href="{{route('services',['city'=>$city->alias])}}">Услуги</a>
                             </li>
+                            
                         </ul>
                     </div>
                 </div>

@@ -323,11 +323,15 @@
 
         <div class="container">
             <div class="row">
+                
                 @foreach($faq as $item)
                 <div class="col-sm-12">
-                    <div class="question-item">
+                    <div class="question-item question-item-open">
                         <div class="question-item-title">
                             <img src="{{asset('front/img/quest-icon.png')}}" alt=""> {{app()->getLocale() == 'ru' ? $item->question_ru : $item->question_kz}}
+                        </div>
+                        <div class="question-item-text" style="display: block;">
+                            {!!app()->getLocale() == 'ru' ? $item->answer_ru : $item->answer_kz!!}
                         </div>
                     </div>
                 </div>

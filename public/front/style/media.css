@@ -33,7 +33,12 @@
     .second-page .header_right-burger {
         display: block;
     }
-    
+    .content_item-info {
+        margin-left: 0;
+    }
+    .content_item_right {
+        margin-right: 0;
+    }
     
 }
 @media screen and (max-width: 1024px) {
@@ -143,11 +148,6 @@
         width: 100%;
         padding: 10px 15px;
     }
-
-    body.second-page {
-        padding-top: 90px;
-    }
-
     .content_item_li-left {
         font-size: 16px;
     }
@@ -160,6 +160,9 @@
     
 }
 @media screen and (max-width: 768px) {
+    body.second-page {
+        padding-top: 70px;
+    }
     .header_right {
         display: none;
     }
@@ -209,7 +212,28 @@
     #form-serch .input-serch {
         border-radius: 5px;
     }
-    
+    .content_item_li-right {
+        -ms-flex: 0 0 60%;
+        flex: 0 0 60%;
+        max-width: 60%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .content_item_li-left {
+        -ms-flex: 0 0 40%;
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+    .content_item_img {
+        margin-left: 0;
+    }
+    .content_list-item-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .content_list-item-info {
+        padding: 0 15px;
+    }
 }
 @media screen and (max-width: 480px) {
     .banner_item {
@@ -248,8 +272,6 @@
     .section_baner {
         height: 100vh;
     }
-
-
     .header_menu-block {
         display: none;
     }
@@ -260,16 +282,16 @@
         font-size: 16px;
     }
     .content_item_li-right {
-        -ms-flex: 0 0 50%;
-        flex: 0 0 50%;
-        max-width: 50%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
         display: flex;
         flex-wrap: wrap;
     }
     .content_item_li-left {
-        -ms-flex: 0 0 50%;
-        flex: 0 0 50%;
-        max-width: 50%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
     }
     .content_item_li-cont {
         font-size: 14px;
@@ -277,15 +299,82 @@
         margin-right: 10px;
     }
     a.content_item-connect {
-        display: table;
-        margin: auto;
-        margin-top: 20px;
+        /* display: table; */
+        /* margin: auto; */
+        /* margin-top: 20px; */
     }
     a.content_item-connect {
         font-size: 16px;
     }
     .content_item_li-cont {
         margin-bottom: 10px;
+    }
+    .content_list-item-ul ul li {
+        font-size: 15px;
+    }
+    .reviews-item-text:before {
+        top: 15%;
+    }
+    .content_list-item-title .schedule a {
+        margin-left: 0;
+    }
+    .content_list-item-title .schedule, .content_list-item-title .schedule a {
+        margin-left: 0;
+    }
+    .content_list-item-title .schedule {
+        flex-direction: column;
+    }
+    .content_list-item-title .schedule img {
+        display: none;
+    }
+    .content_item_right.content_item_right-item {
+        flex-direction: column;
+    }
+    .content_item_right.content_item_right-item .content_item-connect {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .content_item_right.content_item_right-item .content_item-message {
+        margin-right: 0;
+    }
+    .content_item_right.content_item_right-item {
+        flex-direction: column;
+    }
+    .content_item_right.content_item_right-item .content_item-connect {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .content_item_right.content_item_right-item .content_item-message {
+        margin-right: 0;
+    }
+    .content_list-item-title {
+        font-size: 20px;
+    }
+    .content_list-item-title .schedule, .content_list-item-title .schedule a {
+        font-size: 14px;
+    }
+    .content_list-item-ul ul {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        padding: 5px 0;
+        border-bottom: 1px solid #ababab;
+    }
+    .content_list-item-ul ul li:nth-child(2) {
+        display: none;
+    }
+    .content_list-item-ul ul li {
+        margin: 0 !important;
+    }
+
+    .content_list-item-reviews {
+        padding: 0 15px;
+    }
+    .reviews-item-autor-text {
+        margin-bottom: 20px;
+    }
+    .reviews-item-text:before {
+        display: none;
     }
 }
 

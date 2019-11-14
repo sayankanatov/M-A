@@ -16,77 +16,129 @@
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
             </div>
+            <div class="content-top_sort">
+                <a href="">По умолчанию</a>
+                <a href="">Рейтинг</a>
+                <a href="">Стаж</a>
+            </div>
         </div>
     </div>
 @endif
 @if($lawyers)
     <div class="content_list">
-    		@foreach($lawyers as $lawyer)
+    	@foreach($lawyers as $lawyer)
 
-            <div class="content_item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="content_item_img">
-                                        <img src="{{-- {{$lawyer->image ? '/'.$lawyer->image : asset('front/img/woman.png')}} --}}{{asset('front/img/woman.png')}}" alt="">
-                                    </div>
-                                    <div class="rating_block">
-                                        9.1
-                                    </div>
-                                    <div class="feedback_block">
-                                        <a href="#">12 Отзывов</a>
-                                    </div>
+        <div class="content_item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="content_item_img">
+                                    <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">
+                                        <img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front/img/woman.png')}}" alt="">
+                                    </a>
                                 </div>
-                                <div class="col-sm-9">
-                                    <div class="content_item-info">
-                                        <div class="content_item-title">
-                                            {{$lawyer->last_name.' '.$lawyer->first_name.' '.$lawyer->patronymic }} <a href=""><img src="{{asset('front/img/share-social.png')}}" alt=""></a>
-                                        </div>
-                                        <div class="content_item-desc">
-                                            Частная практика
-                                        </div>
-                                        <div class="content_item_ul">
-                                            <div class="content_item_li">
-                                                <div class="content_item_li-left">
-                                                    Образование:
-                                                </div>
-                                                <div class="content_item_li-right">
-                                                    {{$lawyer->education}}
-                                                </div>
+                                <div class="rating_block">
+                                    <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">0 Отзывов</a> {{-- 9.1 --}}
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-xl-9">
+                                        <div class="content_item-info">
+                                            <div class="content_item-title">
+                                                <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">
+                                                    {{$lawyer->last_name.' '.$lawyer->first_name.' '.$lawyer->patronymic }} 
+                                                </a> 
                                             </div>
-                                            <div class="content_item_li">
-                                                <div class="content_item_li-left">
-                                                    Стаж:
-                                                </div>
-                                                <div class="content_item_li-right">
-                                                    {{$lawyer->work_experience}}
-                                                </div>
-                                            </div>
-                                            <div class="content_item_li">
-                                                <div class="content_item_li-left">
-                                                    Консультация :
-                                                </div>
-                                                <div class="content_item_li-right">
-                                                	<div class="content_item_li-cont">Платная</div>
-                                                	@if($lawyer->is_free == 1)
-                                                	<div class="content_item_li-cont">
-                                                        Бесплатная
+                                            <div class="content_item_ul">
+                                                <div class="content_item_li">
+                                                    <div class="content_item_li-left">
+                                                        Специализация:
                                                     </div>
-                                                	@endif
-                                                    
-                                                    
+                                                    <div class="content_item_li-right content_item_li-right-active">
+                                                    @php
+                                                        $i = 0;
+                                                        $len = count($lawyer->services);
+                                                    @endphp
+                                                    @foreach($lawyer->services as $service)
+
+                                                        @if($i == $len - 1)
+
+                                                            {{$service->name_ru.'.'}}
+                                                        @else
+                                                            {{$service->name_ru.', '}}
+
+                                                        @endif
+
+                                                        @php
+                                                            $i++;
+                                                        @endphp
+
+                                                    @endforeach
+                                                    </div>
+                                                </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Стаж:
+                                                        </div>
+                                                        <div class="content_item_li-right content_item_li-right-active">
+                                                            {{$lawyer->work_experience}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Адрес:
+                                                        </div>
+                                                        <div class="content_item_li-right">
+                                                            {{$lawyer->address}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Описание:
+                                                        </div>
+                                                        <div class="content_item_li-right">
+                                                            {{$lawyer->extra}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            График работы:
+                                                        </div>
+                                                        <div class="content_item_li-right">
+
+                                                            {{Config::get('constants.worktime.'.$lawyer->worktime)}},
+                                                            {{Config::get('constants.time.'.$lawyer->time)}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Консультация:
+                                                        </div>
+                                                        <div class="content_item_li-right content_item_li-right-active">
+                                                            {{$lawyer->price}}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="/" class="content_item-connect">Получить консультацию</a>
-
+                                        <div class="col-xl-3">
+                                            <div class="content_item_right">
+                                                <a class="content_item-connect">Получить консультацию</a>
+                                                <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
+                                                <a class="content_item-message">Написать сообщение</a>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
