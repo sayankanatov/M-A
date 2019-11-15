@@ -114,8 +114,10 @@ class PageController extends Controller
         $city = City::where('alias',$city)->first();
         if($city){
             
+            $companies = Company::where('city_id',$city->id)
+                ->paginate(Config::get('constants.pagination.lawyers'));
 
-            return view('pages.companies',compact('city'));
+            return view('pages.companies',compact('city','companies'));
         }else{
             return redirect(route('main'));
         }

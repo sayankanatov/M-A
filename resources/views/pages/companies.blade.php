@@ -2,4 +2,153 @@
 
 @section('content')
 
+<div class="content">
+@if($city)
+    <div class="content-top">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li class="breadcrumb-item"><a href="{{route('main')}}">Главная</a></li>
+                <li class="breadcrumb-item">Компании</li>
+            </ul>
+            <h1 class="content-h1">
+                Компании в {{$city->id == Config::get('constants.city') ? "Астане" : "Алматы"}} ({{$city->companies->count()}})
+            </h1>
+            <div class="content-desc">
+                Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
+            </div>
+            <div class="content-top_sort">
+                <a href="">По умолчанию</a>
+                <a href="">Рейтинг</a>
+                <a href="">Стаж</a>
+            </div>
+        </div>
+    </div>
+@endif
+@if($companies)
+    <div class="content_list">
+    	@foreach($companies as $company)
+
+        <div class="content_item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="content_item_img">
+                                    <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">
+                                        <img src="{{$company->logo ? '/'.$company->logo : asset('front/img/woman.png')}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="rating_block">
+                                    <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">0 Отзывов</a> {{-- 9.1 --}}
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-xl-9">
+                                        <div class="content_item-info">
+                                            <div class="content_item-title">
+                                                <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">
+                                                    {{$company->name}} 
+                                                </a> 
+                                            </div>
+                                            <div class="content_item_ul">
+                                                <div class="content_item_li">
+                                                    <div class="content_item_li-left">
+                                                        Специализация:
+                                                    </div>
+                                                    <div class="content_item_li-right content_item_li-right-active">
+                                                    @php
+                                                        $i = 0;
+                                                        $len = count($company->services);
+                                                    @endphp
+                                                    @foreach($company->services as $service)
+
+                                                        @if($i == $len - 1)
+
+                                                            {{$service->name_ru.'.'}}
+                                                        @else
+                                                            {{$service->name_ru.', '}}
+
+                                                        @endif
+
+                                                        @php
+                                                            $i++;
+                                                        @endphp
+
+                                                    @endforeach
+                                                    </div>
+                                                </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Почта:
+                                                        </div>
+                                                        <div class="content_item_li-right content_item_li-right-active">
+                                                            {{$company->email}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Адрес:
+                                                        </div>
+                                                        <div class="content_item_li-right">
+                                                            {{$company->address}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Описание:
+                                                        </div>
+                                                        <div class="content_item_li-right">
+                                                            {{$company->extra}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            График работы:
+                                                        </div>
+                                                        <div class="content_item_li-right">
+
+                                                            {{Config::get('constants.worktime.'.$company->worktime)}},
+                                                            {{Config::get('constants.time.'.$company->time)}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="content_item_li">
+                                                        <div class="content_item_li-left">
+                                                            Консультация:
+                                                        </div>
+                                                        <div class="content_item_li-right content_item_li-right-active">
+                                                            {{$company->price}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class="content_item_right">
+                                                <a class="content_item-connect">Получить консультацию</a>
+                                                <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
+                                                <a class="content_item-message">Написать сообщение</a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            @endforeach
+
+            {{$companies->links()}}
+
+    </div>
+@endif
+        
+</div>
+
 @endsection
