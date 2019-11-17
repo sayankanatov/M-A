@@ -160,11 +160,11 @@
                         </div>
                     </div>
                     <div class="serch_home serch">
-                        <form action="" id="form-serch" class="serch">
-                            <input type="text" class="input-serch" name="serch" placeholder="Адвокат / юрист или услуга"> 
+                        <form action="{{route('search')}}" id="form-serch" class="serch" method="post">
+                            @csrf
+                            <input type="text" class="input-serch" name="search" placeholder="Адвокат / юрист или услуга"> 
                             <input type="submit" class="submit-serch" value="Найти">
-                        </form>   
-                        
+                        </form>
                     </div>
                 </div>
             </div>

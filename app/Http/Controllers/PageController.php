@@ -193,5 +193,26 @@ class PageController extends Controller
         }   
         
     }
+
+    public function search(Request $request)
+    {
+        $lang = app()->getLocale();
+        $result = null;
+        $search = $request->get('search');
+
+        $city = City::find(Config::get('constants.city'));
+
+        $lawyers = Lawyer::where('last_name','like','%'.$search.'%')->get();
+        $companies = Company::where('name','like','%'.$search.'%')->get();
+        $services = Service::where($lang == 'ru' ? 'name_ru' : 'name_kz','like','%'.$search.'%')->get();
+
+        if(count($lawyers) > 0 || count($companies) > 0 || count($services) > 0){
+            $result = true;
+        }else{
+            $result = false;
+        }
+
+        return view('pages.search',compact('lawyers','companies','services','search','result','city'));
+    }
     
 }

@@ -29,6 +29,9 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
 
     Route::get('/city-{city}/companies', 'PageController@companies')->name('companies');
     Route::get('/city-{city}/company/{id}', 'PageController@company')->name('company');
+
+    Route::match(['get','post'],'/search','PageController@search')->name('search');
+
     Route::get('/home', 'HomeController@index')->name('home');
 
     // Route::group(['prefix' => 'companies'], function () {
