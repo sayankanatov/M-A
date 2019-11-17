@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Backpack\MenuCRUD\app\Models\MenuItem;
 use Config;
+use Illuminate\Support\Facades\Input;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Lawyer;
@@ -56,10 +57,37 @@ class PageController extends Controller
     public function lawyers($city)
     {
         $city = City::where('alias',$city)->first();
+
+        $sort = Input::get('sort');
+
         if($city){
 
-            $lawyers = Lawyer::where('city_id',$city->id)
+            if(isset($sort)){
+
+                switch ($sort) {
+                    case 'rating':
+                        # code...
+                        $lawyers = Lawyer::where('city_id',$city->id)
+                        ->orderBy('rating','desc')
+                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        break;
+                    case 'experience':
+                        # code...
+                        $lawyers = Lawyer::where('city_id',$city->id)
+                        ->orderBy('work_experience','desc')
+                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        break;
+                    default:
+                        # code...
+                        $lawyers = Lawyer::where('city_id',$city->id)
+                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        break;
+                }
+
+            }else{
+                $lawyers = Lawyer::where('city_id',$city->id)
                 ->paginate(Config::get('constants.pagination.lawyers'));
+            }
 
             return view('pages.lawyers',compact('lawyers','city'));
         }else{
@@ -112,10 +140,40 @@ class PageController extends Controller
     public function companies($city)
     {   
         $city = City::where('alias',$city)->first();
+
+        $sort = Input::get('sort');
+
         if($city){
-            
-            $companies = Company::where('city_id',$city->id)
+
+            if(isset($sort)){
+
+                switch ($sort) {
+                    case 'rating':
+                        # code...
+                        $companies = Company::where('city_id',$city->id)
+                        ->orderBy('rating','desc')
+                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        break;
+                    case 'experience':
+                        # code...
+                        $companies = Company::where('city_id',$city->id)
+                        ->orderBy('extra','desc')
+                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        
+                        break;
+                    default:
+                        # code...
+                        $companies = Company::where('city_id',$city->id)
+                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        break;
+                }
+
+            }else{
+                $companies = Company::where('city_id',$city->id)
                 ->paginate(Config::get('constants.pagination.lawyers'));
+            }
+            
+            
 
             return view('pages.companies',compact('city','companies'));
         }else{

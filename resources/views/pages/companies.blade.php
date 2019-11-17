@@ -17,9 +17,9 @@
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
             </div>
             <div class="content-top_sort">
-                <a href="">По умолчанию</a>
-                <a href="">Рейтинг</a>
-                <a href="">Стаж</a>
+                <a href="{{route('companies',['city' =>$city->alias,'sort' => 'default'])}}">По умолчанию</a>
+                <a href="{{route('companies',['city' =>$city->alias,'sort' => 'rating'])}}">Рейтинг</a>
+                <a href="{{route('companies',['city' =>$city->alias,'sort' => 'experience'])}}">Стаж</a>
             </div>
         </div>
     </div>
@@ -126,9 +126,9 @@
                                         </div>
                                         <div class="col-xl-3">
                                             <div class="content_item_right">
-                                                <a class="content_item-connect">Получить консультацию</a>
+                                                <a class="content_item-connect" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Получить консультацию</a>
                                                 <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
-                                                <a class="content_item-message">Написать сообщение</a>
+                                                <a class="content_item-message" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Написать сообщение</a>
                                             </div>
                                             
                                         </div>
