@@ -55,25 +55,17 @@ class Lawyer extends Model
     |--------------------------------------------------------------------------
     */
 
-    public static function getByServices($city,$service_id){
-
-        $lawyers = self::where('city_id',$city)->get();
-
-        $array = array();
-
-        foreach ($lawyers as $key => $lawyer) {
-            # code...
-            foreach ($lawyer->services as $key => $service) {
-                # code...
-                if($service->id == $service_id){
-                    array_push($array, $lawyer->id);
-                }
-            }
+    public static function getByServiceInCity($service_id,$city_id,$count = false)
+    {
+        if($count == true){
+            return self::where('city_id',$city_id)->whereHas('services', function($query) use ($service_id){
+                $query->where('id',$service_id);
+            })->count();
+        }else{
+            return self::where('city_id',$city_id)->whereHas('services', function($query) use ($service_id){
+                $query->where('id',$service_id);
+            })->get();
         }
-
-        $lawyers = self::whereIn('id',$array)->get();
-
-        return $lawyers;
     }
 
     /*

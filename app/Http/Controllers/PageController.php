@@ -127,7 +127,7 @@ class PageController extends Controller
         if($city){
             $service = Service::find($id);
 
-            $lawyers = Lawyer::getByServices($city->id, $id);
+            $lawyers = Lawyer::getByServiceInCity($id,$city->id);
 
             $count = count($lawyers);
             

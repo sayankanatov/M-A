@@ -11,13 +11,13 @@
                 <li class="breadcrumb-item">Специалисты</li>
             </ul>
             <h1 class="content-h1">
-                Специалисты в {{$city->id == Config::get('constants.city') ? "Астане" : "Алматы"}} ({{$city->lawyers->count()}})
+                Специалисты в городе {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$city->lawyers->count()}})
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
             </div>
             <div class="content-top_sort">
-                <a href="{{route('lawyers',['city' =>$city->alias,'sort' => 'default'])}}">По умолчанию</a>
+                <a href="{{route('lawyers',['city' =>$city->alias])}}">По умолчанию</a>
                 <a href="{{route('lawyers',['city' =>$city->alias,'sort' => 'rating'])}}">Рейтинг</a>
                 <a href="{{route('lawyers',['city' =>$city->alias,'sort' => 'experience'])}}">Стаж</a>
             </div>

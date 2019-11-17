@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</li>
             </ul>
             <h1 class="content-h1">
-                Специалисты в {{$city->id == Config::get('constants.city') ? "Астане" : "Алматы"}} ({{$count}})
+                Специалисты в городе {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$count}})
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела

@@ -136,7 +136,7 @@
                 <div class="col-sm-12">
                     <h1 class="baner_h1">
                         Быстрый поиск юристов через <br>
-                        Юриста / Адвокат в {{$city->id == Config::get('constants.city') ? "Астане" : "Алматы"}}
+                        Юриста / Адвокат в городе {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
                     </h1>
                     <div class="baner_sity">
                         <div class="city_blok">
@@ -242,7 +242,7 @@
                 <div class="col-xl-4 col-lg-6 col-md-12">
                     <div class="a-special-item-li">
                         <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
-                            {{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}} <span>({{$service->lawyers->count()}})</span>
+                            {{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}} <span>({{App\Models\Lawyer::getByServiceInCity($service->id,$city->id,true)}})</span>
                         </a>
                     </div>
                 </div>
@@ -260,7 +260,7 @@
         <div class="section_title">
             <span>«Мой Адвокат»</span><br>
             - удобный сервис по подбору <br>
-            юристов / адвокатов в {{$city->id == Config::get('constants.city') ? "Астане" : "Алматы"}}
+            юристов / адвокатов в городе {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
         </div>
 
         <div class="container">
@@ -326,11 +326,11 @@
                 
                 @foreach($faq as $item)
                 <div class="col-sm-12">
-                    <div class="question-item question-item-open">
+                    <div class="question-item question-item-close">
                         <div class="question-item-title">
                             <img src="{{asset('front/img/quest-icon.png')}}" alt=""> {{app()->getLocale() == 'ru' ? $item->question_ru : $item->question_kz}}
                         </div>
-                        <div class="question-item-text" style="display: block;">
+                        <div class="question-item-text">
                             {!!app()->getLocale() == 'ru' ? $item->answer_ru : $item->answer_kz!!}
                         </div>
                     </div>
