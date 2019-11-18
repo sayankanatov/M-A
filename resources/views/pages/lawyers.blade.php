@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item">Специалисты</li>
             </ul>
             <h1 class="content-h1">
-                Специалисты в городе {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$city->lawyers->count()}})
+                Специалисты в г.{{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$city->lawyers->count()}})
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="row">
-                                    <div class="col-xl-9">
+                                    <div class="col-xl-8">
                                         <div class="content_item-info">
                                             <div class="content_item-title">
                                                 <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">
@@ -58,6 +58,7 @@
                                                         Специализация:
                                                     </div>
                                                     <div class="content_item_li-right content_item_li-right-active">
+                                                        <p>
                                                     @php
                                                         $i = 0;
                                                         $len = count($lawyer->services);
@@ -66,9 +67,12 @@
 
                                                         @if($i == $len - 1)
 
-                                                            {{$service->name_ru.'.'}}
+                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">{{$service->name_ru.'.'}}
+                                                            </a>
                                                         @else
+                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
                                                             {{$service->name_ru.', '}}
+                                                            </a>
 
                                                         @endif
 
@@ -77,6 +81,7 @@
                                                         @endphp
 
                                                     @endforeach
+                                                        </p>
                                                     </div>
                                                 </div>
                                                     <div class="content_item_li">
@@ -100,7 +105,14 @@
                                                             Описание:
                                                         </div>
                                                         <div class="content_item_li-right">
-                                                            {{$lawyer->extra}}
+                                                            <p>
+@if($lawyer->extra !== null && strlen($lawyer->extra) > 100)
+{{mb_strimwidth($lawyer->extra,0,100,"...")}}<a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}"> Далее</a>
+@else
+{{$lawyer->extra}}
+@endif
+
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="content_item_li">
@@ -124,10 +136,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3">
+                                        <div class="col-xl-4">
                                             <div class="content_item_right">
                                                 <a class="content_item-connect" href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">Получить консультацию</a>
-                                                <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
+                                                <div class="content_item-phone link-phone">
+                                                    <strong class="xx-large">8 777 XXX XX XX </strong>
+                                                    <span class="spoiler">Показать</span>
+                                                </div>
                                                 <a class="content_item-message" href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">Написать сообщение</a>
                                             </div>
                                             

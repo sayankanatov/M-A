@@ -135,8 +135,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="baner_h1">
-                        Быстрый поиск юристов через <br>
-                        Юриста / Адвокат в городе {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
+                        Быстрый поиск юристов <br>
+                        в г.{{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
                     </h1>
                     <div class="baner_sity">
                         <div class="city_blok">
@@ -186,6 +186,7 @@
                                     Всего юристов {{$lawyer_count ?? '538'}}
                                 </div>
                             </div>
+                            <a href="{{route('lawyers',['city'=>$city->alias])}}">Подробнее</a>
                         </div>
                         <div class="banner_item">
                             <img src="{{asset('front/img/law.png')}}" alt="">
@@ -197,6 +198,7 @@
                                     Всего компании {{$company_count ?? '538'}}
                                 </div>
                             </div>
+                            <a href="{{route('companies',['city'=>$city->alias])}}">Подробнее</a>
                         </div>
                         <div class="banner_item">
                             <img src="{{asset('front/img/support.png')}}" alt="">
@@ -208,6 +210,7 @@
                                     Всего услуг {{$service_count ?? '538'}}
                                 </div>
                             </div>
+                            <a href="{{route('services',['city'=>$city->alias])}}">Подробнее</a>
                         </div>
                         <!--
                         <div class="banner_item">
@@ -266,7 +269,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-4 col-md-12">
+                <div class="col-sm-12 col-md-4">
                     <div class="advan_item">
                         <div class="advan_item-img">
                             <img src="{{asset('front/img/advan1.png')}}" alt="">
@@ -280,7 +283,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 col-md-12">
+                <div class="col-sm-12 col-md-4">
                     <div class="advan_item">
                         <div class="advan_item-img">
                             <img src="{{asset('front/img/advan2.png')}}" alt="">
@@ -295,7 +298,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 col-md-12">
+                <div class="col-sm-12 col-md-4">
                     <div class="advan_item">
                         <div class="advan_item-img">
                             <img src="{{asset('front/img/advan3.png')}}" alt="">

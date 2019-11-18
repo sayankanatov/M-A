@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item">Компании</li>
             </ul>
             <h1 class="content-h1">
-                Компании в городе {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$city->companies->count()}})
+                Компании в г.{{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$city->companies->count()}})
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="row">
-                                    <div class="col-xl-9">
+                                    <div class="col-xl-8">
                                         <div class="content_item-info">
                                             <div class="content_item-title">
                                                 <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">
@@ -58,6 +58,7 @@
                                                         Специализация:
                                                     </div>
                                                     <div class="content_item_li-right content_item_li-right-active">
+                                                        <p>
                                                     @php
                                                         $i = 0;
                                                         $len = count($company->services);
@@ -65,10 +66,13 @@
                                                     @foreach($company->services as $service)
 
                                                         @if($i == $len - 1)
-
+                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
                                                             {{$service->name_ru.'.'}}
+                                                            </a>
                                                         @else
+                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
                                                             {{$service->name_ru.', '}}
+                                                            </a>
 
                                                         @endif
 
@@ -77,6 +81,7 @@
                                                         @endphp
 
                                                     @endforeach
+                                                        </p>
                                                     </div>
                                                 </div>
                                                     <div class="content_item_li">
@@ -124,7 +129,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3">
+                                        <div class="col-xl-4">
                                             <div class="content_item_right">
                                                 <a class="content_item-connect" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Получить консультацию</a>
                                                 <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
