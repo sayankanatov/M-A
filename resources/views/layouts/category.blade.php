@@ -29,15 +29,28 @@
                             <img src="{{asset('front/img/logo.png')}}" alt="">
                         </a>
                     </div>
-                    {{-- @if($city)
+                    @if($city)
                     <div class="city_blok">
-                        {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}<img src="{{asset('front/img/back.png')}}" alt="">
+                        <div class="city_blok_title">
+                            {{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
+                        </div>
+
+                        <ul class="city_list">
+                            @foreach(App\Models\City::all() as $c)
+                            <li>
+                                <a href="{{route('city',['city'=>$c->alias])}}">
+                                {{app()->getLocale() == 'ru' ? $c->name_ru : $c->name_kz}}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
                     </div>
-                    @endif --}}
+                    @endif
                 </div>
                 <div class="serch_home serch">
-                    <form action="" id="form-serch" class="serch">
-                        <input type="text" class="input-serch" name="serch" placeholder="Адвокат / юрист или услуга"> 
+                    <form action="{{route('search')}}" id="form-serch" class="serch" method="post">
+                        @csrf
+                        <input type="text" class="input-serch" name="search" placeholder="Адвокат / юрист или услуга"> 
                         <input type="submit" class="submit-serch" value="Найти">
                     </form>  
                 </div>
@@ -65,7 +78,7 @@
 
         <div class="header_mobile_menu">
             <ul class="menu">
-                <li><a href="/">Главная</a></li>
+                <li><a href="{{route('main')}}">Главная</a></li>
 
                 <li><a href="{{route('lawyers',['city'=>$city->alias])}}">Специалисты</a></li>
                 <li><a href="{{route('companies',['city'=>$city->alias])}}">Юридические компании</a></li>
