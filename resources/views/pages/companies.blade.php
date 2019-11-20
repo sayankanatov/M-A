@@ -105,7 +105,12 @@
                                                             Описание:
                                                         </div>
                                                         <div class="content_item_li-right">
-                                                            {{$company->extra}}
+                                                            
+@if($company->extra !== null && strlen($company->extra) > 100)
+{{mb_strimwidth($company->extra,0,100,"...")}} <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}"> Далее</a>
+@else
+{{$company->extra}}
+@endif
                                                         </div>
                                                     </div>
                                                     <div class="content_item_li">

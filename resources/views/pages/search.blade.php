@@ -99,7 +99,11 @@
                                                             Описание:
                                                         </div>
                                                         <div class="content_item_li-right">
-                                                            {{$company->extra}}
+@if($company->extra !== null && strlen($company->extra) > 100)
+{{mb_strimwidth($company->extra,0,100,"...")}} <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}"> Далее</a>
+@else
+{{$company->extra}}
+@endif
                                                         </div>
                                                     </div>
                                                     <div class="content_item_li">
@@ -220,7 +224,11 @@
                                                             Описание:
                                                         </div>
                                                         <div class="content_item_li-right">
-                                                            {{$lawyer->extra}}
+@if($lawyer->extra !== null && strlen($lawyer->extra) > 100)
+{{mb_strimwidth($lawyer->extra,0,100,"...")}} <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}"> Далее</a>
+@else
+{{$lawyer->extra}}
+@endif
                                                         </div>
                                                     </div>
                                                     <div class="content_item_li">
