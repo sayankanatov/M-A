@@ -11,7 +11,11 @@
                 <li class="breadcrumb-item">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</li>
             </ul>
             <h1 class="content-h1">
-                Специалисты в г.{{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$count}})
+                @if(app()->getLocale() == 'ru')
+                    Специалисты в {{isset($city->prepositional_ru) ? $city->prepositional_ru : ''}} ({{$count}})
+                @else
+                    Специалисты {{isset($city->prepositional_kz) ? $city->prepositional_kz : ''}} ({{$count}})
+                @endif
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
@@ -131,8 +135,8 @@
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="content_item_right">
-                                                <a class="content_item-connect">Получить консультацию</a>
-                                                <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
+                                                <a class="content_item-phone" href="tel:{{$lawyer->telephone}}">{{$lawyer->telephone}}</a>
+                                                <a class="content_item-connect">Написать на WhatsApp</a>
                                                 <a class="content_item-message">Написать сообщение</a>
                                             </div>
                                             

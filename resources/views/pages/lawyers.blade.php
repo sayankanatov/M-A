@@ -11,7 +11,11 @@
                 <li class="breadcrumb-item">Специалисты</li>
             </ul>
             <h1 class="content-h1">
-                Специалисты в г.{{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$city->lawyers->count()}})
+                @if(app()->getLocale() == 'ru')
+                    Специалисты в {{isset($city->prepositional_ru) ? $city->prepositional_ru : ''}} ({{$city->lawyers->count()}})
+                @else
+                    Специалисты {{isset($city->prepositional_kz) ? $city->prepositional_kz : ''}} ({{$city->lawyers->count()}})
+                @endif
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
@@ -138,11 +142,9 @@
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="content_item_right">
-                                                <a class="content_item-connect" href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">Получить консультацию</a>
-                                                <div class="content_item-phone link-phone">
-                                                    <strong class="xx-large">8 777 XXX XX XX </strong>
-                                                    <span class="spoiler">Показать</span>
-                                                </div>
+                                                <a class="content_item-phone" href="tel:{{$lawyer->telephone}}">{{$lawyer->telephone}}</a>
+                                                <a class="content_item-connect">Написать на WhatsApp</a>
+                                                
                                                 <a class="content_item-message" href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">Написать сообщение</a>
                                             </div>
                                             

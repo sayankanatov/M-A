@@ -22,6 +22,8 @@ class City extends Model
     protected $fillable = [
         'name_ru',
         'name_kz',
+        'prepositional_ru',
+        'prepositional_kz',
         'alias'
     ];
     // protected $hidden = [];

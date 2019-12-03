@@ -11,7 +11,12 @@
                 <li class="breadcrumb-item">Компании</li>
             </ul>
             <h1 class="content-h1">
-                Компании в г.{{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}} ({{$city->companies->count()}})
+                @if(app()->getLocale() == 'ru')
+                    Компании в {{isset($city->prepositional_ru) ? $city->prepositional_ru : ''}} ({{$city->companies->count()}})
+                @else
+                    Компании {{isset($city->prepositional_kz) ? $city->prepositional_kz : ''}} ({{$city->companies->count()}})
+                @endif
+                
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
@@ -136,11 +141,11 @@
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="content_item_right">
-                                                <a class="content_item-connect" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Получить консультацию</a>
-                                                <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
+                                                <a class="content_item-phone" href="tel:{{$company->telephone}}">{{$company->telephone}}</a>
+                                                <a class="content_item-connect" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Написать на WhatsApp</a>
+                                                
                                                 <a class="content_item-message" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Написать сообщение</a>
                                             </div>
-                                            
                                         </div>
                                     </div>
 

@@ -45,6 +45,21 @@ class CityCrudController extends CrudController
             'label' => "Название на казахском",
             'type' => 'text'
         ]);
+
+        $this->crud->addField([ //
+            'name' => 'prepositional_ru',
+            'label' => "Название на русском в предложенном падеже",
+            'type' => 'text',
+            'hint' => 'Например: Астане'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => 'prepositional_kz',
+            'label' => "Название на казахском в предложенном падеже",
+            'type' => 'text',
+            'hint' => 'Мысалы: Астанада'
+        ]);
+
         $this->crud->addField([ //
             'name' => "alias",
             'label' => "URL города",

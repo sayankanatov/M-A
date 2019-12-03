@@ -135,8 +135,13 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="baner_h1">
+                        @if(app()->getLocale() == 'ru')
                         Быстрый поиск юристов <br>
-                        в г.{{app()->getLocale() == 'ru' ? $city->name_ru : $city->name_kz}}
+                        в {{isset($city->prepositional_ru) ? $city->prepositional_ru : ''}}
+                        @else
+                        Быстрый поиск юристов <br>
+                        {{isset($city->prepositional_kz) ? $city->prepositional_kz : ''}}
+                        @endif
                     </h1>
                     <div class="baner_sity">
                         <div class="city_blok">
