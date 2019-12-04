@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @if(env('APP_NAME') == 'TEST')
+    <meta name="robots" content="noindex, nofollow" />
+    @endif
+    
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Бесплатный сервис по поиску адвокатов/юристов по всему Казахстану</title>
 
