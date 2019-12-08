@@ -16,6 +16,8 @@
 
 <li><a href='{{ backpack_url('city') }}'><i class='fa fa-fort-awesome'></i> <span>Города</span></a></li>
 
+<li><a href='{{ backpack_url('seo_page') }}'><i class='fa fa-fort-awesome'></i> <span>SEO Страницы</span></a></li>
+
 <li class="treeview">
     <a href="#"><i class="fa fa-balance-scale"></i> <span>Услуги и Категории</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">

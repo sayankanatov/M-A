@@ -16,6 +16,7 @@ class LocaleMiddleware
     * Проверяет наличие корректной метки языка в текущем URL
     * Возвращает метку или значеие null, если нет метки
     */
+
     public static function getLocale()
     {
         $uri = Request::path(); //получаем URI 
@@ -25,21 +26,23 @@ class LocaleMiddleware
         //Проверяем метку языка  - есть ли она среди доступных языков
         if (!empty($segmentsURI[0]) && in_array($segmentsURI[0], self::$languages)) {
 
-            return $segmentsURI[0]; 
+            if ($segmentsURI[0] != self::$mainLanguage) return $segmentsURI[0]; 
 
-        } else {
-            return  self::$mainLanguage; 
         }
+        return null; 
     }
 
     /*
     * Устанавливает язык приложения в зависимости от метки языка из URL
     */
+
     public function handle($request, Closure $next)
     {
         $locale = self::getLocale();
 
         if($locale) App::setLocale($locale); 
+        //если метки нет - устанавливаем основной язык $mainLanguage
+        else App::setLocale(self::$mainLanguage); 
 
         return $next($request); //пропускаем дальше - передаем в следующий посредник
     }

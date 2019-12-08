@@ -21,7 +21,12 @@ class Service extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'name_ru',
-        'name_kz'
+        'name_kz',
+
+        'h_one',
+        'seo_title',
+        'seo_desc',
+        'seo_keywords',
     ];
     // protected $hidden = [];
     // protected $dates = [];

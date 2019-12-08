@@ -39,7 +39,11 @@ class Company extends Model
         'price',
         'user_id',
         'city_id',
-        
+
+        'h_one',
+        'seo_title',
+        'seo_desc',
+        'seo_keywords',
     ];
     // protected $hidden = [];
     // protected $dates = [];

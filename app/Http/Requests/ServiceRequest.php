@@ -27,7 +27,9 @@ class ServiceRequest extends FormRequest
     {
         return [
             'name_ru' => 'required',
-            'name_kz' => 'required'
+            'name_kz' => 'required',
+            'seo_title' => 'max:70',
+            'seo_desc' => 'max:150',
         ];
     }
 

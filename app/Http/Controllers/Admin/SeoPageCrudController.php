@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\VideoRequest as StoreRequest;
-use App\Http\Requests\VideoRequest as UpdateRequest;
+use App\Http\Requests\SeoPageRequest as StoreRequest;
+use App\Http\Requests\SeoPageRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 
 /**
- * Class VideoCrudController
+ * Class CommentCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class VideoCrudController extends CrudController
+class SeoPageCrudController extends CrudController
 {
     public function setup()
     {
@@ -23,45 +23,57 @@ class VideoCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Video');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/video');
-        $this->crud->setEntityNameStrings('sidebar', 'SideBar');
+        $this->crud->setModel('App\Models\SeoPage');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/seo_page');
+        $this->crud->setEntityNameStrings('SEO страницу', 'SEO страницы');
 
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-        $this->crud->addColumn('alias');
+
+        $this->crud->addColumn('title');
 
         $this->crud->addField([ //
-            'name' => 'image',
-            'label' => "Картинка для анонсирового ролика",
-            'type' => 'browse',
-            'hint' => 'Желательно загружать в папку videos во вкладке "Файловый менеджер" '
-        ]);
-
-        $this->crud->addField([ //
-            'name' => 'alias',
-            'label' => "Ссылка на анонсированный ролик",
+            'name' => 'title',
+            'label' => "Название",
             'type' => 'text',
-            'hint' => 'Внешнняя ссылка, например https://youtube.com/test'
-
+            'attributes' => ['disabled' => 'disabled']
+            
         ]);
 
         $this->crud->addField([ //
-            'name' => 'instagram',
-            'label' => "Код Instagram поста",
-            'type' => 'textarea',
-            'hint' => 'Вставьте код'
+            'name' => "h_one",
+            'label' => "H1",
+            'type' => 'text'
+        ]);
 
+        $this->crud->addField([ //
+            'name' => "seo_title",
+            'label' => "SEO Title",
+            'type' => 'text',
+            'hint' => '70 символов максимум'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_desc",
+            'label' => "SEO Description",
+            'type' => 'textarea',
+            'hint' => '150 символов максимум'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_keywords",
+            'label' => "SEO Keywords",
+            'type' => 'text'
         ]);
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
         $this->crud->denyAccess(['create', 'delete']);
 
-        // add asterisk for fields that are required in VideoRequest
+        // add asterisk for fields that are required in CommentRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
@@ -82,5 +94,10 @@ class VideoCrudController extends CrudController
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         return $redirect_location;
+    }
+
+    public function show($id)
+    {
+        return parent::show($this->request->id);
     }
 }

@@ -29,7 +29,9 @@ class CompanyRequest extends FormRequest
             'name' => 'required|min:1|max:50',
             'telephone' => 'required',
             'email' => 'required|email',
-            'price' => 'required'
+            'price' => 'required',
+            'seo_title' => 'max:70',
+            'seo_desc' => 'max:150',
         ];
     }
 

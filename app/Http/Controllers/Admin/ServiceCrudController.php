@@ -43,13 +43,39 @@ class ServiceCrudController extends CrudController
             'type' => 'text'
         ]);
 
-        $this->crud->addField([
-            'label' => "Выберите категорию",
-            'type' => 'select',
-            'name' => 'category_id', // the db column for the foreign key
-            'entity' => 'categories', // the method that defines the relationship in your Model
-            'attribute' => 'name_ru', // foreign key attribute that is shown to user
-            'model' => "App\Models\ServiceCategory" // foreign key model
+        // $this->crud->addField([
+        //     'label' => "Выберите категорию",
+        //     'type' => 'select',
+        //     'name' => 'category_id', // the db column for the foreign key
+        //     'entity' => 'categories', // the method that defines the relationship in your Model
+        //     'attribute' => 'name_ru', // foreign key attribute that is shown to user
+        //     'model' => "App\Models\ServiceCategory" // foreign key model
+        // ]);
+
+        $this->crud->addField([ //
+            'name' => "h_one",
+            'label' => "H1",
+            'type' => 'text'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_title",
+            'label' => "SEO Title",
+            'type' => 'text',
+            'hint' => '70 символов максимум'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_desc",
+            'label' => "SEO Description",
+            'type' => 'textarea',
+            'hint' => '150 символов максимум'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_keywords",
+            'label' => "SEO Keywords",
+            'type' => 'text'
         ]);
 
         // TODO: remove setFromDb() and manually define Fields and Columns

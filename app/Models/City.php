@@ -24,7 +24,11 @@ class City extends Model
         'name_kz',
         'prepositional_ru',
         'prepositional_kz',
-        'alias'
+        'alias',
+        'h_one',
+        'seo_title',
+        'seo_desc',
+        'seo_keywords',
     ];
     // protected $hidden = [];
     // protected $dates = [];

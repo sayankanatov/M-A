@@ -12,6 +12,7 @@ use App\Models\Lawyer;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Faq;
+use App\Models\SeoPage;
 
 class PageController extends Controller
 {
@@ -30,10 +31,15 @@ class PageController extends Controller
         $lawyer_count = Lawyer::count();
         $service_count = Service::count();
 
-        $services = Service::take(15)->get();
+        $services = Service::all();
         $faq = Faq::all();
 
-        return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq'));
+        $h_one = $city->h_one;
+        $seo_title = $city->seo_title;
+        $seo_desc = $city->seo_desc;
+        $seo_keywords = $city->seo_keywords;
+
+        return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
     }
 
     public function city($city)
@@ -45,10 +51,15 @@ class PageController extends Controller
             $lawyer_count = Lawyer::count();
             $service_count = Service::count();
 
-            $services = Service::take(15)->get();
+            $services = Service::all();
             $faq = Faq::all();
 
-            return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq'));
+            $h_one = $city->h_one;
+            $seo_title = $city->seo_title;
+            $seo_desc = $city->seo_desc;
+            $seo_keywords = $city->seo_keywords;
+
+            return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }
@@ -59,6 +70,13 @@ class PageController extends Controller
         $city = City::where('alias',$city)->first();
 
         $sort = Input::get('sort');
+
+        $seo_data = SeoPage::where('title','lawyers')->first();
+
+        $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_title = $seo_data->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_desc = $seo_data->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_keywords = $seo_data->seo_keywords;
 
         if($city){
 
@@ -89,7 +107,7 @@ class PageController extends Controller
                 ->paginate(Config::get('constants.pagination.lawyers'));
             }
 
-            return view('pages.lawyers',compact('lawyers','city'));
+            return view('pages.lawyers',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }   
@@ -102,7 +120,13 @@ class PageController extends Controller
         
         if($city){
             $lawyer = Lawyer::find($id);
-            return view('pages.lawyer',compact('lawyer','city'));
+
+            $h_one = $lawyer->h_one;
+            $seo_title = $lawyer->seo_title;
+            $seo_desc = $lawyer->seo_desc;
+            $seo_keywords = $lawyer->seo_keywords;
+
+            return view('pages.lawyer',compact('lawyer','city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }   
@@ -112,9 +136,17 @@ class PageController extends Controller
     public function services($city)
     {   
         $city = City::where('alias',$city)->first();
+        
+        $seo_data = SeoPage::where('title','services')->first();
+
+        $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_title = $seo_data->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_desc = $seo_data->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_keywords = $seo_data->seo_keywords;
+
         if($city){
 
-            return view('pages.services',compact('city'));
+            return view('pages.services',compact('city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }
@@ -127,11 +159,16 @@ class PageController extends Controller
         if($city){
             $service = Service::find($id);
 
+            $h_one = $service->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+            $seo_title = $service->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+            $seo_desc = $service->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+            $seo_keywords = $service->seo_keywords.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+
             $lawyers = Lawyer::getByServiceInCity($id,$city->id);
 
             $count = count($lawyers);
             
-            return view('pages.service',compact('service','city','lawyers','count'));
+            return view('pages.service',compact('service','city','lawyers','count','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }
@@ -142,6 +179,13 @@ class PageController extends Controller
         $city = City::where('alias',$city)->first();
 
         $sort = Input::get('sort');
+
+        $seo_data = SeoPage::where('title','companies')->first();
+
+        $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_title = $seo_data->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_desc = $seo_data->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
+        $seo_keywords = $seo_data->seo_keywords;
 
         if($city){
 
@@ -175,7 +219,7 @@ class PageController extends Controller
             
             
 
-            return view('pages.companies',compact('city','companies'));
+            return view('pages.companies',compact('city','companies','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }
@@ -187,7 +231,13 @@ class PageController extends Controller
         
         if($city){
             $company = Company::find($id);
-            return view('pages.company',compact('company','city'));
+
+            $h_one = $company->h_one;
+            $seo_title = $company->seo_title;
+            $seo_desc = $company->seo_desc;
+            $seo_keywords = $company->seo_keywords;
+
+            return view('pages.company',compact('company','city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }   
@@ -212,7 +262,14 @@ class PageController extends Controller
             $result = false;
         }
 
-        return view('pages.search',compact('lawyers','companies','services','search','result','city'));
+        $seo_data = SeoPage::where('title','search')->first();
+
+        $h_one = $seo_data->h_one.' '.$search;
+        $seo_title = $seo_data->seo_title.' '.$search;
+        $seo_desc = $seo_data->seo_desc.' '.$search;
+        $seo_keywords = $seo_data->seo_keywords;
+
+        return view('pages.search',compact('lawyers','companies','services','search','result','city','seo_title','h_one','seo_desc','seo_keywords'));
     }
     
 }

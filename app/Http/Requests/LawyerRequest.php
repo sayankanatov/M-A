@@ -31,6 +31,8 @@ class LawyerRequest extends FormRequest
             'telephone' => 'required',
             'email' => 'required|email',
             // 'user_id' => 'required'
+            'seo_title' => 'max:70',
+            'seo_desc' => 'max:150',
         ];
     }
 

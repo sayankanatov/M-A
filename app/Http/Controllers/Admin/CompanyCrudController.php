@@ -190,6 +190,32 @@ class CompanyCrudController extends CrudController
            'model' => "App\User" // foreign key model
         ]);
 
+        $this->crud->addField([ //
+            'name' => "h_one",
+            'label' => "H1",
+            'type' => 'text'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_title",
+            'label' => "SEO Title",
+            'type' => 'text',
+            'hint' => '70 символов максимум'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_desc",
+            'label' => "SEO Description",
+            'type' => 'textarea',
+            'hint' => '150 символов максимум'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "seo_keywords",
+            'label' => "SEO Keywords",
+            'type' => 'text'
+        ]);
+
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
 

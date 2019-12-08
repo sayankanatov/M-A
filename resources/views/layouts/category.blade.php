@@ -9,7 +9,12 @@
     @endif
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Бесплатный сервис по поиску адвокатов/юристов по всему Казахстану</title>
+    <meta name="title" content="{{$seo_title ?? $app_seo_title}}">
+    <meta name="keywords" content="{{$seo_keywords ?? $app_seo_keywords}}">
+    <meta name="description" content="{{$seo_desc ?? $app_seo_desc}}">
+
+    <title>{{$h_one ?? $app_h_one}}</title>
+
     <link rel="stylesheet" href="{{asset('front//style/bootstrap.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('front/style/style.css')}}">

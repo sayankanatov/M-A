@@ -17,27 +17,26 @@ Route::get('/', function () {
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
     Auth::routes();
-	
-    Route::get('/', 'PageController@index')->name('main');
-    Route::get('/city-{city}', 'PageController@city')->name('city');
-
-    Route::get('/city-{city}/lawyers', 'PageController@lawyers')->name('lawyers');
-    Route::get('/city-{city}/lawyer/{id}', 'PageController@lawyer')->name('lawyer');
-
-    Route::get('/city-{city}/services', 'PageController@services')->name('services');
-    Route::get('/city-{city}/service/{id}', 'PageController@service')->name('service');
-
-    Route::get('/city-{city}/companies', 'PageController@companies')->name('companies');
-    Route::get('/city-{city}/company/{id}', 'PageController@company')->name('company');
-
-    Route::match(['get','post'],'/search','PageController@search')->name('search');
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    // Route::group(['prefix' => 'companies'], function () {
-    //     Route::get('/', 'PageController@companies')->name('companies');
-    //     Route::get('/{city}', 'PageController@companiesByCity')->name('city.companies');
-    // });
+    Route::match(['get','post'],'/search','PageController@search')->name('search');
+	
+    Route::get('/', 'PageController@index')->name('main');
+    Route::get('/{city}', 'PageController@city')->name('city');
+
+    Route::get('/{city}/lawyers', 'PageController@lawyers')->name('lawyers');
+    Route::get('/{city}/lawyer/{id}', 'PageController@lawyer')->name('lawyer');
+
+    Route::get('/{city}/services', 'PageController@services')->name('services');
+    Route::get('/{city}/service/{id}', 'PageController@service')->name('service');
+
+    Route::get('/{city}/companies', 'PageController@companies')->name('companies');
+    Route::get('/{city}/company/{id}', 'PageController@company')->name('company');
+
+    
+
+    
  
 });
 

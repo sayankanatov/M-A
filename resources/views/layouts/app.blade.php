@@ -10,6 +10,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="title" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
