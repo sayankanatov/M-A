@@ -11,12 +11,7 @@
                 <li class="breadcrumb-item">Компании</li>
             </ul>
             <h1 class="content-h1">
-                @if(app()->getLocale() == 'ru')
-                    Компании в {{isset($city->prepositional_ru) ? $city->prepositional_ru : ''}} ({{$city->companies->count()}})
-                @else
-                    Компании {{isset($city->prepositional_kz) ? $city->prepositional_kz : ''}} ({{$city->companies->count()}})
-                @endif
-                
+                {{$h_one ?? $app_h_one}} ({{$city->companies->count()}})
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела

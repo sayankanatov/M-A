@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item">Поиск</li>
             </ul>
             <h1 class="content-h1">
-                Поиск по тегу «{{$search}}»
+                {{$h_one ?? $app_h_one}}
             </h1>
             <div class="content-desc">
                 @if($result)

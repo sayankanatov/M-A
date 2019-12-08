@@ -11,11 +11,7 @@
                 <li class="breadcrumb-item">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</li>
             </ul>
             <h1 class="content-h1">
-                @if(app()->getLocale() == 'ru')
-                    Специалисты в {{isset($city->prepositional_ru) ? $city->prepositional_ru : ''}} ({{$count}})
-                @else
-                    Специалисты {{isset($city->prepositional_kz) ? $city->prepositional_kz : ''}} ({{$count}})
-                @endif
+                {{$h_one ?? $app_h_one}} ({{$count}})
             </h1>
             <div class="content-desc">
                 Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела
