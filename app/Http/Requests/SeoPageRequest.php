@@ -27,8 +27,8 @@ class SeoPageRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'seo_title' => 'max:70',
-            'seo_desc' => 'max:150',
+            // 'seo_title' => 'max:70',
+            // 'seo_desc' => 'max:150',
         ];
     }
 

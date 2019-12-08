@@ -29,8 +29,8 @@ class CityRequest extends FormRequest
             'name_ru' => 'required',
             'name_kz' => 'required',
             'alias' => 'required',
-            'seo_title' => 'max:70',
-            'seo_desc' => 'max:150',
+            // 'seo_title' => 'max:70',
+            // 'seo_desc' => 'max:150',
         ];
     }
 
