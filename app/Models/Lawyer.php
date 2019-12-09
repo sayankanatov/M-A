@@ -32,6 +32,7 @@ class Lawyer extends Model
         'link',
         'worktime',
         'time',
+        'timetext',
         'education',
         'extra',
         'advokat_licence',

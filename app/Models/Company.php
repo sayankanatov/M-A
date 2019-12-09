@@ -29,6 +29,7 @@ class Company extends Model
         'link',
         'worktime',
         'time',
+        'timetext',
         'extra',
         'advokat_licence',
         'langs',

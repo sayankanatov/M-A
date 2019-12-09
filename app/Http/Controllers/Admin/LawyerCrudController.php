@@ -130,6 +130,13 @@ class LawyerCrudController extends CrudController
         ]);
 
         $this->crud->addField([
+            'name' => 'timetext',
+            'label' => "Время работы",
+            'type' => 'text',
+            'hint' => 'Текстовое поле для описания режима работы, поле не обязательное для заполнения',
+        ]);
+
+        $this->crud->addField([
             'name' => 'education',
             'label' => "Образование",
             'type' => 'textarea'
