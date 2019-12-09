@@ -9,11 +9,11 @@
     @endif
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="title" content="{{$seo_title ?? $app_seo_title}}">
+    {{-- <meta name="title" content=""> --}}
     <meta name="keywords" content="{{$seo_keywords ?? $app_seo_keywords}}">
     <meta name="description" content="{{$seo_desc ?? $app_seo_desc}}">
 
-    <title>{{$h_one ?? $app_h_one}}</title>
+    <title>{{$seo_title ?? $app_seo_title}}</title>
 
     <link rel="stylesheet" href="{{asset('front//style/bootstrap.min.css')}}">
 
