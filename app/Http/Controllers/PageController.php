@@ -272,45 +272,4 @@ class PageController extends Controller
         return view('pages.search',compact('lawyers','companies','services','search','result','city','seo_title','h_one','seo_desc','seo_keywords'));
     }
 
-    public function test(Request $request)
-    {
-        $companies = Company::all();
-
-        foreach ($companies as $key => $item) {
-            # code...
-            if($item->alias == null){
-                $cut_name = str_limit($item->name, $limit = 200, $end = '-');
-                $alias = \Str::slug($cut_name.'-'.rand(1,9999), '-');
-                $item->alias = $alias;
-                $item->save();
-            }
-        }
-
-        $lawyers = Lawyer::all();
-
-        foreach ($lawyers as $key => $item) {
-            # code...
-            if($item->alias == null){
-                $full_name = $item->last_name.' '.$item->first_name.' '.$item->patronymic;
-                $cut_name = str_limit($full_name, $limit = 200, $end = '-');
-                $alias = \Str::slug($cut_name.'-'.rand(1,9999), '-');
-                $item->alias = $alias;
-                $item->save();
-            }
-        }
-
-        $items = Service::all();
-
-        foreach ($items as $key => $item) {
-            # code...
-            if($item->alias == null){
-                $cut_name = str_limit($item->name_ru, $limit = 200, $end = '-');
-                $alias = \Str::slug($cut_name, '-');
-                $item->alias = $alias;
-                $item->save();
-            }
-        }
-        dd("Good");
-    }
-    
 }

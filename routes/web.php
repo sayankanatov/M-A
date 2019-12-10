@@ -20,8 +20,6 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/test', 'PageController@test')->name('test');
-
     Route::match(['get','post'],'/search','PageController@search')->name('search');
 	
     Route::get('/', 'PageController@index')->name('main');
@@ -35,11 +33,6 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
 
     Route::get('/{city}/companies', 'PageController@companies')->name('companies');
     Route::get('/{city}/company/{alias}', 'PageController@company')->name('company');
-
-    
-
-    
- 
 });
 
 //Переключение языков
