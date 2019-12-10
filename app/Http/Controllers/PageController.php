@@ -114,12 +114,12 @@ class PageController extends Controller
         
     }
 
-    public function lawyer($city, $id)
+    public function lawyer($city, $alias)
     {
         $city = City::where('alias',$city)->first();
         
         if($city){
-            $lawyer = Lawyer::find($id);
+            $lawyer = Lawyer::where('alias',$alias)->first();
 
             $h_one = $lawyer->h_one;
             $seo_title = $lawyer->seo_title;
@@ -152,19 +152,19 @@ class PageController extends Controller
         }
     }
 
-    public function service($city, $id)
+    public function service($city, $alias)
     {
         $city = City::where('alias',$city)->first();
         
         if($city){
-            $service = Service::find($id);
+            $service = Service::where('alias',$alias)->first();
 
             $h_one = $service->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
             $seo_title = $service->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
             $seo_desc = $service->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
             $seo_keywords = $service->seo_keywords.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
 
-            $lawyers = Lawyer::getByServiceInCity($id,$city->id);
+            $lawyers = Lawyer::getByServiceInCity($service->id,$city->id);
 
             $count = count($lawyers);
             
@@ -225,12 +225,12 @@ class PageController extends Controller
         }
     }
 
-    public function company($city, $id)
+    public function company($city, $alias)
     {
         $city = City::where('alias',$city)->first();
         
         if($city){
-            $company = Company::find($id);
+            $company = Company::where('alias',$alias)->first();
 
             $h_one = $company->h_one;
             $seo_title = $company->seo_title;
@@ -270,6 +270,47 @@ class PageController extends Controller
         $seo_keywords = $seo_data->seo_keywords;
 
         return view('pages.search',compact('lawyers','companies','services','search','result','city','seo_title','h_one','seo_desc','seo_keywords'));
+    }
+
+    public function test(Request $request)
+    {
+        $companies = Company::all();
+
+        foreach ($companies as $key => $item) {
+            # code...
+            if($item->alias == null){
+                $cut_name = str_limit($item->name, $limit = 200, $end = '-');
+                $alias = \Str::slug($cut_name.'-'.rand(1,9999), '-');
+                $item->alias = $alias;
+                $item->save();
+            }
+        }
+
+        $lawyers = Lawyer::all();
+
+        foreach ($lawyers as $key => $item) {
+            # code...
+            if($item->alias == null){
+                $full_name = $item->last_name.' '.$item->first_name.' '.$item->patronymic;
+                $cut_name = str_limit($full_name, $limit = 200, $end = '-');
+                $alias = \Str::slug($cut_name.'-'.rand(1,9999), '-');
+                $item->alias = $alias;
+                $item->save();
+            }
+        }
+
+        $items = Service::all();
+
+        foreach ($items as $key => $item) {
+            # code...
+            if($item->alias == null){
+                $cut_name = str_limit($item->name_ru, $limit = 200, $end = '-');
+                $alias = \Str::slug($cut_name, '-');
+                $item->alias = $alias;
+                $item->save();
+            }
+        }
+        dd("Good");
     }
     
 }

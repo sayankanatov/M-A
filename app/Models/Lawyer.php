@@ -23,6 +23,7 @@ class Lawyer extends Model
         'last_name',
         'first_name',
         'patronymic',
+        'alias',
         'image',
         'company',
         'address',

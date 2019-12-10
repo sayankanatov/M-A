@@ -22,7 +22,7 @@ class Service extends Model
     protected $fillable = [
         'name_ru',
         'name_kz',
-
+        'alias',
         'h_one',
         'seo_title',
         'seo_desc',

@@ -10,6 +10,7 @@ use App\Http\Requests\CompanyRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 use Config;
 use App\Models\Company;
+use Illuminate\Support\Str;
 
 /**
  * Class GalleryCrudController
@@ -234,6 +235,9 @@ class CompanyCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
+        $cut_name = str_limit($request->input('name'), $limit = 200, $end = '-');
+        $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+        $request->request->set('alias', $alias);
 
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -247,7 +251,6 @@ class CompanyCrudController extends CrudController
         // $company = Company::find($request->id);
         // $company->services = json_encode($request->services,JSON_UNESCAPED_UNICODE);
         // $company->save();
-
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

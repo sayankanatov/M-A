@@ -35,12 +35,12 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="content_item_img">
-                                    <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">
+                                    <a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">
                                         <img src="{{$company->logo ? '/'.$company->logo : asset('front/img/woman.png')}}" alt="">
                                     </a>
                                 </div>
                                 <div class="rating_block">
-                                    <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">0 Отзывов</a> {{-- 9.1 --}}
+                                    <a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">0 Отзывов</a> {{-- 9.1 --}}
                                 </div>
                             </div>
                             <div class="col-sm-9">
@@ -48,7 +48,7 @@
                                     <div class="col-xl-8">
                                         <div class="content_item-info">
                                             <div class="content_item-title">
-                                                <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">
+                                                <a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">
                                                     {{$company->name}} 
                                                 </a> 
                                             </div>
@@ -66,11 +66,11 @@
                                                     @foreach($company->services as $service)
 
                                                         @if($i == $len - 1)
-                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
+                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
                                                             {{$service->name_ru.'.'}}
                                                             </a>
                                                         @else
-                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
+                                                            <a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
                                                             {{$service->name_ru.', '}}
                                                             </a>
 
@@ -107,7 +107,7 @@
                                                         <div class="content_item_li-right">
                                                             
 @if($company->extra !== null && strlen($company->extra) > 100)
-{{mb_strimwidth($company->extra,0,100,"...")}} <a href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}"> Далее</a>
+{{mb_strimwidth($company->extra,0,100,"...")}} <a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}"> Далее</a>
 @else
 {{$company->extra}}
 @endif
@@ -137,9 +137,9 @@
                                         <div class="col-xl-4">
                                             <div class="content_item_right">
                                                 <a class="content_item-phone" href="tel:{{$company->telephone}}">{{$company->telephone}}</a>
-                                                <a class="content_item-connect" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Написать на WhatsApp</a>
+                                                <a class="content_item-connect" href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">Написать на WhatsApp</a>
                                                 
-                                                <a class="content_item-message" href="{{route('company',['id'=>$company->id,'city' => $city->alias])}}">Написать сообщение</a>
+                                                <a class="content_item-message" href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">Написать сообщение</a>
                                             </div>
                                         </div>
                                     </div>

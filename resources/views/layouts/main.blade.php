@@ -112,7 +112,7 @@
                     <div class="offcanvas__link-list hidden" id="specialtiesList">
                         <a href="{{route('lawyers',['city'=>$city->alias])}}">Все cпециалисты</a>
                         @foreach($services as $service)
-                        <a class="offcanvas__link-item" href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</a>
+                        <a class="offcanvas__link-item" href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</a>
                         @endforeach
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                 @foreach($services as $service)
                 <div class="col-xl-4 col-lg-6 col-md-12">
                     <div class="a-special-item-li">
-                        <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
+                        <a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
                             {{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}} <span>({{App\Models\Lawyer::getByServiceInCity($service->id,$city->id,true)}})</span>
                         </a>
                     </div>

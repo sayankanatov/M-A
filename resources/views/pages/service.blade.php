@@ -31,12 +31,12 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="content_item_img">
-                                    <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">
+                                    <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}">
                                         <img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front/img/woman.png')}}" alt="">
                                     </a>
                                 </div>
                                 <div class="rating_block">
-                                    <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">0 Отзывов</a> {{-- 9.1 --}}
+                                    <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}">0 Отзывов</a> {{-- 9.1 --}}
                                 </div>
                             </div>
                             <div class="col-sm-9">
@@ -44,7 +44,7 @@
                                     <div class="col-xl-8">
                                         <div class="content_item-info">
                                             <div class="content_item-title">
-                                                <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}">
+                                                <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}">
                                                     {{$lawyer->last_name.' '.$lawyer->first_name.' '.$lawyer->patronymic }} 
                                                 </a> 
                                             </div>
@@ -62,11 +62,11 @@
                                                     @foreach($lawyer->services as $service)
 
                                                         @if($i == $len - 1)
-                                                        <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
+                                                        <a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
                                                             {{$service->name_ru.'.'}}
                                                         </a>
                                                         @else
-                                                        <a href="{{route('service',['city'=>$city->alias,'id'=>$service->id])}}">
+                                                        <a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
                                                             {{$service->name_ru.', '}}
                                                         </a>
 
@@ -102,7 +102,7 @@
                                                         </div>
                                                         <div class="content_item_li-right">
 @if($lawyer->extra !== null && strlen($lawyer->extra) > 100)
-{{mb_strimwidth($lawyer->extra,0,100,"...")}} <a href="{{route('lawyer',['id'=>$lawyer->id,'city' => $city->alias])}}"> Далее</a>
+{{mb_strimwidth($lawyer->extra,0,100,"...")}} <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}"> Далее</a>
 @else
 {{$lawyer->extra}}
 @endif

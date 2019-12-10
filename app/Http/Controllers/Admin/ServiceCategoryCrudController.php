@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\ServiceCategoryRequest as StoreRequest;
 use App\Http\Requests\ServiceCategoryRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
+use Illuminate\Support\Str;
 
 /**
  * Class ContactCrudController
@@ -55,6 +56,10 @@ class ServiceCategoryCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
+        $cut_name = str_limit($request->input('name'), $limit = 200, $end = '-');
+        $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+        $request->request->set('alias', $alias);
+
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

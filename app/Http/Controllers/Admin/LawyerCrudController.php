@@ -9,6 +9,7 @@ use App\Http\Requests\LawyerRequest as StoreRequest;
 use App\Http\Requests\LawyerRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 use Config;
+use Illuminate\Support\Str;
 
 /**
  * Class FactCrudController
@@ -272,6 +273,10 @@ class LawyerCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
+        $cut_name = str_limit($request->input('name'), $limit = 200, $end = '-');
+        $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+        $request->request->set('alias', $alias);
+
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

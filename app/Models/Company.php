@@ -21,6 +21,7 @@ class Company extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'name',
+        'alias',
         'logo',
         'address',
         'telephone',
