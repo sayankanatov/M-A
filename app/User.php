@@ -69,4 +69,23 @@ class User extends Authenticatable
         $user = self::find($user_id);
         return $user->role_id ?? false;
     }
+
+    public static function sendMail($user_id)
+    {
+        $user = self::find($user_id);
+        $to = "sayan.kanatov@gmail.com";
+        $subject = 'Зарегистрирован новый пользователь';
+        $message = 'Зарегистрирован новый пользователь '.$user->email;
+
+        $headers  = "From: yuristy.kz < info@yuristy.kz >\n";
+        $headers .= "Cc: yuristy.kz < info@yuristy.kz >\n"; 
+        $headers .= "X-Sender: yuristy.kz < info@yuristy.kz >\n";
+        $headers .= 'X-Mailer: PHP/' . phpversion();
+        $headers .= "X-Priority: 1\n"; // Urgent message!
+        $headers .= "Return-Path: info@yuristy.kz\n"; // Return path for errors
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
+
+        return mail($to, $subject, $message, $headers);
+    }
 }

@@ -127,6 +127,8 @@ class RegisterController extends Controller
             $lawyer->user_id = $user_id;
             $lawyer->save();
 
+            User::sendMail($user_id);
+
             return $user;
         }
         elseif ($data['role'] == Config::get('constants.roles.entity')) {
@@ -152,6 +154,8 @@ class RegisterController extends Controller
             $lawyer->user_id = $user_id;
             $lawyer->save();
 
+            User::sendMail($user_id);
+
             return $user;
         }
         elseif ($data['role'] == Config::get('constants.roles.company')) {
@@ -174,6 +178,8 @@ class RegisterController extends Controller
             $company->city_id = $data['city_id'.$role];
             $company->user_id = $user_id;
             $company->save();
+
+            User::sendMail($user_id);
 
             return $user;
         }

@@ -14,6 +14,8 @@ Route::get('/', function () {
 	return redirect('/'. App\Http\Middleware\LocaleMiddleware::$mainLanguage);
 });
 
+Route::get('/send-mail', 'PageController@sendMail')->name('send-mail');
+
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
     Auth::routes();

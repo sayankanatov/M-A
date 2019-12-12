@@ -71,7 +71,7 @@ class Lawyer extends Model
         }else{
             return self::where('city_id',$city_id)->whereHas('services', function($query) use ($service_id){
                 $query->where('id',$service_id);
-            })->get();
+            })->inRandomOrder()->get();
         }
     }
 

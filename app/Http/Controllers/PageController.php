@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Faq;
 use App\Models\SeoPage;
+use App\User;
 
 class PageController extends Controller
 {
@@ -87,24 +88,24 @@ class PageController extends Controller
                         # code...
                         $lawyers = Lawyer::where('city_id',$city->id)
                         ->orderBy('rating','desc')
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        ->get();
                         break;
                     case 'experience':
                         # code...
                         $lawyers = Lawyer::where('city_id',$city->id)
                         ->orderBy('work_experience','desc')
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        ->get();
                         break;
                     default:
                         # code...
                         $lawyers = Lawyer::where('city_id',$city->id)
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        ->inRandomOrder()->get();
                         break;
                 }
 
             }else{
                 $lawyers = Lawyer::where('city_id',$city->id)
-                ->paginate(Config::get('constants.pagination.lawyers'));
+                ->inRandomOrder()->get();
             }
 
             return view('pages.lawyers',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
@@ -120,6 +121,8 @@ class PageController extends Controller
         
         if($city){
             $lawyer = Lawyer::where('alias',$alias)->first();
+            $lawyer->hits += 1;
+            $lawyer->save();
 
             $h_one = $lawyer->h_one;
             $seo_title = $lawyer->seo_title;
@@ -196,25 +199,25 @@ class PageController extends Controller
                         # code...
                         $companies = Company::where('city_id',$city->id)
                         ->orderBy('rating','desc')
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        ->get();
                         break;
                     case 'experience':
                         # code...
                         $companies = Company::where('city_id',$city->id)
                         ->orderBy('extra','desc')
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        ->get();
                         
                         break;
                     default:
                         # code...
                         $companies = Company::where('city_id',$city->id)
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        ->inRandomOrder()->get();
                         break;
                 }
 
             }else{
                 $companies = Company::where('city_id',$city->id)
-                ->paginate(Config::get('constants.pagination.lawyers'));
+                ->inRandomOrder()->get();
             }
             
             
@@ -231,6 +234,8 @@ class PageController extends Controller
         
         if($city){
             $company = Company::where('alias',$alias)->first();
+            $company->hits += 1;
+            $company->save();
 
             $h_one = $company->h_one;
             $seo_title = $company->seo_title;
@@ -270,6 +275,13 @@ class PageController extends Controller
         $seo_keywords = $seo_data->seo_keywords;
 
         return view('pages.search',compact('lawyers','companies','services','search','result','city','seo_title','h_one','seo_desc','seo_keywords'));
+    }
+
+    public function sendMail(Request $request){
+
+        User::sendMail(10);
+
+        return redirect(route('lawyers',['city' => 'almaty']));
     }
 
 }

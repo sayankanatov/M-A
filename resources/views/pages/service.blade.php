@@ -131,7 +131,8 @@
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="content_item_right">
-                                                <a class="content_item-phone" href="tel:{{$lawyer->telephone}}">{{$lawyer->telephone}}</a>
+                                                {{-- <a class="content_item-phone" href="tel:{{$lawyer->telephone}}">{{$lawyer->telephone}}</a> --}}
+                                                <a class="content_item-phone">8 777 XXX XX XX <span>Показать</span></a>
                                                 <a class="content_item-connect">Написать на WhatsApp</a>
                                                 <a class="content_item-message">Написать сообщение</a>
                                             </div>
