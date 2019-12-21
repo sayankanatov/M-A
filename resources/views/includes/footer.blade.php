@@ -10,7 +10,7 @@
                 <div class="footer_menu">
                     <ul class="menu">
                         <li><a href="{{route('lawyers',['city'=>$city->alias])}}">Специалисты</a></li>
-                        <li><a href="{{route('services',['city'=>$city->alias])}}">Услуги</a></li>
+                        <li><a href="#">Нотариусы</a></li>
                         <li><a href="{{route('companies',['city'=>$city->alias])}}">Юридические компании</a></li>
                     </ul>
                 </div>

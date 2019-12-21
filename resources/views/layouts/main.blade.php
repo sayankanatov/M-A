@@ -124,8 +124,8 @@
                     </a>
                 </div>
                 <div class="offcanvas__links">
-                    <a class="offcanvas__link" href="{{route('services',['city'=>$city->alias])}}">
-                        Услуги
+                    <a class="offcanvas__link" href="#">
+                        Нотариусы
                     </a>
                 </div>
             </div>
@@ -191,7 +191,7 @@
                                     Специалисты
                                 </div>
                                 <div class="banner_menu_number">
-                                    Всего юристов {{$lawyer_count ?? '538'}}
+                                    Всего юристов {{$city->lawyers->count() ?? '538'}}
                                 </div>
                             </div>
                             <a href="{{route('lawyers',['city'=>$city->alias])}}">Подробнее</a>
@@ -203,7 +203,7 @@
                                     Юридические компании
                                 </div>
                                 <div class="banner_menu_number">
-                                    Всего компании {{$company_count ?? '538'}}
+                                    Всего компании {{$city->companies->count() ?? '538'}}
                                 </div>
                             </div>
                             <a href="{{route('companies',['city'=>$city->alias])}}">Подробнее</a>
@@ -212,13 +212,13 @@
                             <img src="{{asset('front/img/support.png')}}" alt="">
                             <div class="banner_item_block-body">
                                 <div class="banner_menu_title">
-                                    Услуги
+                                    Нотариусы
                                 </div>
                                 <div class="banner_menu_number">
-                                    Всего услуг {{$service_count ?? '538'}}
+                                    Всего нотариусов {{'0'}}
                                 </div>
                             </div>
-                            <a href="{{route('services',['city'=>$city->alias])}}">Подробнее</a>
+                            <a href="#">Подробнее</a>
                         </div>
                         <!--
                         <div class="banner_item">

@@ -28,10 +28,6 @@ class PageController extends Controller
         $cities = City::all();
         $city = City::find(Config::get('constants.city'));
 
-        $company_count = Company::count();
-        $lawyer_count = Lawyer::count();
-        $service_count = Service::count();
-
         $services = Service::all();
         $faq = Faq::all();
 
@@ -40,7 +36,7 @@ class PageController extends Controller
         $seo_desc = $city->seo_desc;
         $seo_keywords = $city->seo_keywords;
 
-        return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
+        return view('pages.main',compact('city','cities','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
     }
 
     public function city($city)
@@ -48,9 +44,6 @@ class PageController extends Controller
         $city = City::where('alias',$city)->first();
         if($city){
             $cities = City::all();
-            $company_count = Company::count();
-            $lawyer_count = Lawyer::count();
-            $service_count = Service::count();
 
             $services = Service::all();
             $faq = Faq::all();
@@ -60,7 +53,7 @@ class PageController extends Controller
             $seo_desc = $city->seo_desc;
             $seo_keywords = $city->seo_keywords;
 
-            return view('pages.main',compact('city','cities','company_count','lawyer_count','service_count','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
+            return view('pages.main',compact('city','cities','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }

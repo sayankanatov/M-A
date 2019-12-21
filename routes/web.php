@@ -27,14 +27,14 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
     Route::get('/', 'PageController@index')->name('main');
     Route::get('/{city}', 'PageController@city')->name('city');
 
-    Route::get('/{city}/lawyers', 'PageController@lawyers')->name('lawyers');
-    Route::get('/{city}/lawyer/{alias}', 'PageController@lawyer')->name('lawyer');
+    Route::get('/{city}/yuristy', 'PageController@lawyers')->name('lawyers');
+    Route::get('/{city}/yurist/{alias}', 'PageController@lawyer')->name('lawyer');
 
-    Route::get('/{city}/services', 'PageController@services')->name('services');
+    // Route::get('/{city}/services', 'PageController@services')->name('services');
     Route::get('/{city}/service/{alias}', 'PageController@service')->name('service');
 
-    Route::get('/{city}/companies', 'PageController@companies')->name('companies');
-    Route::get('/{city}/company/{alias}', 'PageController@company')->name('company');
+    Route::get('/{city}/yuridicheskie-kompanii', 'PageController@companies')->name('companies');
+    Route::get('/{city}/yuridicheskaya-kompaniya/{alias}', 'PageController@company')->name('company');
 });
 
 //Переключение языков
