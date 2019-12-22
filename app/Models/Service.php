@@ -23,6 +23,8 @@ class Service extends Model
         'name_ru',
         'name_kz',
         'alias',
+        'text_ru',
+        'text_kz',
         'h_one',
         'seo_title',
         'seo_desc',

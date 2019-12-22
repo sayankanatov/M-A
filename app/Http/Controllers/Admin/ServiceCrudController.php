@@ -78,6 +78,18 @@ class ServiceCrudController extends CrudController
             'type' => 'text'
         ]);
 
+        $this->crud->addField([ //
+            'name' => "text_ru",
+            'label' => "Описание на русском",
+            'type' => 'ckeditor'
+        ]);
+
+        $this->crud->addField([ //
+            'name' => "text_kz",
+            'label' => "Описание на казахском",
+            'type' => 'ckeditor'
+        ]);
+
         // TODO: remove setFromDb() and manually define Fields and Columns
         $this->crud->setFromDb();
         // $this->crud->denyAccess(['create', 'delete']);
