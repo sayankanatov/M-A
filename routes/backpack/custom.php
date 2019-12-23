@@ -21,4 +21,6 @@ Route::group([
     CRUD::resource('permission', 'PermisssionCrudController');
     CRUD::resource('faq', 'FaqCrudController');
     CRUD::resource('seo_page', 'SeoPageCrudController');
+    CRUD::resource('top-company', 'TopCompanyCrudController');
+    CRUD::resource('top-lawyer', 'TopLawyerCrudController');
 }); // this should be the absolute last line of this file

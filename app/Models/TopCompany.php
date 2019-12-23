@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Company extends Model
+class TopCompany extends Model
 {
     use CrudTrait;
 
@@ -15,37 +15,13 @@ class Company extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'companies';
+    protected $table = 'top_companies';
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $guarded = ['id'];
     protected $fillable = [
-        'name',
-        'alias',
-        'logo',
-        'address',
-        'telephone',
-        'extra_telephone',
-        'email',
-        'link',
-        'worktime',
-        'time',
-        'timetext',
-        'extra',
-        'advokat_licence',
-        'langs',
-        'work_for',
-        'is_free',
-        'is_member',
-        'member_title',
-        'price',
-        'user_id',
-        'city_id',
-
-        'h_one',
-        'seo_title',
-        'seo_desc',
-        'seo_keywords',
+        'place',
+        'company_id',
     ];
     // protected $hidden = [];
     // protected $dates = [];
@@ -62,29 +38,9 @@ class Company extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function services() 
-    {
-        return $this->belongsToMany('App\Models\Service');
-    }
-
-    public function user() 
-    {
-        return $this->belongsTo('App\User','user_id');
-    }
-
-    public function city() 
-    {
-        return $this->belongsTo('App\Models\City','city_id');
-    }
-
-    public function lawyers()
-    {
-        return $this->hasMany('App\Models\Lawyer','company');
-    }
-
     public function top()
     {
-        return $this->hasMany('App\Models\TopCompany','company_id');
+        return $this->belongsTo('App\Models\Company','company_id');
     }
 
     /*

@@ -101,6 +101,11 @@ class Lawyer extends Model
         return $this->belongsTo('App\Models\Company','company');
     }
 
+    public function top()
+    {
+        return $this->hasMany('App\Models\TopLawyer','lawyer_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

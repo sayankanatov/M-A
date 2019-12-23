@@ -22,12 +22,20 @@
     <a href="#"><i class="fa fa-balance-scale"></i> <span>Услуги и Категории</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
         <li><a href='{{ backpack_url('service_category') }}'><i class='fa fa-gavel'></i> <span>Категории услуг</span></a></li>
-
-<li><a href='{{ backpack_url('service') }}'><i class='fa fa-credit-card'></i> <span>Услуги</span></a></li>
+        <li><a href='{{ backpack_url('service') }}'><i class='fa fa-credit-card'></i> <span>Услуги</span></a></li>
     </ul>
 </li>
 
 <li><a href='{{ backpack_url('company') }}'><i class='fa fa-building'></i> <span>Компании</span></a></li>
 
 <li><a href='{{ backpack_url('lawyer') }}'><i class='fa fa-address-book'></i> <span>Юристы</span></a></li>
+
+<li class="treeview">
+    <a href="#"><i class="fa fa-balance-scale"></i> <span>Фиксированные</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <ul class="treeview-menu">
+        <li><a href='{{ backpack_url('top-company') }}'><i class='fa fa-gavel'></i> <span>Компании</span></a></li>
+        <li><a href='{{ backpack_url('top-lawyer') }}'><i class='fa fa-credit-card'></i> <span>Юристы</span></a></li>
+    </ul>
+</li>
+
 <li><a href='{{ backpack_url('faq') }}'><i class='fa fa-question'></i> <span>Часто задаваемые вопросы</span></a></li>
