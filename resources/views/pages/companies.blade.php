@@ -119,8 +119,6 @@
                                                         </div>
                                                         <div class="content_item_li-right">
 
-                                                            {{Config::get('constants.worktime.'.$company->worktime)}},
-                                                            {{Config::get('constants.time.'.$company->time)}}
                                                         </div>
                                                     </div>
                                                     <div class="content_item_li">

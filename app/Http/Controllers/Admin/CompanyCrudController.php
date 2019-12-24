@@ -92,22 +92,46 @@ class CompanyCrudController extends CrudController
             'type' => 'text'
         ]);
 
-        $this->crud->addField([
-            'name'        => 'worktime', // the name of the db column
-            'label'       => 'Режим работы', // the input label
-            'type'        => 'radio',
-            'options'     => Config::get('constants.worktime'),
-            // optional
-            //'inline'      => false, // show the radios all on the same line?
+        $this->crud->addField([   // Checkbox
+            'name' => 'monday',
+            'label' => 'Понедельник',
+            'type' => 'checkbox'
         ]);
 
-        $this->crud->addField([
-            'name'        => 'time', // the name of the db column
-            'label'       => 'Часы работы', // the input label
-            'type'        => 'radio',
-            'options'     => Config::get('constants.time'),
-            // optional
-            //'inline'      => false, // show the radios all on the same line?
+        $this->crud->addField([   // Checkbox
+            'name' => 'tuesday',
+            'label' => 'Вторник',
+            'type' => 'checkbox'
+        ]);
+
+        $this->crud->addField([   // Checkbox
+            'name' => 'wednesday',
+            'label' => 'Среда',
+            'type' => 'checkbox'
+        ]);
+
+        $this->crud->addField([   // Checkbox
+            'name' => 'thursday',
+            'label' => 'Четверг',
+            'type' => 'checkbox'
+        ]);
+
+        $this->crud->addField([   // Checkbox
+            'name' => 'friday',
+            'label' => 'Пятница',
+            'type' => 'checkbox'
+        ]);
+
+        $this->crud->addField([   // Checkbox
+            'name' => 'saturday',
+            'label' => 'Суббота',
+            'type' => 'checkbox'
+        ]);
+
+        $this->crud->addField([   // Checkbox
+            'name' => 'sunday',
+            'label' => 'Воскресенье',
+            'type' => 'checkbox'
         ]);
 
         $this->crud->addField([

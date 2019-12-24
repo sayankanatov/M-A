@@ -123,7 +123,7 @@
                     <div class="content_list-item-title">
                         График работы:  
                         <div class="schedule">
-                            <p>{{Config::get('constants.worktime.'.$lawyer->worktime).', '.Config::get('constants.time.'.$lawyer->time)}}</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class="content_list-item-title">
