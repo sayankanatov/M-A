@@ -15,6 +15,8 @@ use Session;
 use App\Models\Lawyer;
 use App\Models\Company;
 
+use Exception;
+
 class RegisterController extends Controller
 {
     /*
@@ -35,7 +37,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/ru/home';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -64,35 +66,42 @@ class RegisterController extends Controller
 
     public function register(Request $request) {
 
-        $role = $request->role;
+        try{
 
-        $request_email = 'email'.$role;
-        $request_password = 'password'.$role;
-        $request_confirm = 'password_confirmation'.$role;
+            $role = $request->role;
 
-        $email = $request->{$request_email};
-        $password = $request->{$request_password};
-        $confirm = $request->{$request_confirm};
+            $request_email = 'email'.$role;
+            $request_password = 'password'.$role;
+            $request_confirm = 'password_confirmation'.$role;
 
-        $existUser = User::where('email',$email)->first();
+            $email = $request->{$request_email};
+            $password = $request->{$request_password};
+            $confirm = $request->{$request_confirm};
 
-        if($existUser){
-            Session::flash('message', 'Пользователь с таким email-ол уже существует');
-            return redirect(route('register'));
+            $existUser = User::where('email',$email)->first();
+
+            if($existUser){
+                Session::flash('message', 'Пользователь с таким email-ол уже существует');
+                return redirect(route('main'));
+            }
+
+            if($password !== $confirm){
+                Session::flash('message', 'Пароль не совпал');
+                return redirect(route('main'));
+            }
+
+            // Copy the default behaviour here
+            event(new Registered($user = $this->create($request->all())));
+
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user)
+                            ?: redirect($this->redirectPath());
+
+        }catch(Exception $e){
+            Session::flash('message', 'Не верно введены данные');
+            return redirect(route('main'));
         }
-
-        if($password !== $confirm){
-            Session::flash('message', 'Пароль не совпал');
-            return redirect(route('register'));
-        }
-
-        // Copy the default behaviour here
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
     }
 
     /**
@@ -103,7 +112,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        
         if($data['role'] == Config::get('constants.roles.individual')){
 
             $role = Config::get('constants.roles.individual');
@@ -183,6 +192,5 @@ class RegisterController extends Controller
 
             return $user;
         }
-        
     }
 }

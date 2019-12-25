@@ -1,0 +1,276 @@
+@media screen and (max-width: 2000px) {
+
+}
+@media screen and (max-width: 1920px) {
+
+}
+@media screen and (max-width: 1536px) {
+
+}
+@media screen and (max-width: 1366px) {
+
+}
+@media screen and (max-width: 1200px) {
+
+}
+@media screen and (max-width: 1024px) {
+    .footer_menu {
+        display: none;
+    }
+}
+@media screen and (max-width: 992px) {
+    .serch_home.serch {
+        width: 100%;
+    }
+    .banner_item_block {
+        flex-wrap: wrap;
+    }
+    .banner_item_block-item {
+        margin: 20px 0;
+    }
+    .banner_item:after,
+    .banner_item:before{
+        display: none;
+    }
+    .section_title {
+        font-size: 30px;
+    }
+    .section_title-min {
+        font-size: 25px;
+    }
+    .advan_item {
+        margin: 20px 0;
+    }
+    .advan_item {
+        margin: 20px 0;
+    }
+    .sectoion.sectoion-advantages {
+        padding: 50px 0;
+        margin-top: 0;
+    }
+    .header_right-burger {
+        display: block;
+    }
+    .header_right {
+        display: none;
+    }
+    html,
+    body{
+        overflow-x: hidden;
+    }
+    .content-top_select-block {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .content-top_line {
+        flex-direction: column;
+    }
+    div#formregistr {
+        width: 90%;
+    }
+
+
+    header.header {
+        background-color: #0c62a8 !important;
+        background-image: none !important;
+    }
+    .page_search.section_baner {
+        display: none;
+    }
+    .page_banner_bottom {
+        display: none;
+    }
+    body.page {
+        padding-top: 90px;
+    }
+    .home header.header {
+        background-color: transparent !important;
+    }
+    .home header.header.fixedpos {
+        background-color: #0c62a8 !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    h1.baner_h1 {
+        font-size: 30px;
+    }
+    .section_title-min {
+        font-size: 24px;
+        padding: 0px 10px;
+    }
+    .section_title-min br {
+        display: none;
+    }
+    .sectoion {
+        margin-bottom: 0;
+    }
+    .sectoion.sectoion-question {
+        margin-bottom: 50px;
+    }
+    #form-serch {
+        flex-direction: column;
+    }
+    #form-serch input.submit-serch {
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+    input.submit-serch {
+        background-color: #085291;
+    }
+    #form-serch .input-serch {
+        border-radius: 5px;
+    }
+    .content-top_select-block {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .content-top_line {
+        flex-direction: column;
+    }
+    
+    .content-top_sort-left {
+        margin-right: 10px;
+    }
+    
+    .content-top_sort-right a {
+        margin: 0 10px;
+    }
+
+
+    .reviews-item-text:before {
+        display: none;
+    }
+    .reviews-item .row {
+        flex-direction: column-reverse;
+    }
+    .reviews-item-autor-title {
+        font-weight: 400;
+        line-height: 16px;
+        margin-bottom: 15px;
+    }
+    .reviews-block-2 {
+        background-color: #e6f6f5;
+        position: relative;
+        padding: 20px 0;
+        margin-bottom: 20px;
+    }
+    .reviews-block-2:before {content: "";position: absolute;top: 0;bottom: 0;right: 100%;width: 500px;background: #e6f6f5;}
+    .reviews-block-2:after {content: "";position: absolute;top: 0;bottom: 0;left: 100%;width: 500px;background: #e6f6f5;}
+    .reviews-item-text {
+        background-color: transparent;
+    }
+    .page_content_item_right a {
+        width: 100%;
+    }
+    .page_content_item_right {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    .page_info-desc {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form_reg_list-checkbox label span {
+        min-width: 30px;
+    }
+    .content-top_sort-left {
+        white-space: nowrap;
+        float: left;
+    }
+    .content-top_sort-right {
+        display: block;
+    }
+
+    .page-сompaniy .similar_slider_img {
+        height: 92px;
+    }
+    .similar_slider_img {
+        height: 130px;
+    }
+
+    .reviews-block {
+        max-height: 250px;
+    }
+    .section_baner {/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0b61a8+0,088ca6+100 */
+        background: rgb(11,97,168); /* Old browsers */
+        background: -moz-linear-gradient(-45deg,  rgba(11,97,168,1) 0%, rgba(8,140,166,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(-45deg,  rgba(11,97,168,1) 0%,rgba(8,140,166,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(135deg,  rgba(11,97,168,1) 0%,rgba(8,140,166,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0b61a8', endColorstr='#088ca6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+}
+@media screen and (max-width: 480px) {
+    .logo_block {
+        margin-right: 20px;
+    }
+    .burger_menu {
+        margin-right: 10px;
+    }
+    .city_top {
+        font-size: 16px;
+    }
+    .content-top_select-block {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .content-top_line {
+        flex-direction: column;
+    }
+    
+  
+    .content-top_sort-right a {
+        margin: 0 10px;
+    }
+ 
+    .page_banner_bottom-menu .menu {
+        flex-direction: column;
+    }
+    
+    .page_banner_bottom-menu .menu li {
+        margin: 0;
+    }
+    span.schedule_item {
+        width: 17px;
+        height: 17px;
+        margin: 0 3px;
+    }
+    strong.content_item_li-left {
+        white-space: nowrap;
+    }
+    .content_item-title a {
+        width: 100%;
+        display: block;
+        line-height: 1.2;
+    }
+    h1.content_item-title a {
+        width: 100%;
+        display: block;
+    }
+    .similar_slider-item {
+        flex-direction: column;
+    }
+    .similar_slider_img {
+        margin-right: 0;
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        max-width: 150px;
+    }
+    .similar_slider-item {
+        padding: 30px 20px;
+    }
+    .similar_slider {
+        padding: 10px 8px;
+    }
+    .page_info-block {
+        padding: 0 10px;
+    }
+
+}
+@media screen and (max-width: 320px) {
+
+}
