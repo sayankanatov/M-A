@@ -42,8 +42,8 @@
     <meta property="og:title" content="{{$seo_title ?? $app_seo_title}}">
     <meta property="og:description" content="{{$seo_desc ?? $app_seo_desc}}">
     <meta property="og:image" content="{{asset('front2/img/logo.jpg')}}">
-    <meta property="og:url" content="https://yuristy.kz">
-    <link href="https://yuristy.kz" rel="canonical">
+    <meta property="og:url" content="{{Request::url()}}">
+    <link href="{{Request::url()}}" rel="canonical">
     
 	<!--
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -233,15 +233,17 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-md-12">
+                    
                     @foreach($services as $service)
+                    <div class="col-xl-4 col-lg-6 col-md-12">
                         <div class="a-special-item-li">
                             <a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
                                 <span>{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</span> ({{App\Models\Lawyer::getByServiceInCity($service->id,$city->id,true)}})
                             </a>
                         </div>
-                    @endforeach                   
                     </div>
+                    @endforeach                   
+                    
                 </div>
             </div>
         </div>

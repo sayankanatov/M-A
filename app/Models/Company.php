@@ -61,6 +61,19 @@ class Company extends Model
     |--------------------------------------------------------------------------
     */
 
+    public static function getByServiceInCity($service_id,$city_id,$count = false)
+    {
+        if($count == true){
+            return self::where('city_id',$city_id)->whereHas('services', function($query) use ($service_id){
+                $query->where('id',$service_id);
+            })->count();
+        }else{
+            return self::where('city_id',$city_id)->whereHas('services', function($query) use ($service_id){
+                $query->where('id',$service_id);
+            })->inRandomOrder()->get();
+        }
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

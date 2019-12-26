@@ -117,6 +117,13 @@ class Lawyer extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function scopeFullname($query,$id)
+    {
+        $fullname = $query->find($id);
+
+        return $fullname->last_name.' '.$fullname->first_name.' '.$fullname->patronymic;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESORS
