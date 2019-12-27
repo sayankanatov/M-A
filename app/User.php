@@ -72,8 +72,7 @@ class User extends Authenticatable
 
     public static function sendMail($user_id)
     {
-        $user = self::find($user_id);
-        $to = "sayan.kanatov@gmail.com";
+        $user ="info@yuristy.kz";
         $subject = 'Зарегистрирован новый пользователь';
         $message = 'Зарегистрирован новый пользователь '.$user->email;
 

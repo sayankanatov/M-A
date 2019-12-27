@@ -46,12 +46,12 @@ use Illuminate\Support\Facades\Input;
 
                     <div class="content-top_select">
                         <div class="content-top_input">
-                            {{app()->getLocale() == 'ru' ? App\Models\Service::first()->name_ru : App\Models\Service::first()->name_kz}} ({{App\Models\Company::getByServiceInCity(App\Models\Service::first()->id,$city->id,true)}})
+                            {{app()->getLocale() == 'ru' ? App\Models\Service::first()->name_ru : App\Models\Service::first()->name_kz}} ({{App\Models\Lawyer::getByServiceInCity(App\Models\Service::first()->id,$city->id,true)}})
                         </div>
                         <div class="content-top_dropdown">
                             <div class="content-top_dropdown2">
                             @foreach($services as $service)
-                                <a href="">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}} ({{App\Models\Company::getByServiceInCity($service->id,$city->id,true)}})</a>
+                                <a href="">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}} ({{App\Models\Lawyer::getByServiceInCity($service->id,$city->id,true)}})</a>
                             @endforeach
                             </div>
                         </div>            
@@ -81,7 +81,7 @@ use Illuminate\Support\Facades\Input;
                     <div class="col-md-3">
                         <div class="content_item-left">
                             <div class="content_item_img">
-                                <img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/company-item.png')}}" alt="">
+                                <img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="">
                             </div>
                             <div class="content_item_reviews">
                                 <div class="content_item_rev-linck">

@@ -44,10 +44,10 @@
                             </div>
 
                             <div class="footer_right-bottom">
-                                <a href="https://www.instagram.com/yuristy_kz/">
+                                <a href="https://www.instagram.com/yuristy_kz" target="_blank">
                                     <img src="{{asset('front2/img/instagram.svg')}}" alt="">
                                 </a>
-                                <a href="https://www.facebook.com/yuristy.kz/">
+                                <a href="https://www.facebook.com/yuristy.kz" target="_blank">
                                     <img src="{{asset('front2/img/facebook.svg')}}" alt="">
                                 </a>
                             </div>
