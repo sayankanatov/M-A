@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role','role_id');
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany('App\Models\FeedBack','user_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

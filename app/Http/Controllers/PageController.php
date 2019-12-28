@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Faq;
 use App\Models\SeoPage;
+use App\Models\FeedBack;
 use App\User;
 
 class PageController extends Controller
@@ -121,7 +122,13 @@ class PageController extends Controller
             $seo_desc = $lawyer->seo_desc;
             $seo_keywords = $lawyer->seo_keywords;
 
-            return view('pages.lawyer',compact('lawyer','city','seo_title','h_one','seo_desc','seo_keywords'));
+            $service = $lawyer->services->first();
+
+            $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->whereHas('services',function($q) use ($service){
+                $q->where('id',$service->id);
+            })->inRandomOrder()->take(4)->get();
+
+            return view('pages.lawyer',compact('lawyer','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers','service'));
         }else{
             return redirect(route('main'));
         }   
@@ -263,6 +270,27 @@ class PageController extends Controller
         User::sendMail(10);
 
         return redirect(route('lawyers',['city' => 'almaty']));
+    }
+
+    public function addFeedback(Request $request){
+
+        if($request->input('lawyer_id')){
+            $lawyer = $request->input('lawyer_id');
+        }elseif($request->input('company_id')){
+            $company = $request->input('company_id');
+        }
+
+        $text = $request->input('text');
+        $star = $request->input('rating-star');
+
+        $feed = new FeedBack();
+        $feed->text = $text;
+        $feed->stars = $star;
+        $feed->lawyer_id = $lawyer ?? null;
+        $feed->company_id = $company ?? null;
+        $feed->save();
+
+        return redirect()->back();
     }
 
 }

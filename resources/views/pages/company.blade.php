@@ -134,15 +134,18 @@
 
                                                 @endforeach
                                                 </div>
-                                                {{-- <div class="content_item_li">
-                                                    <strong class="content_item_li-left">
-                                                        Стаж:  
-                                                    </strong>
-                                                    15 лет
-                                                </div> --}}
+                                                
+                                                @if($company->is_free)
                                                 <div class="content_item_li">
                                                     <strong class="content_item_li-left">
-                                                        Консультация:
+                                                        Бесплатная консультация:
+                                                    </strong>
+                                                    {{'Есть'}}
+                                                </div>
+                                                @endif
+                                                <div class="content_item_li">
+                                                    <strong class="content_item_li-left">
+                                                        Стоимость услуг:
                                                     </strong>
                                                     {{$company->price}}
                                                 </div>

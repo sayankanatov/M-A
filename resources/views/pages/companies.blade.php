@@ -199,9 +199,17 @@ use Illuminate\Support\Facades\Input;
                                             </span>
                                             {{$company->timetext}}
                                         </div>
+                                        @if($company->is_free)
                                         <div class="content_item_li">
                                             <strong class="content_item_li-left">
-                                                Консультация:
+                                                Бесплатная консультация:
+                                            </strong>
+                                            {{'Есть'}}
+                                        </div>
+                                        @endif
+                                        <div class="content_item_li">
+                                            <strong class="content_item_li-left">
+                                                Стоимость услуг:
                                             </strong>
                                             {{$company->price}}
                                         </div>

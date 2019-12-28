@@ -208,6 +208,7 @@
 
     @include('includes.form-login')
     @include('includes.form-register')
+    @include('includes.form-feedback')
 
 
     <div class="md-overlay"></div>

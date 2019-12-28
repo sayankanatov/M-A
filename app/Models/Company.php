@@ -105,6 +105,11 @@ class Company extends Model
         return $this->hasMany('App\Models\TopCompany','company_id');
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany('App\Models\FeedBack','company_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

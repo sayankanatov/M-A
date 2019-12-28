@@ -23,6 +23,8 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::match(['get','post'],'/search','PageController@search')->name('search');
+
+    Route::match(['get','post'],'/feedback/add','PageController@addFeedback')->name('feedback.add');
 	
     Route::get('/', 'PageController@index')->name('main');
     Route::get('/{city}', 'PageController@city')->name('city');
@@ -31,7 +33,7 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
     Route::get('/{city}/yurist/{alias}', 'PageController@lawyer')->name('lawyer');
 
     // Route::get('/{city}/services', 'PageController@services')->name('services');
-    Route::get('/{city}/service/{alias}', 'PageController@service')->name('service');
+    Route::get('/{city}/specializaciya/{alias}', 'PageController@service')->name('service');
 
     Route::get('/{city}/yuridicheskie-kompanii', 'PageController@companies')->name('companies');
     Route::get('/{city}/yuridicheskaya-kompaniya/{alias}', 'PageController@company')->name('company');

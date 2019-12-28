@@ -111,6 +111,11 @@ class Lawyer extends Model
         return $this->hasMany('App\Models\TopLawyer','lawyer_id');
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany('App\Models\FeedBack','lawyer_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

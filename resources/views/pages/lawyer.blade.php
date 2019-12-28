@@ -134,15 +134,23 @@
 
                                                 @endforeach
                                                 </div>
-                                                {{-- <div class="content_item_li">
+                                                <div class="content_item_li">
                                                     <strong class="content_item_li-left">
                                                         Стаж:  
                                                     </strong>
-                                                    15 лет
-                                                </div> --}}
+                                                    {{$lawyer->work_experience}}
+                                                </div>
+                                                @if($lawyer->is_free)
                                                 <div class="content_item_li">
                                                     <strong class="content_item_li-left">
-                                                        Консультация:
+                                                        Бесплатная консультация:
+                                                    </strong>
+                                                    {{'Есть'}}
+                                                </div>
+                                                @endif
+                                                <div class="content_item_li">
+                                                    <strong class="content_item_li-left">
+                                                        Стоимость услуг:
                                                     </strong>
                                                     {{$lawyer->price}}
                                                 </div>
@@ -245,184 +253,86 @@
                                 {{$lawyer->education}}
                             </div>
                         </div>
-
-                        {{-- <div class="page_info-block">
+@if($relative_lawyers)
+                        <div class="page_info-block">
                             <div class="page_info-top">
-                                Отзывы
-                            </div>
-                            <div class="reviews-block-2">
-                                <div class="page_info-desc reviews-block">
-                                    
-                                    <div class="reviews-item">
-                                        <div class="row">
-                                            
-                                            <div class="col-sm-9">
-                                                <div class="reviews-item-text">
-                                                    DD зарекомендовала себя надёжным деловым партнёром, обладающим большим потенциалом для решения практически любых задач 
-                                                    во внешнеэкономической деятельности. Хочется отметить профессионализм и внимательное отношение, творческий подход 
-                                                    и принятие оптимальных решений в нештатных ситуациях. 
-                                                    Рассчитываю на дальнейшее плодотворное сотрудничество. 
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="reviews-item-autor-img">
-                                                    <img src="{{asset('front2/img/spec-item.png')}}" alt="">
-                                                </div>
-                                                <div class="reviews-item-autor-title">
-                                                    Евгения Купрюшина
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="reviews-item">
-                                        <div class="row">
-                                            
-                                            <div class="col-sm-9">
-                                                <div class="reviews-item-text">
-                                                    DD зарекомендовала себя надёжным деловым партнёром, обладающим большим потенциалом для решения практически любых задач 
-                                                    во внешнеэкономической деятельности. Хочется отметить профессионализм и внимательное отношение, творческий подход 
-                                                    и принятие оптимальных решений в нештатных ситуациях. 
-                                                    Рассчитываю на дальнейшее плодотворное сотрудничество. 
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="reviews-item-autor-img">
-                                                    <img src="{{asset('front2/img/spec-item.png')}}" alt="">
-                                                </div>
-                                                <div class="reviews-item-autor-title">
-                                                    Евгения Купрюшина
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="reviews-item">
-                                        <div class="row">
-                                            
-                                            <div class="col-sm-9">
-                                                <div class="reviews-item-text">
-                                                    DD зарекомендовала себя надёжным деловым партнёром, обладающим большим потенциалом для решения практически любых задач 
-                                                    во внешнеэкономической деятельности. Хочется отметить профессионализм и внимательное отношение, творческий подход 
-                                                    и принятие оптимальных решений в нештатных ситуациях. 
-                                                    Рассчитываю на дальнейшее плодотворное сотрудничество. 
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="reviews-item-autor-img">
-                                                    <img src="{{asset('front2/img/spec-item.png')}}" alt="">
-                                                </div>
-                                                <div class="reviews-item-autor-title">
-                                                    Евгения Купрюшина
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="content_item_right page_content_item_right">
-                                <a class="reviews-connect md-trigger" data-modal="formreviews">Оставить отзыв</a>
-                            </div>
-                        </div> --}}
-
-                        {{-- <div class="page_info-block">
-                            <div class="page_info-top">
-                                Похожие компании
+                                Похожие специалисты
                             </div>
                             <div class="page_info-desc">
 
                                 <div class="similar_slider similar_slider-container swiper-container">
                                     <div class="swiper-wrapper">
+                                        {{--  --}}
+                                    @foreach($relative_lawyers as $rel_lawyer)
                                         <div class="swiper-slide">
                                             <div class="similar_slider-item">
-                                                <a href="/" class="similar_slider-item-linck">Подробнее</a>
+                                                <a href="{{route('lawyer',['city' => $city->alias,'alias' => $rel_lawyer->alias])}}" class="similar_slider-item-linck">Подробнее</a>
                                                 <div class="similar_slider_img">
-                                                    <img src="{{asset('front2/img/company-item.png')}}" alt="">
+                                                    <img src="{{$rel_lawyer->image ?? asset('front2/img/company-item.png')}}" alt="">
                                                 </div>
                                                 <div class="similar_slider_info">
                                                     <div class="similar_slider_title">
-                                                        Степанова Елена Анатольевна
+                                                        {{$rel_lawyer->last_name.' '.$rel_lawyer->first_name.' '.$rel_lawyer->patronymic}}
                                                     </div>
                                                     <div class="similar_slider_spec">
-                                                        Арбитраж и еще одна специализация
+                                                        {{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}} и еще одна специализация
                                                     </div>
                                                     <div class="similar_slider_price">
-                                                        Консультация от 10000 тг.
+                                                        Консультация: {{$rel_lawyer->price}}
                                                     </div>
                                                 </div>
         
                                             </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="similar_slider-item">
-                                                <a href="/" class="similar_slider-item-linck">Подробнее</a>
-                                                <div class="similar_slider_img">
-                                                    <img src="{{asset('front2/img/company-item.png')}}" alt="">
-                                                </div>
-                                                <div class="similar_slider_info">
-                                                    <div class="similar_slider_title">
-                                                        Степанова Елена Анатольевна
-                                                    </div>
-                                                    <div class="similar_slider_spec">
-                                                        Арбитраж и еще одна специализация
-                                                    </div>
-                                                    <div class="similar_slider_price">
-                                                        Консультация от 10000 тг.
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="similar_slider-item">
-                                                <a href="/" class="similar_slider-item-linck">Подробнее</a>
-                                                <div class="similar_slider_img">
-                                                    <img src="{{asset('front2/img/company-item.png')}}" alt="">
-                                                </div>
-                                                <div class="similar_slider_info">
-                                                    <div class="similar_slider_title">
-                                                        Степанова Елена Анатольевна
-                                                    </div>
-                                                    <div class="similar_slider_spec">
-                                                        Арбитраж и еще одна специализация
-                                                    </div>
-                                                    <div class="similar_slider_price">
-                                                        Консультация от 10000 тг.
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="similar_slider-item">
-                                                <a href="/" class="similar_slider-item-linck">Подробнее</a>
-                                                <div class="similar_slider_img">
-                                                    <img src="{{asset('front2/img/company-item.png')}}" alt="">
-                                                </div>
-                                                <div class="similar_slider_info">
-                                                    <div class="similar_slider_title">
-                                                        Степанова Елена Анатольевна
-                                                    </div>
-                                                    <div class="similar_slider_spec">
-                                                        Арбитраж и еще одна специализация
-                                                    </div>
-                                                    <div class="similar_slider_price">
-                                                        Консультация от 10000 тг.
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
+                                    @endforeach
+                                        {{--  --}}
+                                        
                                     </div>
                                     <!-- Add Pagination -->
                                     <div class="similar_slider-pagination"></div>
                                 </div>
                                
                             </div>
-                        </div> --}}
+                        </div>
+@endif
 
+                        <div class="page_info-block">
+                            <div class="page_info-top">
+                                Отзывы
+                            </div>
+                            @if($lawyer->feedbacks)
+                            <div class="reviews-block-2">
+                                <div class="page_info-desc reviews-block">
+                                    {{--  --}}
+                                    @foreach($lawyer->feedbacks as $fb)
+                                    <div class="reviews-item">
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-9">
+                                                <div class="reviews-item-text">
+                                                    {!!$fb->text!!} 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="reviews-item-autor-img">
+                                                    <img src="{{asset('front2/img/spec-item.png')}}" alt="">
+                                                </div>
+                                                <div class="reviews-item-autor-title">
+                                                    {{$fb->user->name ?? "Неизвестный пользователь"}}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    {{--  --}}
+                                </div>
+                            </div>
+                            @endif
+                            <div class="content_item_right page_content_item_right">
+                                <a class="reviews-connect md-trigger" data-modal="formreviews">Оставить отзыв</a>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
