@@ -98,6 +98,7 @@ $(".rating__item").click(function(e){
 });
 
 $('.js-example-basic-single').select2({
+    placeholder: "Юрист, фирма и услуга",
     tags: true,
     tokenSeparators: [',', ' ']
 });

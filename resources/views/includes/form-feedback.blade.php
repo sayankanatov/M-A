@@ -9,9 +9,9 @@
                     <form class="register-form" method="post" action="{{route('feedback.add')}}">
                         @csrf
 
-                        @if($lawyer)
+                        @if(isset($lawyer))
                         <input type="hidden" name="lawyer_id" value="{{$lawyer->id}}">
-                        @elseif($company)
+                        @elseif(isset($company))
                         <input type="hidden" name="company_id" value="{{$company->id}}">
                         @endif
 
