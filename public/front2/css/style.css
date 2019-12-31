@@ -1531,3 +1531,19 @@ a.content_item-message {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 48px  !important;
 }
+
+input.form-serch_input {
+    width: 100%;
+    border-radius: 5px 0 0 5px;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 0;
+    padding-left: 50px !important;
+    color: #000000 !important;
+    font-size: 18px;
+    font-weight: 400;
+    outline: none;
+    background-image: url(../img/search.png);
+    background-repeat: no-repeat;
+    background-position: 20px center;
+}

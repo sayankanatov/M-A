@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="{{asset('front2/css/media.css?v=0.0.8')}}">
 
 </head>
-<body class="page page-сompanies">
+<body class="page page-{{Request::route()->getName() == 'service' ? 'specialists' : 'сompanies'}}">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ6XV78"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -161,7 +161,7 @@
                             <form action="{{route('search')}}" id="form-serch" class="serch" method="post">
                                 @csrf
                                 <input type="hidden" name="city" value="{{$city->alias}}"> 
-                                <select class="js-example-basic-single input-serch" name="search" placeholder="Адвокат / юрист или услуга">
+                                {{-- <select class="js-example-basic-single input-serch" name="search" placeholder="Адвокат / юрист или услуга">
                                     
                                     @if($services)
                                     <optgroup label="Юристы">
@@ -173,7 +173,8 @@
                                     </optgroup> 
                                     @endif
                                     
-                                </select>    
+                                </select> --}}
+                                <input type="text" name="search" class="form-serch_input" placeholder="Юрист, фирма и услуга">
                                 <input type="submit" class="submit-serch" value="Найти">
                             </form>
                         </div>

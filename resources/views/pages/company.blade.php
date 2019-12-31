@@ -135,14 +135,12 @@
                                                 @endforeach
                                                 </div>
                                                 
-                                                @if($company->is_free)
                                                 <div class="content_item_li">
                                                     <strong class="content_item_li-left">
                                                         Бесплатная консультация:
                                                     </strong>
-                                                    {{'Есть'}}
+                                                    {{$company->is_free ? 'Есть' : 'Нет'}}
                                                 </div>
-                                                @endif
                                                 <div class="content_item_li">
                                                     <strong class="content_item_li-left">
                                                         Стоимость услуг:

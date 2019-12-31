@@ -93,7 +93,10 @@ $(".num_hide").click(function(){
     }
 });
 
-$(".rating__item").click(function(e){
+$(".page-сompanies .rating__item").click(function(e){
+    e.preventDefault(); 
+});
+$(".page-specialists .rating__item").click(function(e){
     e.preventDefault(); 
 });
 

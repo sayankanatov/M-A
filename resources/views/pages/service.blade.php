@@ -77,7 +77,7 @@ use Illuminate\Support\Facades\Input;
                     <div class="col-md-3">
                         <div class="content_item-left">
                             <div class="content_item_img">
-                                <img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/company-item.png')}}" alt="">
+                                <img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="">
                             </div>
                             <div class="content_item_reviews">
                                 <div class="content_item_rev-linck">
@@ -195,14 +195,12 @@ use Illuminate\Support\Facades\Input;
                                             </span>
                                             {{$lawyer->timetext}}
                                         </div>
-                                        @if($lawyer->is_free)
                                         <div class="content_item_li">
                                             <strong class="content_item_li-left">
                                                 Бесплатная консультация:
                                             </strong>
-                                            {{'Есть'}}
+                                            {{$lawyer->is_free ? 'Есть' : 'Нет'}}
                                         </div>
-                                        @endif
                                         <div class="content_item_li">
                                             <strong class="content_item_li-left">
                                                 Стоимость услуг:

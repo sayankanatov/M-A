@@ -140,14 +140,12 @@
                                                     </strong>
                                                     {{$lawyer->work_experience}}
                                                 </div>
-                                                @if($lawyer->is_free)
                                                 <div class="content_item_li">
                                                     <strong class="content_item_li-left">
                                                         Бесплатная консультация:
                                                     </strong>
-                                                    {{'Есть'}}
+                                                    {{$lawyer->is_free ? 'Есть' : 'Нет'}}
                                                 </div>
-                                                @endif
                                                 <div class="content_item_li">
                                                     <strong class="content_item_li-left">
                                                         Стоимость услуг:

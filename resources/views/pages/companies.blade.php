@@ -171,6 +171,15 @@ use Illuminate\Support\Facades\Input;
                                             @endforeach
                                         </div>
                                         <div class="content_item_li">
+                                            <strong class="content_item_li-left content_item_li-image">
+                                                <img src="{{asset('front2/img/adres-icon.png')}}" alt="">
+                                            </strong>
+                                            <span itemscope="" itemprop="address" itemtype="http://schema.org/PostalAddress">
+                                                <span itemprop="AddressLocality">{{app()->getLocale() == 'ru' ? $company->city->name_ru : $company->city->name_kz}}</span>,
+                                                <span itemprop="streetAddress">{{$company->address}}</span>
+                                            </span>
+                                        </div>
+                                        <div class="content_item_li">
                                             <strong class="content_item_li-left">
                                                 График работы:  
                                             </strong>
@@ -199,14 +208,14 @@ use Illuminate\Support\Facades\Input;
                                             </span>
                                             {{$company->timetext}}
                                         </div>
-                                        @if($company->is_free)
+                                        
                                         <div class="content_item_li">
                                             <strong class="content_item_li-left">
                                                 Бесплатная консультация:
                                             </strong>
-                                            {{'Есть'}}
+                                            {{$company->is_free ? 'Есть' : 'Нет'}}
                                         </div>
-                                        @endif
+                                        
                                         <div class="content_item_li">
                                             <strong class="content_item_li-left">
                                                 Стоимость услуг:

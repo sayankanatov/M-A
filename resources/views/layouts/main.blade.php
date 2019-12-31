@@ -153,7 +153,7 @@
                             <form action="{{route('search')}}" id="form-serch" class="serch" method="post">
                                 @csrf
                                 <input type="hidden" name="city" value="{{$city->alias}}">
-                                <select class="js-example-basic-single input-serch" name="search" placeholder="Адвокат / юрист или услуга">
+                                {{-- <select class="js-example-basic-single input-serch" name="search" placeholder="Адвокат / юрист или услуга">
                                     @if($services)
                                     <optgroup label="Юристы">
                                         @foreach($services as $service)
@@ -163,7 +163,8 @@
                                         @endforeach
                                     </optgroup> 
                                     @endif
-                                </select>    
+                                </select> --}}
+                                <input type="text" name="search" class="form-serch_input" placeholder="Юрист, фирма и услуга">    
                                 <input type="submit" class="submit-serch" value="Найти">
                             </form>
                         </div>
