@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="{{asset('front2/css/media.css?v=0.0.8')}}">
 
 </head>
-<body class="page page-{{Request::route()->getName() == 'service' ? 'specialists' : 'сompanies'}}">
+<body class="page page-{{Request::route()->getName() == 'service' ? 'specialists' : (Request::route()->getName() == 'company' ? 'сompaniy' : (Request::route()->getName() == 'lawyer' ? 'specialist' : 'сompanies') )}}">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ6XV78"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
