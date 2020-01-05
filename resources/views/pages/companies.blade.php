@@ -20,12 +20,7 @@ use Illuminate\Support\Facades\Input;
             </h1>
 
             <div class="content-desc"> 
-                <div class="text_intro"> <!-- Тут нужно вывести первое предложение  -->
-                    <p>
-                        Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста, чтобы вы работали только с настоящими профессионалами своего дела.
-                    </p>
-                </div>
-                <div class="text_full">
+                <div class="text_full-desc" id="text-full" style="overflow: hidden;">
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia iure excepturi sunt, optio omnis et voluptas expedita nobis deserunt asperiores, exercitationem dolore rem. Dolorum unde aperiam voluptate facere, sint eveniet.
                     </p>
@@ -36,9 +31,7 @@ use Illuminate\Support\Facades\Input;
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia iure excepturi sunt, optio omnis et voluptas expedita nobis deserunt asperiores, exercitationem dolore rem. Dolorum unde aperiam voluptate facere, sint eveniet.
                     </p>
                 </div>
-                <div class="sectoion-question-linck text_linck">
-                    <a>Подробнее...</a>
-                </div>
+                <a class="read-next" href="#">Подробнее...</a>
             </div>
             <div class="content-top_line">
                 @if($services)

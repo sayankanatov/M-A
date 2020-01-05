@@ -105,3 +105,23 @@ $('.js-example-basic-single').select2({
     tags: true,
     tokenSeparators: [',', ' ']
 });
+
+$(function (){  
+    var h = 50, 
+    t = $('#text_full'), 
+    max = t[0].scrollHeight, 
+    min = 27;
+    t.height(min);
+    $('.read-next').on('click', function (event){
+        var H = t.height();
+        if(H == max){
+            H = min
+        }else {
+            H = max
+        };
+
+        t.height(H);
+        $(this).text(H == max ? 'Скрыть...' : 'Подробнее...')
+        return false
+    })
+});

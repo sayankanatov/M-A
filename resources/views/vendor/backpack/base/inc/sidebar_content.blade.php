@@ -14,7 +14,7 @@
 </li>
 {{-- <li><a href="{{ backpack_url('menu-item') }}"><i class="fa fa-list"></i> <span>Меню</span></a></li> --}}
 
-<li><a href='{{ backpack_url('city') }}'><i class='fa fa-fort-awesome'></i> <span>Города</span></a></li>
+{{-- <li><a href='{{ backpack_url('city') }}'><i class='fa fa-fort-awesome'></i> <span>Города</span></a></li> --}}
 
 <li><a href='{{ backpack_url('seo_page') }}'><i class='fa fa-fort-awesome'></i> <span>SEO Страницы</span></a></li>
 
