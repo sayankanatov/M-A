@@ -21,15 +21,7 @@ use Illuminate\Support\Facades\Input;
 
             <div class="content-desc"> 
                 <div class="text_full-desc" id="text_full" style="overflow: hidden;">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia iure excepturi sunt, optio omnis et voluptas expedita nobis deserunt asperiores, exercitationem dolore rem. Dolorum unde aperiam voluptate facere, sint eveniet.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia iure excepturi sunt, optio omnis et voluptas expedita nobis deserunt asperiores, exercitationem dolore rem. Dolorum unde aperiam voluptate facere, sint eveniet.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia iure excepturi sunt, optio omnis et voluptas expedita nobis deserunt asperiores, exercitationem dolore rem. Dolorum unde aperiam voluptate facere, sint eveniet.
-                    </p>
+                    <p>{!!$seo_desc ?? null!!}</p>
                 </div>
                 <a class="read-next" href="#">Подробнее...</a>
             </div>

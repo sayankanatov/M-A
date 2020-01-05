@@ -19,23 +19,17 @@ use Illuminate\Support\Facades\Input;
                 {{$h_one ?? $app_h_one}} <span>{{$count}}</span> 
             </h1>
 
-            <div class="content-desc">
-                <div class="text_intro"> <!-- Тут нужно вывести первое предложение  -->
-                    <p>
-                        Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста, чтобы вы работали только с настоящими профессионалами своего дела.
-                    </p>
-                </div>
-                <div class="text_full">
+            <div class="content-desc"> 
+                <div class="text_full-desc" id="text_full" style="overflow: hidden;">
                     @if(app()->getLocale() == 'ru')
                         {!! $service->text_ru ?? "Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела"!!}
                     @else
                         {!! $service->text_kz ?? "Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела"!!}
                     @endif
                 </div>
-                <div class="sectoion-question-linck text_linck">
-                    <a>Подробнее...</a>
-                </div>
+                <a class="read-next" href="#">Подробнее...</a>
             </div>
+
             <div class="content-top_line">
                 @if($services)
                 <div class="content-top_select-block">
