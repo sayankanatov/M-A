@@ -93,10 +93,7 @@ $(".num_hide").click(function(){
     }
 });
 
-$(".page-сompanies .rating__item").click(function(e){
-    e.preventDefault(); 
-});
-$(".page-specialists .rating__item").click(function(e){
+$(".rating__item").click(function(e){
     e.preventDefault(); 
 });
 
@@ -106,12 +103,14 @@ $('.js-example-basic-single').select2({
     tokenSeparators: [',', ' ']
 });
 
+
 $(function (){  
     var h = 50, 
     t = $('#text_full'), 
     max = t[0].scrollHeight, 
     min = 27;
     t.height(min);
+
     $('.read-next').on('click', function (event){
         var H = t.height();
         if(H == max){
