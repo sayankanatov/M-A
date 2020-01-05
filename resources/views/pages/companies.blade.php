@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Input;
             </h1>
 
             <div class="content-desc"> 
-                <div class="text_full-desc" id="text-full" style="overflow: hidden;">
+                <div class="text_full-desc" id="text_full" style="overflow: hidden;">
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia iure excepturi sunt, optio omnis et voluptas expedita nobis deserunt asperiores, exercitationem dolore rem. Dolorum unde aperiam voluptate facere, sint eveniet.
                     </p>
