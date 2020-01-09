@@ -204,12 +204,12 @@ use Illuminate\Support\Facades\Input;
                                             </strong>
                                             {{$lawyer->is_free ? 'Есть' : 'Нет'}}
                                         </div>
-                                        <div class="content_item_li">
+                                        {{-- <div class="content_item_li">
                                             <strong class="content_item_li-left">
                                                 Стоимость услуг:
                                             </strong>
                                             {{$lawyer->price}}
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

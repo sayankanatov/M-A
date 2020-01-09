@@ -92,13 +92,15 @@ class PageController extends Controller
                     default:
                         # code...
                         $lawyers = Lawyer::where('city_id',$city->id)
-                        ->inRandomOrder()->get();
+                        // ->inRandomOrder()->get();
+                        ->orderBy('created_at','desc')->get();
                         break;
                 }
 
             }else{
                 $lawyers = Lawyer::where('city_id',$city->id)
-                ->inRandomOrder()->get();
+                // ->inRandomOrder()->get();
+                ->orderBy('created_at','desc')->get();
             }
 
             return view('pages.lawyers',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
@@ -126,7 +128,8 @@ class PageController extends Controller
 
             $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->whereHas('services',function($q) use ($service){
                 $q->where('id',$service->id);
-            })->inRandomOrder()->take(4)->get();
+            // })->inRandomOrder()->take(4)->get();
+            })->orderBy('created_at','desc')->take(4)->get();
 
             return view('pages.lawyer',compact('lawyer','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers','service'));
         }else{
@@ -210,13 +213,15 @@ class PageController extends Controller
                     default:
                         # code...
                         $companies = Company::where('city_id',$city->id)
-                        ->inRandomOrder()->get();
+                        // ->inRandomOrder()->get();
+                        ->orderBy('created_at','desc')->get();
                         break;
                 }
 
             }else{
                 $companies = Company::where('city_id',$city->id)
-                ->inRandomOrder()->get();
+                // ->inRandomOrder()->get();
+                ->orderBy('created_at','desc')->get();
             }
             
             

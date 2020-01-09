@@ -6,7 +6,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\SeoPageRequest as StoreRequest;
-use App\Http\Requests\SeoPageRequest as UpdateRequest;
+use App\Http\Requests\SeoPageUpdateRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 
 /**

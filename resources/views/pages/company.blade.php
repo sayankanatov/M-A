@@ -141,12 +141,12 @@
                                                     </strong>
                                                     {{$company->is_free ? 'Есть' : 'Нет'}}
                                                 </div>
-                                                <div class="content_item_li">
+                                                {{-- <div class="content_item_li">
                                                     <strong class="content_item_li-left">
                                                         Стоимость услуг:
                                                     </strong>
                                                     {{$company->price}}
-                                                </div>
+                                                </div> --}}
                                                 <div class="content_item_li">
                                                     <strong class="content_item_li-left content_item_li-image">
                                                         <img src="{{asset('front2/img/adres-icon.png')}}" alt="">
