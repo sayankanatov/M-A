@@ -1,23 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.profile')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@if($user->role_id == 1)
+    @include('pages.profile.user')
+@elseif($user->role_id == 2)
+    @include('pages.profile.lawyer')
+@elseif($user->role_id == 3)
+    @include('pages.profile.company')
+@endif
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

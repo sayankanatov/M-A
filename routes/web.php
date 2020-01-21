@@ -22,6 +22,11 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::post('/home/lawyer/{id}/update', 'HomeController@updateLawyer')->name('home.lawyer.update');
+    Route::post('/home/lawyer/{id}/photo', 'HomeController@storePhotoLawyer')->name('home.lawyer.photo');
+    Route::post('/home/company/{id}/update', 'HomeController@updateCompany')->name('home.company.update');
+    Route::post('/home/company/{id}/photo', 'HomeController@storePhotoCompany')->name('home.company.photo');
+
     Route::match(['get','post'],'/search','PageController@search')->name('search');
 
     Route::match(['get','post'],'/feedback/add','PageController@addFeedback')->name('feedback.add');

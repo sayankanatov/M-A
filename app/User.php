@@ -71,6 +71,9 @@ class User extends Authenticatable
 
     public static function hasRole($user_id)
     {
+        //1 - физ лицо
+        //2 - юрист
+        //3 - компания
         $user = self::find($user_id);
         return $user->role_id ?? false;
     }
