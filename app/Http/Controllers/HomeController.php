@@ -48,6 +48,9 @@ class HomeController extends Controller
 
             $info = Company::where('user_id',$user->id)->first();
             $city = City::where('id',$info->city_id)->first();
+        }else{
+            $info = '';
+            $city = '';
         }
 
         return view('home',compact('info','city','user','cities'));
