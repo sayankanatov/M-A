@@ -81,26 +81,28 @@ class PageController extends Controller
                         # code...
                         $lawyers = Lawyer::where('city_id',$city->id)
                         ->orderBy('rating','desc')
-                        ->get();
+                        ->paginate(Config::get('constants.pagination.lawyers'));
                         break;
                     case 'experience':
                         # code...
                         $lawyers = Lawyer::where('city_id',$city->id)
                         ->orderBy('work_experience','desc')
-                        ->get();
+                        ->paginate(Config::get('constants.pagination.lawyers'));
                         break;
                     default:
                         # code...
                         $lawyers = Lawyer::where('city_id',$city->id)
                         // ->inRandomOrder()->get();
-                        ->orderBy('created_at','desc')->get();
+                        ->orderBy('created_at','desc')
+                        ->paginate(Config::get('constants.pagination.lawyers'));
                         break;
                 }
 
             }else{
                 $lawyers = Lawyer::where('city_id',$city->id)
                 // ->inRandomOrder()->get();
-                ->orderBy('created_at','desc')->get();
+                ->orderBy('created_at','desc')
+                ->paginate(Config::get('constants.pagination.lawyers'));
             }
 
             return view('pages.lawyers',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
@@ -171,7 +173,11 @@ class PageController extends Controller
 
             $lawyers = Lawyer::getByServiceInCity($service->id,$city->id);
 
-            $count = count($lawyers);
+            $service_id = $service->id;
+
+            $count = Lawyer::where('city_id',$city->id)->whereHas('services', function($query) use ($service_id){
+                $query->where('id',$service_id);
+            })->count();
             
             return view('pages.service',compact('service','city','lawyers','count','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
@@ -201,27 +207,29 @@ class PageController extends Controller
                         # code...
                         $companies = Company::where('city_id',$city->id)
                         ->orderBy('rating','desc')
-                        ->get();
+                        ->paginate(Config::get('constants.pagination.companies'));
                         break;
                     case 'experience':
                         # code...
                         $companies = Company::where('city_id',$city->id)
                         ->orderBy('extra','desc')
-                        ->get();
+                        ->paginate(Config::get('constants.pagination.companies'));
                         
                         break;
                     default:
                         # code...
                         $companies = Company::where('city_id',$city->id)
                         // ->inRandomOrder()->get();
-                        ->orderBy('created_at','desc')->get();
+                        ->orderBy('created_at','desc')
+                        ->paginate(Config::get('constants.pagination.companies'));
                         break;
                 }
 
             }else{
                 $companies = Company::where('city_id',$city->id)
                 // ->inRandomOrder()->get();
-                ->orderBy('created_at','desc')->get();
+                ->orderBy('created_at','desc')
+                ->paginate(Config::get('constants.pagination.companies'));
             }
             
             

@@ -229,9 +229,15 @@ use Illuminate\Support\Facades\Input;
                 </div>
             </div>
         </div>
+
         @endforeach
+
+        {!!$companies->links()!!}
     </div>
+
 @endif
+
+
 
 @include('includes.modal-register')            
 

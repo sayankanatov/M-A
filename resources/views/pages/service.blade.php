@@ -233,6 +233,8 @@ use Illuminate\Support\Facades\Input;
             </div>
         </div>
         @endforeach
+
+        {!!$lawyers->links()!!}
     </div>
 @endif
 

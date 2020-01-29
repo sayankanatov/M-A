@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
+use Config;
+
 class Lawyer extends Model
 {
     use CrudTrait;
@@ -77,7 +79,7 @@ class Lawyer extends Model
             return self::where('city_id',$city_id)->whereHas('services', function($query) use ($service_id){
                 $query->where('id',$service_id);
             // })->inRandomOrder()->get();
-            })->orderBy('created_at','desc')->get();
+            })->orderBy('created_at','desc')->paginate(Config::get('constants.pagination.lawyers'));
         }
     }
 
