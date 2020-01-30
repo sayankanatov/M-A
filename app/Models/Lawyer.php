@@ -76,10 +76,40 @@ class Lawyer extends Model
                 $query->where('id',$service_id);
             })->count();
         }else{
-            return self::where('city_id',$city_id)->whereHas('services', function($query) use ($service_id){
-                $query->where('id',$service_id);
-            // })->inRandomOrder()->get();
-            })->orderBy('created_at','desc')->paginate(Config::get('constants.pagination.lawyers'));
+            session_start();
+
+            if(!isset($_SESSION['status'])){
+                $_SESSION['status'] = 1;
+            }else{
+                $_SESSION['status'] = $_SESSION['status'] + 1;
+            }
+
+            $skip = $_SESSION['status'];
+
+            $count = self::where('city_id',$city_id)->count();
+            
+            if($count < $skip){
+                $int = $count;
+            }else{
+                $int = $count - $skip;
+            }
+
+            $query = self::skip($skip)
+                    ->take($int)
+                    ->where('city_id',$city_id)
+                    ->whereHas('services', function($query) use ($service_id){
+                        $query->where('id',$service_id);
+                    })->orderBy('created_at','desc')->get();
+
+            $end = self::take($skip)
+                    ->where('city_id',$city_id)
+                    ->whereHas('services', function($query) use ($service_id){
+                        $query->where('id',$service_id);
+                    })->orderBy('created_at','desc')
+                    ->get();
+            $query = $query->merge($end);
+
+            return $query;
         }
     }
 

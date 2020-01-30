@@ -232,7 +232,7 @@ use Illuminate\Support\Facades\Input;
 
         @endforeach
 
-        {!!$companies->links()!!}
+        {{-- {!!$companies->links()!!} --}}
     </div>
 
 @endif

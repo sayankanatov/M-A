@@ -234,7 +234,7 @@ use Illuminate\Support\Facades\Input;
         </div>
         @endforeach
 
-        {!!$lawyers->links()!!}
+        {{-- {!!$lawyers->links()!!} --}}
     </div>
 @endif
 

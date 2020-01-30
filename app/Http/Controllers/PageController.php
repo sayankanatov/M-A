@@ -59,11 +59,29 @@ class PageController extends Controller
         }
     }
 
-    public function lawyers($city)
+    public function lawyers($city, Request $request)
     {
         $city = City::where('alias',$city)->first();
 
         $sort = Input::get('sort');
+
+        session_start();
+
+        if(!isset($_SESSION['status'])){
+            $_SESSION['status'] = 1;
+        }else{
+            $_SESSION['status'] = $_SESSION['status'] + 1;
+        }
+
+        $skip = $_SESSION['status'];
+
+        $count = Lawyer::where('city_id',$city->id)->count();
+        
+        if($count < $skip){
+            $int = $count;
+        }else{
+            $int = $count - $skip;
+        }
 
         $seo_data = SeoPage::where('title','lawyers')->first();
 
@@ -79,30 +97,60 @@ class PageController extends Controller
                 switch ($sort) {
                     case 'rating':
                         # code...
-                        $lawyers = Lawyer::where('city_id',$city->id)
-                        ->orderBy('rating','desc')
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        $lawyers = Lawyer::skip($skip)
+                            ->take($int)->where('city_id',$city->id)
+                            ->orderBy('rating','desc')
+                            ->get();
+
+                        $end = Lawyer::take($skip)
+                            ->where('city_id',$city->id)
+                            ->orderBy('rating','desc')
+                            ->get();
+                        $lawyers = $lawyers->merge($end);
                         break;
                     case 'experience':
                         # code...
-                        $lawyers = Lawyer::where('city_id',$city->id)
-                        ->orderBy('work_experience','desc')
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        $lawyers = Lawyer::skip($skip)
+                            ->take($int)
+                            ->where('city_id',$city->id)
+                            ->orderBy('work_experience','desc')
+                            ->get();
+
+                        $end = Lawyer::take($skip)
+                            ->where('city_id',$city->id)
+                            ->orderBy('work_experience','desc')
+                            ->get();
+                        $lawyers = $lawyers->merge($end);
                         break;
                     default:
                         # code...
-                        $lawyers = Lawyer::where('city_id',$city->id)
-                        // ->inRandomOrder()->get();
-                        ->orderBy('created_at','desc')
-                        ->paginate(Config::get('constants.pagination.lawyers'));
+                        $lawyers = Lawyer::skip($skip)
+                            ->take($int)
+                            ->where('city_id',$city->id)
+                            ->orderBy('created_at','desc')
+                            ->get();
+                        $end = Lawyer::take($skip)
+                            ->where('city_id',$city->id)
+                            ->orderBy('created_at','desc')
+                            ->get();
+                        $lawyers = $lawyers->merge($end);
                         break;
                 }
 
             }else{
-                $lawyers = Lawyer::where('city_id',$city->id)
-                // ->inRandomOrder()->get();
-                ->orderBy('created_at','desc')
-                ->paginate(Config::get('constants.pagination.lawyers'));
+                
+                $lawyers = Lawyer::skip($skip)
+                    ->take($int)
+                    ->where('city_id',$city->id)
+                    ->orderBy('created_at','desc')
+                    // ->paginate(Config::get('constants.pagination.lawyers'));
+                    ->get();
+                $end = Lawyer::take($skip)
+                    ->where('city_id',$city->id)
+                    ->orderBy('created_at','desc')
+                    // ->paginate(Config::get('constants.pagination.lawyers'));
+                    ->get();
+                $lawyers = $lawyers->merge($end);
             }
 
             return view('pages.lawyers',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
@@ -191,6 +239,24 @@ class PageController extends Controller
 
         $sort = Input::get('sort');
 
+        session_start();
+
+        if(!isset($_SESSION['status'])){
+            $_SESSION['status'] = 1;
+        }else{
+            $_SESSION['status'] = $_SESSION['status'] + 1;
+        }
+
+        $skip = $_SESSION['status'];
+
+        $count = Company::where('city_id',$city->id)->count();
+
+        if($count < $skip){
+            $int = $count;
+        }else{
+            $int = $count - $skip;
+        }
+
         $seo_data = SeoPage::where('title','companies')->first();
 
         $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
@@ -205,31 +271,65 @@ class PageController extends Controller
                 switch ($sort) {
                     case 'rating':
                         # code...
-                        $companies = Company::where('city_id',$city->id)
-                        ->orderBy('rating','desc')
-                        ->paginate(Config::get('constants.pagination.companies'));
+                        $companies = Company::skip($skip)
+                            ->take($int)
+                            ->where('city_id',$city->id)
+                            ->orderBy('rating','desc')
+                            ->get();
+
+                        $end = Company::take($skip)
+                            ->where('city_id',$city->id)
+                            ->orderBy('rating','desc')
+                            ->get();
+
+                        $companies = $companies->merge($end);
                         break;
                     case 'experience':
                         # code...
-                        $companies = Company::where('city_id',$city->id)
-                        ->orderBy('extra','desc')
-                        ->paginate(Config::get('constants.pagination.companies'));
+                        $companies = Company::skip($skip)
+                            ->take($int)
+                            ->where('city_id',$city->id)
+                            ->orderBy('extra','desc')
+                            ->get();
+
+                        $end = Company::take($skip)
+                                ->where('city_id',$city->id)
+                                ->orderBy('extra','desc')
+                                ->get();
+
+                        $companies = $companies->merge($end);
                         
                         break;
                     default:
                         # code...
-                        $companies = Company::where('city_id',$city->id)
-                        // ->inRandomOrder()->get();
-                        ->orderBy('created_at','desc')
-                        ->paginate(Config::get('constants.pagination.companies'));
+                        $companies = Company::skip($skip)
+                            ->take($int)
+                            ->where('city_id',$city->id)
+                            ->orderBy('created_at','desc')
+                            ->get();
+
+                        $end = Company::take($skip)
+                                ->where('city_id',$city->id)
+                                ->orderBy('created_at','desc')
+                                ->get();
+
+                        $companies = $companies->merge($end);
                         break;
                 }
 
             }else{
-                $companies = Company::where('city_id',$city->id)
-                // ->inRandomOrder()->get();
-                ->orderBy('created_at','desc')
-                ->paginate(Config::get('constants.pagination.companies'));
+                $companies = Company::skip($skip)
+                    ->take($int)
+                    ->where('city_id',$city->id)
+                    ->orderBy('created_at','desc')
+                    ->get();
+
+                $end = Company::take($skip)
+                        ->where('city_id',$city->id)
+                        ->orderBy('created_at','desc')
+                        ->get();
+
+                $companies = $companies->merge($end);
             }
             
             
