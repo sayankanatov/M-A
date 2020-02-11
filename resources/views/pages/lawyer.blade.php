@@ -40,7 +40,7 @@
                             <div class="col-md-3">
                                 <div class="content_item-left">
                                     <div class="content_item_img">
-                                        <img itemprop="image" src="{{asset('front2/img/company-item.png')}}" alt="">
+                                        <img itemprop="image" src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="">
                                     </div>
                                     <div class="content_item_reviews">
                                         <div class="content_item_rev-linck">
