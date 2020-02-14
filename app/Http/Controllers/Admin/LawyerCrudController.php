@@ -297,7 +297,7 @@ class LawyerCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $cut_name = str_limit($request->input('name'), $limit = 200, $end = '-');
+        $cut_name = str_limit($request->input('last_name').'-'.$request->input('first_name').'-'.$request->input('patronymic'), $limit = 200, $end = '-');
         $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
         $request->request->set('alias', $alias);
 

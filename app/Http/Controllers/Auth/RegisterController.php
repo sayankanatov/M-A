@@ -14,8 +14,8 @@ use Config;
 use Session;
 use App\Models\Lawyer;
 use App\Models\Company;
-
 use Exception;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -131,6 +131,11 @@ class RegisterController extends Controller
             $lawyer->first_name = $data['first_name'.$role];
             $lawyer->patronymic = $data['patronymic'.$role];
             $lawyer->telephone = $data['telephone'.$role];
+
+            $cut_name = str_limit($data['last_name'.$role].'-'.$data['first_name'.$role].'-'.$data['patronymic'.$role], $limit = 200, $end = '-');
+            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+
+            $lawyer->alias = $alias;
             $lawyer->email = $data['email'.$role];
             $lawyer->city_id = $data['city_id'.$role];
             $lawyer->user_id = $user_id;
@@ -158,6 +163,11 @@ class RegisterController extends Controller
             $lawyer->first_name = $data['first_name'.$role];
             $lawyer->patronymic = $data['patronymic'.$role];
             $lawyer->telephone = $data['telephone'.$role];
+
+            $cut_name = str_limit($data['last_name'.$role].'-'.$data['first_name'.$role].'-'.$data['patronymic'.$role], $limit = 200, $end = '-');
+            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+
+            $lawyer->alias = $alias;
             $lawyer->email = $data['email'.$role];
             $lawyer->city_id = $data['city_id'.$role];
             $lawyer->user_id = $user_id;
@@ -184,6 +194,11 @@ class RegisterController extends Controller
             $company->name = $data['name'.$role];
             $company->telephone = $data['telephone'.$role];
             $company->email = $data['email'.$role];
+
+            $cut_name = str_limit($data['name'.$role], $limit = 200, $end = '-');
+            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+
+            $company->alias = $alias;
             $company->city_id = $data['city_id'.$role];
             $company->user_id = $user_id;
             $company->save();
