@@ -16,6 +16,8 @@ use App\Models\SeoPage;
 use App\Models\FeedBack;
 use App\User;
 
+use Illuminate\Support\Str;
+
 class PageController extends Controller
 {
     //
@@ -420,6 +422,33 @@ class PageController extends Controller
         $feed->save();
 
         return redirect()->back();
+    }
+
+    public function test(Request $request)
+    {
+        
+        $lawyers = Lawyer::where('alias',null)->get();
+        $companies = Company::where('alias',null)->get();
+
+        foreach ($lawyers as $key => $lawyer) {
+            # code...
+            $cut_name = str_limit($lawyer->last_name.'-'.$lawyer->first_name.'-'.$lawyer->patronymic, $limit = 200, $end = '-');
+            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+
+            $lawyer->alias = $alias;
+            $lawyer->save();
+        }
+
+        foreach ($companies as $key => $company) {
+            # code...
+            $cut_name = str_limit($company->name, $limit = 200, $end = '-');
+            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
+
+            $company->alias = $alias;
+            $company->save();
+        }
+
+        return redirect(route('main'));
     }
 
 }

@@ -15,6 +15,7 @@ Route::get('/', function () {
 });
 
 Route::get('/send-mail', 'PageController@sendMail')->name('send-mail');
+Route::get('/test', 'PageController@test')->name('test');
 
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
