@@ -16,6 +16,8 @@ Route::get('/', function () {
 
 Route::get('/send-mail', 'PageController@sendMail')->name('send-mail');
 Route::get('/test', 'PageController@test')->name('test');
+//sitemap.xml
+Route::get('/sitemap.xml', 'SiteMapController@index')->name('sitemap');
 
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
