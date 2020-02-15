@@ -40,12 +40,14 @@ class SiteMapController extends Controller
             'lawyer' => $this->lawyerUrl
         ];
 
+        $xmlVersion = '';
+
         $now = Carbon::now()->format('Y-m-d\TH:i:s.uP');
         $cities = City::all();
         $services = Service::select('alias','updated_at')->get();
 
         return response()
-            ->view('xml.sitemap', compact('now','cities','urls','services'))
+            ->view('xml.sitemap', compact('now','cities','urls','services','xmlVersion'))
             ->header('Content-Type', 'text/xml');
     }
 }
