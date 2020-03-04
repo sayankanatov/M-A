@@ -17,7 +17,7 @@ class ExportExcelController extends Controller
     {
         try{
         	$headers = Config::get('excel.headers');
-        	$exportData = json_decode($request->all(),true);
+            $exportData = (array)json_decode($request->query('data'),true);
 
         	$export = new StudentExport([
         		$headers,
