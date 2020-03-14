@@ -39,3 +39,4 @@
 </li>
 
 <li><a href='{{ backpack_url('faq') }}'><i class='fa fa-question'></i> <span>Часто задаваемые вопросы</span></a></li>
+<li><a href='{{ backpack_url('news') }}'><i class='fa fa-fort-awesome'></i> <span>Полезное</span></a></li>
