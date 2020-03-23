@@ -64,6 +64,23 @@ class NewsCrudController extends CrudController
             'type' => 'ckeditor'
         ]);
 
+        $this->crud->addField([
+            'name' => 'seo_title',
+            'label' => "SEO Заголовок",
+            'type' => 'text'
+        ]);
+        $this->crud->addField([
+            'name' => 'seo_desc',
+            'label' => "SEO Описание",
+            'type' => 'textarea'
+        ]);
+
+        $this->crud->addField([
+            'name' => 'seo_keywords',
+            'label' => "SEO Keywords",
+            'type' => 'text'
+        ]);
+
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
 

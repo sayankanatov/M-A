@@ -27,6 +27,9 @@ class News extends Model
         'image',
         'alias',
         'category_id',
+        'seo_title',
+        'seo_desc',
+        'seo_keywords',
     ];
     // protected $hidden = [];
     // protected $dates = [];
