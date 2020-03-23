@@ -19,8 +19,8 @@
 							<div class="row lawyer">
 					
 								<div class="col-2 lawyer_block-photo ">
-									<img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="Фото" class="photo">
-
+									{{-- <img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="Фото" class="photo"> --}}
+									<img src="{{asset('front2/img/spec-item.png')}}" alt="Фото" class="photo">
 								</div>
 								<div class="col-7 lawyer_block-ingo block">
 									<div class="name">{{$lawyer->fullname($lawyer->id)}}
@@ -293,7 +293,10 @@
 
 			@foreach($relative_lawyers as $rel_lawyer)
 			<div class="similar_block">
-				<div class="similar_image"><img src="{{$rel_lawyer->image ?? asset('front2/img/company-item.png')}}" alt="Photo"></div>
+				<div class="similar_image">
+					{{-- <img src="/{{$rel_lawyer->image ?? asset('front2/img/company-item.png')}}" alt="Photo"> --}}
+					<img src="{{asset('front2/img/company-item.png')}}" alt="Photo">
+				</div>
 				<div class="similar_name"><a href="{{route('lawyer',['city' => $city->alias,'alias' => $rel_lawyer->alias])}}">{{$rel_lawyer->last_name.' '.$rel_lawyer->first_name.' '.$rel_lawyer->patronymic}}</a></div>
 				<div class="similar_star">
 					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">

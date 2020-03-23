@@ -62,7 +62,9 @@ use Illuminate\Support\Facades\Input;
 				<div class="row lawyer_block firms_block ">
 
 					<div class="col-2 lawyer_block-photo ">
-						<a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}"><img src="{{$company->logo ? '/'.$company->logo : asset('front2/img/company-item.png')}}" alt="Фото" class="photo"></a>
+						<a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">		{{-- <img src="{{$company->logo ? '/'.$company->logo : asset('front2/img/company-item.png')}}" alt="Фото" class="photo"> --}}
+							<img src="{{asset('front2/img/company-item.png')}}" alt="Фото" class="photo">
+						</a>
 
 						<div class="rewyes">
 
