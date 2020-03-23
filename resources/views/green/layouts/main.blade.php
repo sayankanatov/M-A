@@ -8,6 +8,8 @@
 		<link rel="stylesheet" href="{{asset('front3/css/main.css')}}">
 		<link rel="stylesheet" href="{{asset('front3/css/bootstrap-grid.css')}}">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{asset('front3/slick/slick.css')}}">
+		<link rel="stylesheet" href="{{asset('front3/slick/slick-theme.css')}}">
 		<title>{{$seo_title ?? $app_seo_title}}</title>
 		<meta name="description" content="{{$seo_desc ?? $app_seo_desc}}">
 	    <meta name="keywords" content="{{$seo_keywords ?? $app_seo_keywords}}">
@@ -110,6 +112,7 @@
 
 	<script src="{{asset('front3/js/jquery-3.4.0.min.js')}}"></script>
 	<script src="{{asset('front3/js/script.js')}}"></script>
+	<script src="{{asset('front3/slick/slick.min.js')}}"></script>
 
 </body>
 
