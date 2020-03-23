@@ -19,8 +19,7 @@
 							<div class="row lawyer">
 
 								<div class="col-2 lawyer_block-photo ">
-									{{-- <img src="{{$company->logo ? '/'.$company->logo : asset('front2/img/company-item.png')}}" alt="Фото" class="photo"> --}}
-									<img src="{{asset('front2/img/company-item.png')}}" alt="Фото" class="photo">
+									<img src="{{$company->logo ? '/'.$company->logo : asset('front2/img/company-item.png')}}" alt="Фото" class="photo">
 								</div>
 								<div class="col-7 lawyer_block-ingo block">
 									<div class="name">{{$company->name}}
