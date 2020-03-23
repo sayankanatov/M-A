@@ -14,6 +14,7 @@ use App\Models\ServiceCategory;
 use App\Models\Faq;
 use App\Models\SeoPage;
 use App\Models\FeedBack;
+use App\Models\News;
 use App\User;
 
 use Illuminate\Support\Str;
@@ -21,24 +22,27 @@ use Illuminate\Support\Str;
 class PageController extends Controller
 {
     //
-    public function __construct(){
-
-    }
+    protected $theme = 'green';
     
     public function index(Request $request)
     {
         $cities = City::all();
         $city = City::find(Config::get('constants.city'));
-
         $services = Service::all();
         $faq = Faq::all();
+        $lawyers = Lawyer::where('city_id',$city->id)->take(4)->inRandomOrder()->get();
+        $news = News::orderBy('created_at','desc')->take(4)->get();
 
         $h_one = $city->h_one;
         $seo_title = $city->seo_title;
         $seo_desc = $city->seo_desc;
         $seo_keywords = $city->seo_keywords;
 
-        return view('pages.main',compact('city','cities','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
+        return view( $this->theme.'.pages.index',compact(
+            'city','cities','services','faq','seo_title',
+            'h_one','seo_desc','seo_keywords',
+            'lawyers','news')
+        );
     }
 
     public function city($city)
@@ -46,16 +50,17 @@ class PageController extends Controller
         $city = City::where('alias',$city)->first();
         if($city){
             $cities = City::all();
-
             $services = Service::all();
             $faq = Faq::all();
+            $lawyers = Lawyer::where('city_id',$city->id)->take(4)->inRandomOrder()->get();
+            $news = News::orderBy('created_at','desc')->take(4)->get();
 
             $h_one = $city->h_one;
             $seo_title = $city->seo_title;
             $seo_desc = $city->seo_desc;
             $seo_keywords = $city->seo_keywords;
 
-            return view('pages.main',compact('city','cities','services','faq','seo_title','h_one','seo_desc','seo_keywords'));
+            return view( $this->theme.'.pages.index',compact('city','cities','services','faq','seo_title','h_one','seo_desc','seo_keywords','lawyers','news'));
         }else{
             return redirect(route('main'));
         }
@@ -64,19 +69,14 @@ class PageController extends Controller
     public function lawyers($city, Request $request)
     {
         $city = City::where('alias',$city)->first();
-
         $sort = Input::get('sort');
-
         session_start();
-
         if(!isset($_SESSION['status'])){
             $_SESSION['status'] = 1;
         }else{
             $_SESSION['status'] = $_SESSION['status'] + 1;
         }
-
         $skip = $_SESSION['status'];
-
         $count = Lawyer::where('city_id',$city->id)->count();
         
         if($count < $skip){
@@ -93,9 +93,7 @@ class PageController extends Controller
         $seo_keywords = $seo_data->seo_keywords;
 
         if($city){
-
             if(isset($sort)){
-
                 switch ($sort) {
                     case 'rating':
                         # code...
@@ -155,7 +153,7 @@ class PageController extends Controller
                 $lawyers = $lawyers->merge($end);
             }
 
-            return view('pages.lawyers',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
+            return view($this->theme.'.pages.lawyers.index',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }   
@@ -171,10 +169,10 @@ class PageController extends Controller
             $lawyer->hits += 1;
             $lawyer->save();
 
-            $h_one = $lawyer->h_one;
-            $seo_title = $lawyer->seo_title;
-            $seo_desc = $lawyer->seo_desc;
-            $seo_keywords = $lawyer->seo_keywords;
+            $h_one = $lawyer->h_one ?? '';
+            $seo_title = $lawyer->seo_title ?? '';
+            $seo_desc = $lawyer->seo_desc ?? '';
+            $seo_keywords = $lawyer->seo_keywords ?? '';
 
             $service = $lawyer->services->first();
 
@@ -188,30 +186,11 @@ class PageController extends Controller
                 $relative_lawyers = null;
             }
 
-            return view('pages.lawyer',compact('lawyer','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers','service'));
+            return view($this->theme.'.pages.lawyers.show',compact('lawyer','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers','service'));
         }else{
             return redirect(route('main'));
         }   
         
-    }
-
-    public function services($city)
-    {   
-        $city = City::where('alias',$city)->first();
-        
-        $seo_data = SeoPage::where('title','services')->first();
-
-        $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_title = $seo_data->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_desc = $seo_data->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_keywords = $seo_data->seo_keywords;
-
-        if($city){
-
-            return view('pages.services',compact('city','seo_title','h_one','seo_desc','seo_keywords'));
-        }else{
-            return redirect(route('main'));
-        }
     }
 
     public function service($city, $alias)
@@ -234,7 +213,7 @@ class PageController extends Controller
                 $query->where('id',$service_id);
             })->count();
             
-            return view('pages.service',compact('service','city','lawyers','count','seo_title','h_one','seo_desc','seo_keywords'));
+            return view($this->theme.'.pages.services.show',compact('service','city','lawyers','count','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }
@@ -243,11 +222,8 @@ class PageController extends Controller
     public function companies($city)
     {   
         $city = City::where('alias',$city)->first();
-
         $sort = Input::get('sort');
-
         session_start();
-
         if(!isset($_SESSION['status'])){
             $_SESSION['status'] = 1;
         }else{
@@ -255,26 +231,20 @@ class PageController extends Controller
         }
 
         $skip = $_SESSION['status'];
-
         $count = Company::where('city_id',$city->id)->count();
-
         if($count < $skip){
             $int = $count;
         }else{
             $int = $count - $skip;
         }
-
         $seo_data = SeoPage::where('title','companies')->first();
-
         $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
         $seo_title = $seo_data->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
         $seo_desc = $seo_data->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
         $seo_keywords = $seo_data->seo_keywords;
 
         if($city){
-
             if(isset($sort)){
-
                 switch ($sort) {
                     case 'rating':
                         # code...
@@ -338,10 +308,8 @@ class PageController extends Controller
 
                 $companies = $companies->merge($end);
             }
-            
-            
 
-            return view('pages.companies',compact('city','companies','seo_title','h_one','seo_desc','seo_keywords'));
+            return view($this->theme.'.pages.companies.index',compact('city','companies','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }
@@ -361,7 +329,7 @@ class PageController extends Controller
             $seo_desc = $company->seo_desc;
             $seo_keywords = $company->seo_keywords;
 
-            return view('pages.company',compact('company','city','seo_title','h_one','seo_desc','seo_keywords'));
+            return view($this->theme.'.pages.companies.show',compact('company','city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
         }   

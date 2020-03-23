@@ -25,6 +25,7 @@ class FeedBack extends Model
         'lawyer_id',
         'company_id',
         'is_show',
+        'user_id'
     ];
     // protected $hidden = [];
     // protected $dates = [];

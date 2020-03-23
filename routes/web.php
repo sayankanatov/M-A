@@ -22,29 +22,37 @@ Route::get('/sitemap.xml', 'SiteMapController@index')->name('sitemap');
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
     Auth::routes();
-
+    //Личный кабинет пользователя
     Route::get('/home', 'HomeController@index')->name('home');
-
     Route::post('/home/lawyer/{id}/update', 'HomeController@updateLawyer')->name('home.lawyer.update');
     Route::post('/home/lawyer/{id}/photo', 'HomeController@storePhotoLawyer')->name('home.lawyer.photo');
     Route::post('/home/company/{id}/update', 'HomeController@updateCompany')->name('home.company.update');
     Route::post('/home/company/{id}/photo', 'HomeController@storePhotoCompany')->name('home.company.photo');
 
+    //Поиск
     Route::match(['get','post'],'/search','PageController@search')->name('search');
 
+    //Оставить отзыв
     Route::match(['get','post'],'/feedback/add','PageController@addFeedback')->name('feedback.add');
 	
+    //Главная
     Route::get('/', 'PageController@index')->name('main');
     Route::get('/{city}', 'PageController@city')->name('city');
 
+    //Юристы
     Route::get('/{city}/yuristy', 'PageController@lawyers')->name('lawyers');
     Route::get('/{city}/yurist/{alias}', 'PageController@lawyer')->name('lawyer');
 
-    // Route::get('/{city}/services', 'PageController@services')->name('services');
+    //Юристы по специализацией
     Route::get('/{city}/specializaciya/{alias}', 'PageController@service')->name('service');
 
+    //Компании
     Route::get('/{city}/yuridicheskie-kompanii', 'PageController@companies')->name('companies');
     Route::get('/{city}/yuridicheskaya-kompaniya/{alias}', 'PageController@company')->name('company');
+
+    //Новости
+    Route::get('/polesnoe', 'NewsController@index')->name('news');
+    Route::get('/polesnoe/{alias}', 'NewsController@show')->name('news.show');
 });
 
 //Переключение языков

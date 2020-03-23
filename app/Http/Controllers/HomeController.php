@@ -13,6 +13,7 @@ use Exception;
 
 class HomeController extends Controller
 {
+    protected $theme = 'green';
     /**
      * Create a new controller instance.
      *
@@ -31,21 +32,15 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::find(Auth::user()->id);
-
         $cities = City::all();
 
         if($user->role_id == 1){
-
             $info = $user;
-            $city = '';
-
+            $city = City::find(\Config::get('constants.city'));
         }elseif($user->role_id == 2){
-
             $info = Lawyer::where('user_id',$user->id)->first();
             $city = City::where('id',$info->city_id)->first();
-
         }elseif($user->role_id == 3){
-
             $info = Company::where('user_id',$user->id)->first();
             $city = City::where('id',$info->city_id)->first();
         }else{

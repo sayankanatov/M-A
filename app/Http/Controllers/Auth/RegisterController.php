@@ -67,8 +67,13 @@ class RegisterController extends Controller
     public function register(Request $request) {
 
         try{
-
-            $role = $request->role;
+            if( $request->check1 == 'on' ){
+                $role = Config::get('constants.roles.individual');
+            }elseif( $request->check2 == 'on' ){
+                $role = Config::get('constants.roles.entity');
+            }else{
+                $role = Config::get('constants.roles.company');
+            }
 
             $request_email = 'email'.$role;
             $request_password = 'password'.$role;
@@ -81,7 +86,7 @@ class RegisterController extends Controller
             $existUser = User::where('email',$email)->first();
 
             if($existUser){
-                Session::flash('message', 'Пользователь с таким email-ол уже существует');
+                Session::flash('message', 'Пользователь с таким email уже существует');
                 return redirect(route('main'));
             }
 
@@ -89,7 +94,6 @@ class RegisterController extends Controller
                 Session::flash('message', 'Пароль не совпал');
                 return redirect(route('main'));
             }
-
             // Copy the default behaviour here
             event(new Registered($user = $this->create($request->all())));
 
@@ -112,8 +116,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        if($data['role'] == Config::get('constants.roles.individual')){
+
+        if( isset($data['check1']) && $data['check1'] == 'on' ){
 
             $role = Config::get('constants.roles.individual');
 
@@ -124,29 +128,11 @@ class RegisterController extends Controller
             $user->role_id = $role;
             $user->save();
 
-            $user_id = $user->id;
-
-            $lawyer = new Lawyer();
-            $lawyer->last_name = $data['last_name'.$role];
-            $lawyer->first_name = $data['first_name'.$role];
-            $lawyer->patronymic = $data['patronymic'.$role];
-            $lawyer->telephone = $data['telephone'.$role];
-
-            $cut_name = str_limit($data['last_name'.$role].'-'.$data['first_name'.$role].'-'.$data['patronymic'.$role], $limit = 200, $end = '-');
-            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
-
-            $lawyer->alias = $alias;
-            $lawyer->email = $data['email'.$role];
-            $lawyer->city_id = $data['city_id'.$role];
-            $lawyer->user_id = $user_id;
-            $lawyer->save();
-
-            User::sendMail($user_id);
-
+            // $user_id = $user->id;
+            // User::sendMail($user_id);
             return $user;
         }
-        elseif ($data['role'] == Config::get('constants.roles.entity')) {
-            # code...
+        elseif( isset($data['check2']) && $data['check2'] == 'on' ){
             $role = Config::get('constants.roles.entity');
 
             $user = new User();
@@ -173,12 +159,10 @@ class RegisterController extends Controller
             $lawyer->user_id = $user_id;
             $lawyer->save();
 
-            User::sendMail($user_id);
-
+            // User::sendMail($user_id);
             return $user;
         }
-        elseif ($data['role'] == Config::get('constants.roles.company')) {
-            # code...
+        elseif( isset($data['check3']) && $data['check3'] == 'on'){
             $role = Config::get('constants.roles.company');
 
             $user = new User();
@@ -203,8 +187,7 @@ class RegisterController extends Controller
             $company->user_id = $user_id;
             $company->save();
 
-            User::sendMail($user_id);
-
+            // User::sendMail($user_id);
             return $user;
         }
     }

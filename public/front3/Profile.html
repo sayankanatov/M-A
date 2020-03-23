@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap-grid.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Yurist.kz</title>
+</head>
+
+<body>
+	<!-- новая модалка -->
+	<div class="boo-navbar">
+		<div class="container">
+			<!-- Mobile -->
+			<div class="boo-nav-collapsed">
+				<a href="index.html">
+					<img class="mobile-logo" src="image/Main/image 1.svg" alt="Logo" />
+				</a>
+				<button class="boo-nav-toggle">
+					<!-- <i class="fa fa-fw fa-bars"></i> -->
+					<div class="content">
+						<div class="hamburger">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+				</button>
+			</div>
+			<!-- Brand -->
+			<div class="boo-nav-brand">
+				<a href="index.html">
+					<img src="image/Main/image 1.svg" alt="Logo" />
+				</a>
+			</div>
+			<div class="dropdown">
+				<div class="select">
+					<span class="boo-nav-city ">Нур-Султан (Астана)<img src="image/Main/Icon.svg" alt="Стрелка"></span>
+				</div>
+				<input type="hidden" name="gender">
+				<ul class="dropdown-menu">
+					<li id="male"><span class="boo-nav-city ">Нур-Султан (Астана)<img src="image/Main/Icon.svg"
+								alt="Стрелка"></span></li>
+					<li id="female"><span class="boo-nav-city ">Нур-Султан (Астана)<img src="image/Main/Icon.svg"
+								alt="Стрелка"></span></li>
+				</ul>
+			</div>
+			<!-- Nav items -->
+			<div class="boo-nav-collapse">
+				<ul class="boo-nav-items">
+					<li><a href="yurists.html">Специалисты</a></li>
+					<li><a href="Compani.html">Юридические компании</a></li>
+					<li><a href="#">Нотариусы</a></li>
+					<li><a href="#">Полезное</a></li>
+					<li><span id="show-modal2" class="nav_btn btn_stroke ">Вход</span></li>
+					<li><span id="show-modal" class="nav_btn btn_fill ">Регистрация</span></li>
+	
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="mo">
+		<div class="content">
+			<a href="#" id="show-modal"></a>
+	
+			<div class="modal-bg">
+				<div class="modal">
+					<div class="modal-close"></div>
+					<div class="modal_heder">Регистрация</div>
+					<div class="modal_subtitle">Выберите тип учетной записи</div>
+					<section class="wrapper">
+						<ul class="tabs">
+							<li><a href="#tab1">Физическое лицо</a></li>
+							<li><a href="#tab2">Юрист/адвокат</a></li>
+							<li><a href="#tab3">Юридическая компания</a></li>
+						</ul>
+						<div class="clr"></div>
+						<section class="block">
+							<article id="tab1">
+								<form>
+									<div class="form">
+										<label for=""></label>
+										<input type="Name" class="" placeholder="Имя">
+									</div>
+									<div class="form">
+										<label for="exampleInputPassword1"></label>
+										<input type="email" placeholder="Эл почта">
+									</div>
+									<div class="form">
+										<label for="exampleInputPassword1"></label>
+										<input type="password" placeholder="Пароль">
+									</div>
+									<div class="form">
+										<label for="exampleInputPassword1"></label>
+										<input type="password" placeholder="Повторите пароль">
+									</div>
+									<div class=" form-check">
+										<input type="checkbox" id="check">
+										<label for="check">Даю согласие на обработку персональных данных</label>
+									</div>
+									<div class="form_btn"><button type="submit" class="">Зарегистрироваться</button></div>
+								</form>
+								<div class="model_social">
+									<div class="model_social-title">Регистрация через соцсети</div>
+									<div class="model_social-img">
+										<img src="image/Modal/Icon_google.svg" alt="Google">
+										<img src="image/Modal/Icon_fb.svg" alt="Google">
+										<img src="image/Modal/Icon_vk.svg" alt="Google">
+									</div>
+								</div>
+							</article>
+							<article id="tab2">
+								<form>
+									<div class="form">
+										<label for=""></label>
+										<input type="surname" class="" placeholder="Фамилия">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="name" placeholder="Имя">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="middlename" placeholder="Отчество">
+									</div>
+	
+									<div class="form">
+										<label for=""></label>
+										<input type="phone" class="" placeholder="Телефон">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="email" placeholder="Эл почта">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="city" class="" placeholder="Нур-Султан(Астана)">
+									</div>
+									<div class="form">
+										<label for=""></label>
+	
+										<input type="" placeholder="Специализация">
+									</div>
+									<div class="modal_special">
+										<span class="modal_special-cadr">
+											Уголовное право <button>Удалить</button>
+										</span>
+										<span class="modal_special-cadr">
+											Административное право <button>Удалить</button>
+										</span>
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="password" placeholder="Пароль">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="password" placeholder="Повторите пароль">
+									</div>
+									<div class=" form-check">
+										<input type="checkbox" id="check">
+										<label for="check">Даю согласие на обработку персональных данных</label>
+									</div>
+									<div class="form_btn"><button type="submit" class="">Зарегистрироваться</button></div>
+								</form>
+								<div class="model_social">
+									<div class="model_social-title">Регистрация через соцсети</div>
+									<div class="model_social-img">
+										<img src="image/Modal/Icon_google.svg" alt="Google">
+										<img src="image/Modal/Icon_fb.svg" alt="Google">
+										<img src="image/Modal/Icon_vk.svg" alt="Google">
+									</div>
+								</div>
+							</article>
+							<article id="tab3">
+								<form>
+									<div class="form">
+										<label for=""></label>
+										<input type="Name-firm" class="" placeholder="Название компании">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="phone" class="" placeholder="Телефон">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="email" placeholder="Эл почта">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="city" class="" placeholder="Нур-Султан(Астана)">
+									</div>
+									<div class="form">
+										<label for=""></label>
+	
+										<input type="" placeholder="Специализация">
+									</div>
+									<div class="modal_special">
+										<span class="modal_special-cadr">
+											Уголовное право <button>Удалить</button>
+										</span>
+										<span class="modal_special-cadr">
+											Административное право <button>Удалить</button>
+										</span>
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="password" placeholder="Пароль">
+									</div>
+									<div class="form">
+										<label for=""></label>
+										<input type="password" placeholder="Повторите пароль">
+									</div>
+									<div class=" form-check">
+										<input type="checkbox" id="check">
+										<label for="check">Даю согласие на обработку персональных данных</label>
+									</div>
+									<div class="form_btn"><button type="submit" class="">Зарегистрироваться</button></div>
+								</form>
+								<div class="model_social">
+									<div class="model_social-title">Регистрация через соцсети</div>
+									<div class="model_social-img">
+										<img src="image/Modal/Icon_google.svg" alt="Google">
+										<img src="image/Modal/Icon_fb.svg" alt="Google">
+										<img src="image/Modal/Icon_vk.svg" alt="Google">
+									</div>
+								</div>
+							</article>
+						</section>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mo2">
+		<div class="content2">
+		</div>
+	
+		<div class="modal-bg2">
+			<div class="modal2">
+				<div class="modal-close2"></div>
+				<div class="modal_heder">Вход</div>
+				<div class="wrapper">
+					<form>
+						<div class="form">
+							<div class="form">
+								<label for=""></label>
+								<input type="email" placeholder="Эл почта">
+							</div>
+							<div class="form">
+								<label for=""></label>
+								<input type="password" placeholder="Пароль">
+							</div>
+	
+							<div class="form_btn"><button type="submit" class="">Войти</button></div>
+					</form>
+					<div class="model_social">
+						<div class="model_social-title">Войти через соцсети</div>
+						<div class="model_social-img">
+							<img src="image/Modal/Icon_google.svg" alt="Google">
+							<img src="image/Modal/Icon_fb.svg" alt="Google">
+							<img src="image/Modal/Icon_vk.svg" alt="Google">
+						</div>
+					</div>
+				</div>
+	
+			</div>
+	
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	<!--Конец новой модалка -->
+	
+	
+	
+	
+	
+	</div>
+	
+	</div>
+	
+	
+	</div>
+
+
+	<div class="profile_heder">
+		<div class="title">
+			<div class="container">
+				<div class="head">
+					<div class="row">
+						<div class="col-sm">
+							<a href="index.html">Главная</a>
+							<span class="head_img"><img src="image/2. Main/Arrows1.svg" alt="Стрелка"></span>
+							<span class="head_special">Личный кабинет</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="profile">
+		<div class="container">
+			<div class="row profile_block">
+				<div class="col-md-2 profile_photo">
+					<img src="image/Lawyers/Rectangle 26.png" alt="photo">
+					<div class="changePhoto"><button>Изменить фото</button></div>
+				</div>
+				<div class="col-md ">
+					<div class="profile_name">Муканов Мурат Муканович</div>
+					<div class="w-100"></div>
+					<span class="profile_stars">
+						<img src="image/Lawyers/icon/Icon_star.svg" alt="star">
+						<img src="image/Lawyers/icon/Icon_star.svg" alt="star">
+						<img src="image/Lawyers/icon/Icon_star.svg" alt="star">
+						<img src="image/Lawyers/icon/Icon_star.svg" alt="star">
+						<img src="image/Lawyers/icon/Icon_star.svg" alt="star">
+						<span>5.0</span>
+					</span>
+					<span class="profile_review">
+						<img src="image/Lawyers/icon/Vector.svg" alt="icon">
+						<span>12 отзывов</span>
+					</span>
+					<div class="col-md-8 profile_spec">
+						<span>Уголовное право</span>
+						<span>Земельное право</span>
+						<span>Семейное право</span>
+						<span>Арбитраж</span>
+						<span>Корпоративное право</span>
+						<span>Алименты</span>
+						<span>Наследство</span>
+						<div class="profile_btn">
+							<button>Редактировать специализацию</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class='container'>
+				<div class='row'>
+					<div class='col-sm '>
+						<div class='tab-container'>
+							<input checked='checked' class='signin-tab' id='signin-tab' name='tabs' type='radio'>
+							<label class='tabs-label' for='signin-tab'>Управление профилем</label>
+							<input class='register-tab' id='register-tab' name='tabs' type='radio'>
+							<label class='tabs-label' for='register-tab'>Статистика</label>
+							<hr>
+							<div class='tab-content for-signin'>
+								<h1>
+									Heading 1
+								</h1>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla deserunt consectetur ratione id
+									tempore
+									laborum laudantium facilis reprehen.
+								</p>
+							</div>
+							<div class='tab-content for-registering'>
+								<h1>
+									Heading 2
+								</h1>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla deserunt consectetur ratione id
+									tempore
+									laborum laudantium facilis reprehen.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+	<!-- <footer class="footer">
+	<div class="container">
+		<div class="row footer_blocks">
+			<div class="footer_special footer_logo"><img src="image/Footer/Logo.svg" alt="Лого"></div>
+			<div class="footer_special footer_city">
+				<div class="dropdown">
+					<div class="select">
+						<span class="footer_drop">Нур-Султан (Астана)
+							<img src="image/Footer/Arrow.svg" alt="Стрелка"></span>
+					</div>
+					<input type="hidden" name="gender">
+					<ul class="dropdown-menu">
+						<li id="male">
+							<span class="footer_drop-city ">Нур-Султан (Астана)<img src="image/Footer/Arrow.svg" alt="Стрелка">
+							</span>
+						</li>
+						<li id="female">
+							<span class="footer_drop-city ">Нур-Султан (Астана)<img src="image/Footer/Arrow.svg" alt="Стрелка">
+							</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer_special footer_specialists"><a href="#">Специалисты</a></div>
+			<div class="footer_special footer_companies"><a href="#">Юридические компании</a></div>
+			<div class="footer_special footer_notaries"><a href="#">Нотариусы</a></div>
+			<div class="footer_special footer_notaries"><a href="#">Полезное</a></div>
+			<div class="col-sm">
+				<div class="footer_btns">
+					<button class="footer_btn-1" href="#">Вход</button>
+					<button class="footer_btn-2" href="#">Регистрация</button>
+				</div>
+			</div>
+		</div>
+		<div class="row info">
+			<div class="">
+				<div class="footer_info">По всем вопросам пишите нам на почту <a href="#">info@yuristy.kz</a></div>
+			</div>
+			<div class="col-sm footer_socials ">
+				<a href="#"><img src="image/Footer/Facebook.svg" alt="Facebook"></a>
+				<a href="#"><img src="image/Footer/Instagram.svg" alt="Instagram"></a></div>
+
+		</div>
+	</div>
+
+</footer> -->
+	<script src="js/jquery-3.4.0.min.js"></script>
+	<script src="js/script.js"></script>
+	<footer class="footer">
+		<div class="container">
+			<div class="row footer_blocks">
+				<div class="footer_special footer_logo"><img src="image/Footer/Logo.svg" alt="Лого"></div>
+				<div class="footer_special footer_city">
+					<div class="dropdown">
+						<div class="select">
+							<span class="footer_drop">Нур-Султан (Астана)
+								<img src="image/Footer/Arrow.svg" alt="Стрелка"></span>
+						</div>
+						<input type="hidden" name="gender">
+						<ul class="dropdown-menu">
+							<li id="male">
+								<span class="footer_drop-city ">Нур-Султан (Астана)<img src="image/Footer/Arrow.svg" alt="Стрелка">
+								</span>
+							</li>
+							<li id="female">
+								<span class="footer_drop-city ">Нур-Султан (Астана)<img src="image/Footer/Arrow.svg" alt="Стрелка">
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer_special footer_specialists"><a href="#">Специалисты</a></div>
+				<div class="footer_special footer_companies"><a href="#">Юридические компании</a></div>
+				<div class="footer_special footer_notaries"><a href="#">Нотариусы</a></div>
+				<div class="footer_special footer_notaries"><a href="#">Полезное</a></div>
+				<div class="col-sm">
+					<div class="footer_btns">
+						<button id="show-modal2" class="footer_btn-1" href="#">Вход</button>
+						<button id="show-modal" class="footer_btn-2" href="#">Регистрация</button>
+					</div>
+				</div>
+			</div>
+			<div class="row info">
+				<div class="">
+					<div class="footer_info">По всем вопросам пишите нам на почту <a href="#">info@yuristy.kz</a></div>
+				</div>
+				<div class="col-sm footer_socials ">
+					<a href="#"><img src="image/Footer/Facebook.svg" alt="Facebook"></a>
+					<a href="#"><img src="image/Footer/Instagram.svg" alt="Instagram"></a></div>
+	
+			</div>
+		</div>
+	
+	</footer>
+
+</body>
+
+</html>
