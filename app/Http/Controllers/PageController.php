@@ -424,4 +424,19 @@ class PageController extends Controller
         return redirect(route('main'));
     }
 
+    public function news()
+    {
+        $news = News::orderBy('created_at','desc')->paginate(10);
+
+        return view($this->theme.'.pages.news.index',compact('news'));
+    }
+
+    public function showNews($alias)
+    {
+        $news = News::where('alias',$alias)->firstOrFail();
+
+        return view( $this->theme.'.pages.news.show',compact('news')
+        );
+    }
+
 }

@@ -6,16 +6,8 @@ use Illuminate\Http\Request;
 use Backpack\MenuCRUD\app\Models\MenuItem;
 use Config;
 use Illuminate\Support\Facades\Input;
-use App\Models\City;
-use App\Models\Company;
-use App\Models\Lawyer;
-use App\Models\Service;
-use App\Models\ServiceCategory;
-use App\Models\Faq;
-use App\Models\SeoPage;
-use App\Models\FeedBack;
 use App\Models\News;
-use App\User;
+use App\Models\City;
 
 use Illuminate\Support\Str;
 
@@ -24,23 +16,28 @@ class NewsController extends Controller
     //
     protected $theme = 'green';
 
-    public function __construct(){
-
-    }
-    
     public function index()
     {
-        $news = News::orderBy('created_at','desc')->paginate(10);
+        $city = City::find(Config::get('constants.city'));
+        $news = News::orderBy('created_at','desc')->get();
 
-        return view( $this->theme.'.pages.news.index',compact('news'));
+        return view($this->theme.'.pages.news.index',compact('news','city'));
     }
 
     public function show($alias)
     {
+        $city = City::find(Config::get('constants.city'));
         $news = News::where('alias',$alias)->firstOrFail();
 
-        return view( $this->theme.'.pages.news.show',compact('news')
-        );
+        return view( $this->theme.'.pages.news.show',compact('news','city'));
+    }
+
+    public function search(Request $request)
+    {
+        $city = City::find(Config::get('constants.city'));
+        $news = News::where('title','like','%'.$request->get('search').'%')->get();
+
+        return view( $this->theme.'.pages.news.index',compact('news','city'));
     }
 
 }

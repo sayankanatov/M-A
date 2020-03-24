@@ -51,8 +51,9 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
     Route::get('/{city}/yuridicheskaya-kompaniya/{alias}', 'PageController@company')->name('company');
 
     //Новости
-    Route::get('/polesnoe', 'NewsController@index')->name('news');
-    Route::get('/polesnoe/{alias}', 'NewsController@show')->name('news.show');
+    Route::get('/news/polesnoe', 'NewsController@index')->name('news');
+    Route::get('/news/polesnoe/{alias}', 'NewsController@show')->name('news.show');
+    Route::post('/news/search', 'NewsController@search')->name('news.search');
 });
 
 //Переключение языков

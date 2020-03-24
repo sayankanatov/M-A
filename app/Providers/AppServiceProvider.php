@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Schema;
 use App\Models\Service;
 use App\Models\City;
+use Config;
 
 class AppServiceProvider extends ServiceProvider
 {
