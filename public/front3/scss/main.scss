@@ -1438,16 +1438,13 @@ h4 {
           padding: 6px;
           color: $grin;
           border-radius: 6px;
-          margin-right:5px;
         }
         .output {
           border: 1px solid $gray-light;
           padding: 6px;
           color: $gray-light;
           border-radius: 6px;
-          margin-right:5px;
         }
-      }
       }
       .spec {
         font-family: $regular;
@@ -1567,16 +1564,16 @@ h4 {
     font-family: $medium;
     height: 100px;
   }
+
   &_read {
     font-size: 16px;
     font-family: $medium;
     color: $grin;
   }
-
-  &_img {
+   &_img {
     img {
         width: 100%;
-
+       
         object-fit: cover;
         display: block;
         margin-bottom: 15px;
@@ -3105,6 +3102,7 @@ h4 {
       margin-bottom: 36px;
     }
   }
+  
   .useful {
     margin-top: 80px;
     &_blocks {
