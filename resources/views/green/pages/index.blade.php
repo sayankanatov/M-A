@@ -362,7 +362,7 @@
 						<span>{{Carbon\Carbon::parse($item->created_at)->format('Y-m-d')}}</span>
 					</div>
 					<div class="useful_text">{{$item->title}}</div>
-					<div class="useful_read"><a href="{{route('news.show',['alias' => $item->alias])}}">Читать далее</a></div>
+					<a href="{{route('news.show',['alias' => $item->alias])}}" class="useful_read">Читать далее</a>
 				</div>
 				@endforeach
 			</div>

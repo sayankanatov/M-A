@@ -108,7 +108,8 @@
 
 	@include('green.includes.footer')
 
-	<script src="{{asset('front3/js/jquery-3.4.0.min.js')}}"></script>
+	{{-- <script src="{{asset('front3/js/jquery-3.4.0.min.js')}}"></script> --}}
+	<script src="{{asset('front3/js/jquery.min.js')}}"></script>
 	<link rel="stylesheet" href="{{asset('front3/slick/slick.css')}}">
 	<link rel="stylesheet" href="{{asset('front3/slick/slick-theme.css')}}">
 	<script src="{{asset('front3/js/script.js')}}"></script>
