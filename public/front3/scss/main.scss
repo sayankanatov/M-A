@@ -1562,7 +1562,7 @@ h4 {
     color: $black;
     font-size: 16px;
     font-family: $medium;
-  
+    height: 100px;
   }
   &_read {
     font-size: 16px;
@@ -3099,10 +3099,15 @@ h4 {
       align-items: start;
     }
     padding: 0 20px;
-    &_img {
-      img {
-        width: 100%;
-      }
+&_img {
+        img {
+            width: 100%;
+ 
+            object-fit: cover;
+            display: block;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
     }
     &_block {
       margin-top: 40px;
@@ -3769,20 +3774,4 @@ h4 {
   .lawyer_btn {
     font-size: 14px;
   }
-}
-
-&_img {
-  img {
-    width: 100%;
-    object-fit: cover;
-    display: block;
-    margin-bottom: 15px;
-    border-radius: 6px;
-  }
-}
-&_text {
-  color: $black;
-  font-size: 16px;
-  font-family: $medium;
-  height: 100px;
 }
