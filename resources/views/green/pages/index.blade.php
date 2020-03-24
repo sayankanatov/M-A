@@ -158,7 +158,9 @@
 								</div>
 								<div class="col-sm-8 uslugi">
                                     @foreach($lawyer->services as $service)               
-                                    <span class="spec">{{$service->name_ru}}</span>
+                                    <a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
+                                    	<span class="spec">{{$service->name_ru}}</span>
+                                    </a>
                                     @endforeach
 								</div>
 								<div class="col-sm-12">

@@ -3,20 +3,19 @@
 @section('content')
 
 <div class="container">
-	<div>
-		<h1 style="text-align: center;">Полезные статьи</h1>
-		<div class="wrap1">
-		   	<div class="search1">
-		   		<form action="{{route('news.search')}}" method="post">
-		   			@csrf
-		   			<input type="text" class="searchTerm" placeholder="Поиск записи">
-			      	<button type="submit" class="searchButton1">
-			        	<i class="fa fa-search"></i>
-			     	</button>
-		   		</form>
-		   </div>
-		</div>
-	</div>
+	
+	<div><h1 style="text-align: center;">Полезные статьи</h1>
+     <div class="wrap1">
+   <div class="search1">
+ <form class="catalin" action="{{route('news.search')}}" method="post">
+        <input type="hidden" name="_token" value="X5agOVSDPl9fqiJd0nQkqW8QdJTpjDl04VBQ5anc">        <input type="text" class="searchTerm" placeholder="Поиск записи">
+          <button type="submit" class="searchButton1">
+            <i class="fa fa-search"></i>
+         </button>
+       </form>
+   </div>
+</div>
+</div>
 
 @if($news)
 	<div class="news-block">
