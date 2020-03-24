@@ -19,6 +19,7 @@
 	    <meta property="og:image" content="{{asset('front2/img/logo.jpg')}}">
 	    <meta property="og:url" content="{{Request::url()}}">
 	    <link href="{{Request::url()}}" rel="canonical">
+	    <script src="{{asset('front3/js/jquery.min.js')}}"></script>
 		<script>
 			var jQueryroot = jQuery("html, body");
 			jQuery('a[href*="#"]').click(function (event) {
@@ -109,12 +110,10 @@
 	@include('green.includes.footer')
 
 	{{-- <script src="{{asset('front3/js/jquery-3.4.0.min.js')}}"></script> --}}
-	<script src="{{asset('front3/js/jquery.min.js')}}"></script>
 	<link rel="stylesheet" href="{{asset('front3/slick/slick.css')}}">
 	<link rel="stylesheet" href="{{asset('front3/slick/slick-theme.css')}}">
-	<script src="{{asset('front3/js/script.js')}}"></script>
 	<script src="{{asset('front3/slick/slick.min.js')}}"></script>
-
+	<script src="{{asset('front3/js/script.js')}}"></script>
 </body>
 
 </html>
