@@ -62,7 +62,7 @@ use Illuminate\Support\Facades\Input;
 				<div class="row lawyer_block firms_block ">
 
 					<div class="col-2 lawyer_block-photo ">
-						<a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">		<img src="{{$company->logo ? '/'.$company->logo : asset('front2/img/company-item.png')}}" alt="Фото" class="photo">
+						<a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}">		<img src="{{$company->logo ? '/'.$company->logo : asset('front3/image/4. Compani/3.png')}}" alt="Фото" class="photo">
 						</a>
 
 						<div class="rewyes">
@@ -120,7 +120,13 @@ use Illuminate\Support\Facades\Input;
 						</div>
 					</div>
 					<div class="col-3 phone_card ">
-						<div class="phone"><span class="hide-tail">{{$company->telephone}}</span> <a href="#" class="click-tel">Показать</a>
+						<div class="phone">
+							<a href="tel:{{$company->telephone}}">
+								<span class="hide-tail">
+									{{$company->telephone}}
+								</span>
+							</a>
+							<a href="#" class="click-tel">Показать</a>
 						</div>
 						<div class="WhatsApp_block">
 							<a href="#" class="wa_icon"><img class="wa_icon" src="{{asset('front3/image/Lawyers/icon/icon_WhatsApp.svg')}}"

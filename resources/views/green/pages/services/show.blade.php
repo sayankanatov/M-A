@@ -136,7 +136,12 @@ use Illuminate\Support\Facades\Input;
 					</div>
 				</div>
 				<div class="col-3 phone_card ">
-					<div class="phone"><span class="hide-tail">{{$lawyer->telephone}}</span> <a href="#" class="click-tel">Показать</a></div>
+					<div class="phone">
+						<a href="tel:{{$lawyer->telephone}}">
+							<span class="hide-tail">{{$lawyer->telephone}}</span>
+						</a>
+						<a href="#" class="click-tel">Показать</a>
+					</div>
 					<div class="WhatsApp_block">
 						<a href="#" class="wa_icon"><img class="wa_icon" src="{{asset('front3/image/Lawyers/icon/icon_WhatsApp.svg')}}"
 								alt="Wa_icon"></a>

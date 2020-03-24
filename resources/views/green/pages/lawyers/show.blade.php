@@ -77,21 +77,24 @@
 				                                    <span class="{{$lawyer->sunday == 1 ? 'weekdays' : 'output'}}">
 				                                        вс
 				                                    </span>
-													<span class="socio">
-													<small>Поделиться</small>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/Facebook.svg')}}" alt="Star"></span>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/vk.svg')}}" alt="Star"></span>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/Twitter.svg')}}" alt="Star"></span>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/Odnok.svg')}}" alt="Star"></span></div><br>
-													<span class="time">{{$lawyer->timetext}}</span>
-													</span>
+													
+													@include('green.includes.share')
+													
+												</div><br>
+												<span class="time">{{$lawyer->timetext}}</span>
+													
 												
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="col-2 urist ">
-									<div class="phone"><span class="hide-tail">{{$lawyer->telephone}}</span> <a href="#" class="click-tel">Показать</a></div>
+									<div class="phone">
+										<a href="tel:{{$lawyer->telephone}}">
+											<span class="hide-tail">{{$lawyer->telephone}}</span>
+										</a>
+										<a href="#" class="click-tel">Показать</a>
+									</div>
 									<div class="WhatsApp_block">
 										<a href="#" class="wa_icon"><img class="wa_icon" src="{{asset('front3/image/Lawyers/icon/icon_WhatsApp.svg')}}" alt="Wa_icon"></a>
 										<a rel="nofollow" target="_blank" href="https://api.whatsapp.com/send?phone={{$lawyer->telephone}}&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%8F%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Yuristy.kz.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." class="wa_text">WhatsApp</a>

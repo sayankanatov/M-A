@@ -19,7 +19,7 @@
 							<div class="row lawyer">
 
 								<div class="col-2 lawyer_block-photo ">
-									<img src="{{$company->logo ? '/'.$company->logo : asset('front2/img/company-item.png')}}" alt="Фото" class="photo">
+									<img src="{{$company->logo ? '/'.$company->logo : asset('front3/image/4. Compani/3.png')}}" alt="Фото" class="photo">
 								</div>
 								<div class="col-7 lawyer_block-ingo block">
 									<div class="name">{{$company->name}}
@@ -63,21 +63,21 @@
 				                                    <span class="{{$company->friday == 1 ? 'weekdays' : 'output'}}">пт</span>
 				                                    <span class="{{$company->saturday == 1 ? 'weekdays' : 'output'}}">сб</span>
 				                                    <span class="{{$company->sunday == 1 ? 'weekdays' : 'output'}}">вс</span>
-													<span class="socio">
-													<small>Поделиться</small>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/Facebook.svg')}}" alt="Star"></span>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/vk.svg')}}" alt="Star"></span>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/Twitter.svg')}}" alt="Star"></span>
-													<span><img src="{{asset('front3/image/3. Yurist/icon/Odnok.svg')}}" alt="Star"></span></div><br>
+													
+													@include('green.includes.share')
+												</div><br>
 												<span class="time">{{$company->timetext}}</span>
-												</span>
-
+												
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="col-2 urist ">
-									<div class="phone"><span class="hide-tail">{{$company->telephone}}</span> <a href="#" class="click-tel">Показать</a></div>
+									<div class="phone">
+										<a href="tel:{{$company->telephone}}">
+											<span class="hide-tail">{{$company->telephone}}</span>
+										</a>
+										<a href="#" class="click-tel">Показать</a></div>
 									<div class="WhatsApp_block">
 										<a href="#" class="wa_icon"><img class="wa_icon" src="{{asset('front3/image/Lawyers/icon/icon_WhatsApp.svg')}}"
 												alt="Wa_icon"></a>

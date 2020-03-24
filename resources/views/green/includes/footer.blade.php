@@ -47,8 +47,8 @@
 					<div class="footer_info">По всем вопросам пишите нам на почту <a href="#">info@yuristy.kz</a></div>
 				</div>
 				<div class="col-sm footer_socials ">
-					<a href="#"><img src="{{asset('front3/image/Footer/Facebook.svg')}}" alt="Facebook"></a>
-					<a href="#"><img src="{{asset('front3/image/Footer/Instagram.svg')}}" alt="Instagram"></a></div>
+					<a href="https://www.facebook.com/yuristy.yuristy" target="_blank"><img src="{{asset('front3/image/Footer/Facebook.svg')}}" alt="Facebook"></a>
+					<a href="https://www.instagram.com/yuristy_kz" target="_blank"><img src="{{asset('front3/image/Footer/Instagram.svg')}}" alt="Instagram"></a></div>
 
 			</div>
 		</div>
