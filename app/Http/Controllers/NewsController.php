@@ -27,9 +27,13 @@ class NewsController extends Controller
     public function show($alias)
     {
         $city = City::find(Config::get('constants.city'));
-        $news = News::where('alias',$alias)->firstOrFail();
+        $news = News::where('alias',$alias)->first();
 
-        return view( $this->theme.'.pages.news.show',compact('news','city'));
+        $seo_title = $news->seo_title;
+        $seo_desc = $news->seo_desc;
+        $seo_keywords = $news->seo_keywords;
+
+        return view( $this->theme.'.pages.news.show',compact('news','city','seo_title','seo_desc','seo_keywords'));
     }
 
     public function search(Request $request)

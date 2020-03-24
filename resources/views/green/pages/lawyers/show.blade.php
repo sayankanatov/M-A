@@ -258,7 +258,7 @@
 		<div class="row">
 			<div class="col-sm-11">
 			<div class="review_users">
-				<div class="review_name">{{$feedback->user->name}}
+				<div class="review_name">{{$feedback->user->name ?? 'Неизвестный пользователь'}}
 					<span>
 					@for($i=1;$i <= $feedback->stars;$i++)
 						<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
