@@ -296,7 +296,7 @@
 			@foreach($relative_lawyers as $rel_lawyer)
 			<div class="similar_block">
 				<div class="similar_image">
-					<img src="/{{$rel_lawyer->image ?? asset('front2/img/company-item.png')}}" alt="Photo" class="photo">
+					<img src="{{$rel_lawyer->image ? '/'.$rel_lawyer->image : asset('front2/img/company-item.png')}}" alt="Photo" class="photo">
 				</div>
 				<div class="similar_name"><a href="{{route('lawyer',['city' => $city->alias,'alias' => $rel_lawyer->alias])}}">{{$rel_lawyer->last_name.' '.$rel_lawyer->first_name.' '.$rel_lawyer->patronymic}}</a></div>
 				<div class="similar_star">

@@ -5101,7 +5101,11 @@ margin-left: auto;
 
   transform: translate(-50%, -50%);
 }
-
+.news-block__img img {
+    /* max-width: 100%; */
+    width: 260px;
+    height: 156px;
+}
 
 
 
