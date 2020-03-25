@@ -1564,22 +1564,23 @@ h4 {
     font-family: $medium;
     height: 100px;
   }
-
   &_read {
     font-size: 16px;
     font-family: $medium;
     color: $grin;
   }
-   &_img {
+
+  &_img {
     img {
         width: 100%;
-       
+        width: 270px;
         object-fit: cover;
         display: block;
         margin-bottom: 15px;
         border-radius: 6px;
     }
   }
+
 }
 // Информация
 .info {
@@ -3102,7 +3103,6 @@ h4 {
       margin-bottom: 36px;
     }
   }
-  
   .useful {
     margin-top: 80px;
     &_blocks {
@@ -3111,15 +3111,10 @@ h4 {
       align-items: start;
     }
     padding: 0 20px;
-&_img {
-        img {
-            width: 100%;
- 
-            object-fit: cover;
-            display: block;
-            margin-bottom: 15px;
-            border-radius: 6px;
-        }
+    &_img {
+      img {
+        width: 100%;
+      }
     }
     &_block {
       margin-top: 40px;
