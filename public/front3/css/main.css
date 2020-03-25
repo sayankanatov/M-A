@@ -1798,7 +1798,6 @@ h4 {
   color: #161737;
   font-size: 16px;
   font-family: "Proxima Nova Semibold", sans-serif;
-  height: 100px;
 }
 
 .useful_read {
@@ -5146,6 +5145,15 @@ form.catalin button {
     color: white;
     font-family: "Proxima Nova Semibold", sans-serif;
     font-size: 20px;
+}
+
+.photonews {
+    width: 270px;
+    height:160px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 6px;
 }
 
 
