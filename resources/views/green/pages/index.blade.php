@@ -358,7 +358,7 @@
 				@foreach($news as $item)
 				<div class="col-sm useful_block">
 					<div class="useful_img">
-						<img src="{{$item->image}}" alt="Фото">
+						<img src="{{$item->image}}" alt="Фото" class="photonews">
 					</div>
 					<div class="useful_date">
 						<span>{{Carbon\Carbon::parse($item->created_at)->format('Y-m-d')}}</span>
