@@ -89,7 +89,7 @@
 				<ul class="boo-nav-items">
 					<li><a href="{{route('lawyers',['city'=>$city->alias])}}">Специалисты</a></li>
 					<li><a href="{{route('companies',['city'=>$city->alias])}}">Юридические компании</a></li>
-					<li><a href="#">Нотариусы</a></li>
+					<li><a href="{{route('service',['city'=>$city->alias,'id' => 'notariusy'])}}">Нотариусы</a></li>
 					<li><a href="{{route('news')}}">Полезное</a></li>
 					@auth
 					<li><a href="{{route('home')}}" class="nav_btn btn_stroke ">Личный кабинет</a></li>

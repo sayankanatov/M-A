@@ -30,7 +30,7 @@
 				@endif
 				<div class="footer_special footer_specialists"><a href="{{route('lawyers',['city'=>$city->alias])}}">Специалисты</a></div>
 				<div class="footer_special footer_companies"><a href="{{route('companies',['city'=>$city->alias])}}">Юридические компании</a></div>
-				<div class="footer_special footer_notaries"><a href="#">Нотариусы</a></div>
+				<div class="footer_special footer_notaries"><a href="{{route('service',['city'=>$city->alias,'id' => 'notariusy'])}}">Нотариусы</a></div>
 				<div class="footer_special footer_notaries"><a href="{{route('news')}}">Полезное</a></div>
 				<div class="col-sm">
 					<div class="footer_btns">

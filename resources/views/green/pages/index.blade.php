@@ -41,7 +41,7 @@
 					<img src="{{asset('front3/image/Main/Vector3.svg')}}" alt="Icon" class="factodes_img">
 					<div class="factodes_text">
 						<div class="factodes_textt">Нотариусы</div>
-						<div class="factodes_fact"><a href="#"><span>24</span> нотариуса</a></div>
+						<div class="factodes_fact"><a href="{{route('service',['city'=>$city->alias,'id' => 'notariusy'])}}"><span>{{App\Models\Lawyer::getByServiceInCity(65,$city->id,true)}}</span> нотариуса</a></div>
 					</div>
 				</div>
 			</div>

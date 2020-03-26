@@ -200,6 +200,10 @@ class PageController extends Controller
         if($city){
             $service = Service::where('alias',$alias)->first();
 
+            if(!$service){
+                return abort(404);
+            }
+
             $h_one = $service->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
             $seo_title = $service->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
             $seo_desc = $service->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
