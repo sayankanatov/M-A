@@ -81,6 +81,20 @@ class NewsCrudController extends CrudController
             'type' => 'text'
         ]);
 
+        $this->crud->addField([
+            // DateTime
+            'name' => 'date',
+            'label' => 'Дата публикации',
+            'type' => 'datetime_picker',
+            // optional:
+            'datetime_picker_options' => [
+                'format' => 'DD/MM/YYYY',
+                'language' => 'ru'
+            ],
+            'allows_null' => true,
+            // 'default' => '2017-05-12 11:59:59',
+        ]);
+
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
 

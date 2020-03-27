@@ -30,6 +30,7 @@ class News extends Model
         'seo_title',
         'seo_desc',
         'seo_keywords',
+        'date'
     ];
     // protected $hidden = [];
     // protected $dates = [];

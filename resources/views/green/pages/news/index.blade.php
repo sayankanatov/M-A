@@ -30,7 +30,7 @@
 					<h3>{{$item->title}}</h3>
 					
 				</a>
-				<div class="date">{{Carbon\Carbon::parse($item->created_at)->format('Y-m-d')}}
+				<div class="date">{{Carbon\Carbon::parse($item->date)->format('Y-m-d')}}
 					<a href="{{route('news.show',['alias' => $item->alias])}}">
 						<button class="butpod">Читать</button>
 					</a>

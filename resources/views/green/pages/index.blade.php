@@ -361,7 +361,7 @@
 						<img src="{{$item->image}}" alt="Фото" class="photonews">
 					</div>
 					<div class="useful_date">
-						<span>{{Carbon\Carbon::parse($item->created_at)->format('Y-m-d')}}</span>
+						<span>{{Carbon\Carbon::parse($item->date)->format('Y-m-d')}}</span>
 					</div>
 					<div class="useful_text">{{$item->title}}</div>
 					<a href="{{route('news.show',['alias' => $item->alias])}}" class="useful_read">Читать далее</a>

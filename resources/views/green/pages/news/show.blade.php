@@ -5,15 +5,15 @@
 <div class="container">
   	<h1 style="text-align: center;">{{$news->title}}</h1>
 	<div class="cs-blog-detail">
-    	<div class="cs-main-post">
+    	{{-- <div class="cs-main-post">
         	<figure>
         		<img onload="pagespeed.CriticalImages.checkImageForCriticality(this);" data-pagespeed-url-hash="2714250504" alt="jobline-blog (8)" src="/{{$news->image}}">
         	</figure>
-    	</div>
+    	</div> --}}
     	<div class="cs-post-title">
      		<div class="post-option">
             	<span class="post-date">
-            		<a><i class="cs-color icon-calendar6"></i>{{$news->created_at}}</a>
+            		<a><i class="cs-color icon-calendar6"></i>{{Carbon\Carbon::parse($news->date)->format('Y-m-d')}}</a>
             	</span>
         	</div>
     	</div>
