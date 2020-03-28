@@ -98,7 +98,7 @@
 					</div>
 					
 <!-- ========================ПЕРВЫЙ БЛОК================================ -->
-        <div class="lowers_mobile card">
+        {{-- <div class="lowers_mobile card">
           <div class="row">
             <div class="col-md-4 col-6">
               <div class="lawyers_photo">
@@ -195,7 +195,7 @@
               </div>
             </div>
           </div>
-      </div>
+      </div> --}}
       <!-- ========================ПЕРВЫЙ БЛОК================================ -->
 
 				</div>
