@@ -5160,6 +5160,12 @@ form.catalin button {
   }
 }
 
+@media screen and (max-width: 768px){
+  .lawyer {
+    display: none!important;
+  }
+}
+
 
 
 

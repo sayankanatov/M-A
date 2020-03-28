@@ -44,7 +44,7 @@
 			</div>
 			<div class="row info">
 				<div class="">
-					<div class="footer_info">По всем вопросам пишите нам на почту <a href="#">info@yuristy.kz</a></div>
+					<div class="footer_info">По всем вопросам пишите нам на почту <a href="mail:info@yuristy.kz">info@yuristy.kz</a></div>
 				</div>
 				<div class="col-sm footer_socials ">
 					<a href="https://www.facebook.com/yuristy.yuristy" target="_blank"><img src="{{asset('front3/image/Footer/Facebook.svg')}}" alt="Facebook"></a>
