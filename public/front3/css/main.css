@@ -5166,7 +5166,13 @@ form.catalin button {
   }
 }
 
+@media screen and (max-width: 768px){
+  .lowers_mobile{
+    display: block!important;
+  }
+}
 
-
-
+.lowers_mobile.card {
+    display: none;
+}
 /*# sourceMappingURL=main.css.map */

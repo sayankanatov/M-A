@@ -342,22 +342,19 @@ class PageController extends Controller
 
     public function search(Request $request)
     {
+        $result = true;
         $lang = app()->getLocale();
-        $result = null;
         $search = $request->get('search');
-
         $city = City::where('alias',$request->get('city'))->first();
 
         $lawyers = Lawyer::where('last_name','like','%'.$search.'%')
                     ->orWhere('first_name','like','%'.$search.'%')
                     ->orWhere('patronymic','like','%'.$search.'%')
                     ->get();
-        $companies = Company::where('name','like','%'.$search.'%')->get();
+        $companies = Company::where('name','like','%'.$search.'%')->where('city_id',$city->id)->get();
         $services = Service::where($lang == 'ru' ? 'name_ru' : 'name_kz','like','%'.$search.'%')->get();
 
-        if(count($lawyers) > 0 || count($companies) > 0 || count($services) > 0){
-             $result = true;
-         }else{
+        if(count($lawyers) == 0){
             $result = false;
         }
 
@@ -368,7 +365,7 @@ class PageController extends Controller
         $seo_desc = $seo_data->seo_desc.' '.$search;
         $seo_keywords = $seo_data->seo_keywords;
 
-        return view('pages.search',compact('lawyers','companies','services','search','result','city','seo_title','h_one','seo_desc','seo_keywords'));
+        return view($this->theme.'.pages.search',compact('lawyers','companies','services','search','city','seo_title','h_one','seo_desc','seo_keywords','result'));
     }
 
     public function sendMail(Request $request){

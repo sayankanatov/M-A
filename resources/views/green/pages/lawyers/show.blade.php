@@ -19,7 +19,7 @@
 							<div class="row lawyer">
 					
 								<div class="col-2 lawyer_block-photo ">
-									<img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="Фото" class="photo">
+									<img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front3/image/Lawyers/Empty.png')}}" alt="Фото" class="photo">
 								</div>
 								<div class="col-7 lawyer_block-ingo block">
 									<div class="name">{{$lawyer->fullname($lawyer->id)}}

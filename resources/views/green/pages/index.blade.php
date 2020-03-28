@@ -127,7 +127,7 @@
 					<div class="row lawyer_block">
 
 						<div class="col-sm-2 lawyer_block-photo ">
-							<a href="yurist.html"><img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="Фото" class="photo"></a>
+							<a href="yurist.html"><img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front3/image/Lawyers/Empty.png')}}" alt="Фото" class="photo"></a>
 
 
 							<div class="rewyes">
@@ -215,7 +215,7 @@
 						<div class="row">
 							<div class="col-md-4 col-6">
 								<div class="lawyers_photo">
-									<a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}"><img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="photo"></a>
+									<a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}"><img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front3/image/Lawyers/Empty.png')}}" alt="photo"></a>
 
 								</div>
 							</div>
