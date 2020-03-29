@@ -57,6 +57,7 @@
 											<div class="specialistik">
 												<img src="{{asset('front3/image/Lawyers/icon/icon2.svg')}}" alt="Иконка" class="special_img">
 												<span class="special">График работы:</span>
+												<span class="time">{{$lawyer->timetext}}</span>
 												<div class="week socio_week">
 													<span class="{{$lawyer->monday == 1 ? 'weekdays' : 'output'}}">
 				                                        пн
@@ -83,9 +84,6 @@
 													@include('green.includes.share')
 													
 												</div><br>
-												<span class="time">{{$lawyer->timetext}}</span>
-													
-												
 											</div>
 										</div>
 									</div>
@@ -167,7 +165,7 @@
 						<div class="col-12">
 							<div class="lawyers_graphick">
 								<img src="{{asset('front3/image/Lawyers/icon/icon2.svg')}}" alt="Icon">
-								График работы: <span>9:00 - 18:00</span>
+								График работы: <span>{{$lawyer->timetext}}</span>
 								<div class="lawyers_week">
 									<span class="{{$lawyer->monday == 1 ? 'weekdays' : 'output'}}">
 				                                        пн
