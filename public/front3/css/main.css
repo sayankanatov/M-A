@@ -1608,7 +1608,7 @@ h4 {
 }
 
 .lawyer_block-ingo .specialistik a {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
   margin-left: 28px;
   font-size: 14px;
   color: black;
