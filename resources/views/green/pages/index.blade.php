@@ -57,11 +57,14 @@
 				@if($key <= 3)
 				<div class="col-sm ">
 					<div class="special_block">
-						<div class="special_text">{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}</div>
+						<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}" class="special_icon">
+						<div class="special_text">
+							{{app()->getLocale() == 'ru' ? $service->name_ru : $service->name_kz}}
+						</div>
 						<div class="special_fact">{{App\Models\Lawyer::getByServiceInCity($service->id,$city->id,true)}}
-							<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}" class="special_icon">
-								<img src="{{asset('front3/image/Spesial/Group 1.svg')}}" alt="Иконка">
-							</a></div>
+							<img src="{{asset('front3/image/Spesial/Group 1.svg')}}" class="special_icon" alt="Иконка">
+						</div>
+						</a>
 					</div>
 				</div>
 				@else
