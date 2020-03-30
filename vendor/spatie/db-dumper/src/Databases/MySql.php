@@ -3,8 +3,8 @@
 namespace Spatie\DbDumper\Databases;
 
 use Spatie\DbDumper\DbDumper;
-use Symfony\Component\Process\Process;
 use Spatie\DbDumper\Exceptions\CannotStartDump;
+use Symfony\Component\Process\Process;
 
 class MySql extends DbDumper
 {
@@ -307,8 +307,8 @@ class MySql extends DbDumper
             }
         }
 
-        if (strlen('dbName') === 0 && ! $this->allDatabasesWasSetAsExtraOption) {
-            throw CannotStartDump::emptyParameter($requiredProperty);
+        if (strlen($this->dbName) === 0 && ! $this->allDatabasesWasSetAsExtraOption) {
+            throw CannotStartDump::emptyParameter('dbName');
         }
     }
 }

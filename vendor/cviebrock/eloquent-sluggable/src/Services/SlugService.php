@@ -138,7 +138,7 @@ class SlugService
             return $value;
         }, (array) $from);
 
-        return implode($sourceStrings, ' ');
+        return implode(' ', $sourceStrings);
     }
 
     /**
@@ -292,7 +292,7 @@ class SlugService
 
             if (
                 $currentSlug === $slug ||
-                strpos($currentSlug, $slug) === 0
+                !$slug || strpos($currentSlug, $slug) === 0
             ) {
                 return $currentSlug;
             }

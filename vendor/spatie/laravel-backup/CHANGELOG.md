@@ -2,6 +2,42 @@
 
 All notable changes to `laravel-backup` will be documented in this file.
 
+## 6.8.1 - 2020-03-11
+
+- added support to set execution timeout (#1046)
+
+## 6.8.0 - 2020-03-02
+
+- add support for Laravel 7
+
+## 6.7.8 - 2020-02-19
+
+- add Finnish localization (#1039)
+
+## 6.7.7 - 2020-01-26
+
+- fix MongoDB authentication connection name (#1025)
+
+## 6.7.6 - 2019-12-12
+
+- empty directories are now being backed up (#1008)
+
+## 6.7.5 - 2019-12-02
+
+- make compatible with PHP 7.4
+
+## 6.7.4 - 2019-07-11
+
+- corrects a typo in the method name (#994)
+
+## 6.7.3 - 2019-10-31
+
+- the monitor command will now really return non zero error code if there is a problem detected (#986)
+
+## 6.7.2 - 2019-10-29
+
+- the monitor command will now return non zero error code if there is a problem detected (#986)
+
 ## 6.7.1 - 2019-10-16
 
 - fix deps
@@ -9,6 +45,7 @@ All notable changes to `laravel-backup` will be documented in this file.
 ## 6.7.0 - 2019-10-16
 
 - handle database urls for database connections (#980)
+>>>>>>> 1f3d26cad457083fc18889db96335c293b6290d4
 
 ## 6.6.1 - 2019-10-09
 

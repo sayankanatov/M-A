@@ -2,11 +2,11 @@
 
 namespace Spatie\DbDumper;
 
-use Symfony\Component\Process\Process;
-use Spatie\DbDumper\Exceptions\DumpFailed;
 use Spatie\DbDumper\Compressors\Compressor;
 use Spatie\DbDumper\Compressors\GzipCompressor;
 use Spatie\DbDumper\Exceptions\CannotSetParameter;
+use Spatie\DbDumper\Exceptions\DumpFailed;
+use Symfony\Component\Process\Process;
 
 abstract class DbDumper
 {
@@ -270,6 +270,11 @@ abstract class DbDumper
 
     protected function determineQuote(): string
     {
-        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? '"' : "'";
+        return $this->isWindows() ? '"' : "'";
+    }
+
+    protected function isWindows(): bool
+    {
+        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
     }
 }

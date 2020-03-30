@@ -40,6 +40,7 @@ class HomeController extends Controller
         }elseif($user->role_id == 2){
             $info = Lawyer::where('user_id',$user->id)->first();
             $city = City::where('id',$info->city_id)->first();
+
         }elseif($user->role_id == 3){
             $info = Company::where('user_id',$user->id)->first();
             $city = City::where('id',$info->city_id)->first();
@@ -48,7 +49,7 @@ class HomeController extends Controller
             $city = '';
         }
 
-        return view('home',compact('info','city','user','cities'));
+        return view($this->theme.'.pages.profile.home',compact('info','city','user','cities'));
     }
 
     public function updateLawyer(Request $request, $id)
@@ -83,7 +84,28 @@ class HomeController extends Controller
 
             return redirect(route('home'));
         }
+    }
 
+    public function updateLawyerServices(Request $request, $id)
+    {
+        try{
+            $lawyer = Lawyer::find($id);
+
+            $data = $request->get('services');
+
+            if($data){
+                $lawyer->services()->detach();
+                foreach ($data as $key => $service) {
+                    $lawyer->services()->attach($service);
+                }
+            }
+
+            return redirect(route('home'));
+
+        }catch(Exception $e){
+
+            return redirect(route('home'));
+        }
     }
 
     public function storePhotoLawyer(Request $request, $id)
@@ -142,6 +164,28 @@ class HomeController extends Controller
             return redirect(route('home'));
         }
 
+    }
+
+    public function updateCompanyServices(Request $request, $id)
+    {
+        try{
+            $company = Company::find($id);
+
+            $data = $request->get('services');
+
+            if($data){
+                $company->services()->detach();
+                foreach ($data as $key => $service) {
+                    $company->services()->attach($service);
+                }
+            }
+
+            return redirect(route('home'));
+
+        }catch(Exception $e){
+
+            return redirect(route('home'));
+        }
     }
 
     public function storePhotoCompany(Request $request, $id)

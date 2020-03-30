@@ -1,4 +1,4 @@
-@extends('green.layouts.main')
+@extends('green.layouts.account')
 
 @section('content')
 

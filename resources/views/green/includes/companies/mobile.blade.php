@@ -20,7 +20,7 @@
 				<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 				<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 				<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
-				<span>5.0</span>
+				<span>0.0</span>
 			</div>
 			<div class="lawyers_rewyes">
 				<img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="rewyes">

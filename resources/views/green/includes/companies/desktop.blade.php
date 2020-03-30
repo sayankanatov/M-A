@@ -16,7 +16,7 @@
 					<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 					<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 					<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
-					<span>5.0</span>
+					<span>0.0</span>
 				</div>
 			</div>
 			<div class="col-6 lawyer_block-ingo">
