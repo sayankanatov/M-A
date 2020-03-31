@@ -23,6 +23,7 @@ class PageController extends Controller
 {
     //
     protected $theme = 'green';
+    protected $takeCount = 20;
     
     public function index(Request $request)
     {
@@ -143,12 +144,10 @@ class PageController extends Controller
                     ->take($int)
                     ->where('city_id',$city->id)
                     ->orderBy('created_at','desc')
-                    // ->paginate(Config::get('constants.pagination.lawyers'));
                     ->get();
                 $end = Lawyer::take($skip)
                     ->where('city_id',$city->id)
                     ->orderBy('created_at','desc')
-                    // ->paginate(Config::get('constants.pagination.lawyers'));
                     ->get();
                 $lawyers = $lawyers->merge($end);
             }
