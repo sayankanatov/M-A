@@ -28,7 +28,7 @@
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-									<small>5.0</small>
+									<small>0.0</small>
 									<span><img class="block-span" src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Icon"></span>
 									<small class="rewyes_text">{{$lawyer->feedbacks()->count()}} отзывов</small>
 									</div>
@@ -42,9 +42,9 @@
 										</div>
 										<div class="col-8 uslugi">
 											@foreach($lawyer->services as $service)
-											<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
-												<span class="spec">{{$service->name_ru}}</span>
-											</a>
+											<span class="spec">
+												<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">{{$service->name_ru}}</a>
+											</span>
                                             @endforeach
 										</div>
 										<div class="col-12">
@@ -118,7 +118,7 @@
 					<div class="row">
 						<div class="col-md-4 col-6">
 							<div class="lawyers_photo">
-								<img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front2/img/spec-item.png')}}" alt="photo">
+								<img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front3/image/Lawyers/Empty.png')}}" alt="photo">
 							</div>
 						</div>
 						<div class="col-md-6 col-6">
@@ -132,7 +132,7 @@
 								<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 								<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 								<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
-								<span>5.0</span>
+								<span>0.0</span>
 							</div>
 							<div class="lawyers_rewyes">
 								<img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="rewyes">
@@ -150,9 +150,9 @@
 						<div class="col-12">
 							<div class="lawyers_uslugi">
 								@foreach($lawyer->services as $service)
-								<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">
-									<span class="spec">{{$service->name_ru}}</span>
-								</a>
+								<span class="spec">
+									<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">{{$service->name_ru}}</a>
+								</span>
                                 @endforeach
 							</div>
 						</div>

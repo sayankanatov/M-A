@@ -78,7 +78,9 @@
 				<div class="col-3 phone_card ">
 					<div class="phone">
 						<a href="tel:{{$lawyer->telephone}}">
-							<span class="hide-tail">{{$lawyer->telephone}}</span>
+							<span class="hide-tail">
+								{{$lawyer->telephone}}
+							</span>
 						</a>
 						<a href="#" class="click-tel">Показать</a>
 					</div>

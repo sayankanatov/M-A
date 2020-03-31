@@ -28,7 +28,7 @@
 										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-										<small>5.0</small>
+										<small>0.0</small>
 										<span><img class="block-span" src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Icon"></span>
 										<small class="rewyes_text">{{$company->feedbacks()->count()}} отзывов</small>
 									</div>
@@ -42,7 +42,9 @@
 										</div>
 										<div class="col-8 uslugi">
 											@foreach($company->services as $service)
-											<span class="spec">{{$service->name_ru}}</span>
+											<span class="spec">
+												<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">{{$service->name_ru}}</a>
+											</span>
                                             @endforeach
 										</div>
 										<div class="col-12">
@@ -115,7 +117,7 @@
                 <img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
                 <img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
                 <img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
-                <span>5.0</span>
+                <span>0.0</span>
               </div>
               <div class="lawyers_rewyes">
                 <img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="rewyes">
@@ -133,7 +135,9 @@
             <div class="col-12">
               <div class="lawyers_uslugi">
               	@foreach($company->services as $service)
-					<span class="spec">{{$service->name_ru}}</span>
+					<span class="spec">
+						<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">{{$service->name_ru}}</a>
+					</span>
                 @endforeach
               </div>
             </div>

@@ -38,7 +38,9 @@
 		<div class="col-12">
 			<div class="lawyers_uslugi">
 				@foreach($company->services as $service)
-                <span class="spec">{{$service->name_ru}}</span>
+                <span class="spec">
+                	<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">{{$service->name_ru}}</a>
+                </span>
                 @endforeach
 			</div>
 		</div>
@@ -80,8 +82,10 @@
 					<div class="phone">
 						<div class="phone">
 							<a href="tel:{{$company->telephone}}">
-								<span class="hide-tailMobile">{{$company->telephone}}</span>
-							</a>
+								<span class="hide-tailMobile">
+									{{$company->telephone}}
+								</span>
+							</a>		
 							<a href="#" class="click-telMobile">Показать</a>
 						</div>
 					</div>

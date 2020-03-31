@@ -23,6 +23,7 @@ class PageController extends Controller
 {
     //
     protected $theme = 'green';
+    protected $takeCount = 20;
     
     public function index(Request $request)
     {
@@ -77,7 +78,7 @@ class PageController extends Controller
             $_SESSION['status'] = $_SESSION['status'] + 1;
         }
         $skip = $_SESSION['status'];
-        $count = Lawyer::where('city_id',$city->id)->count();
+        $count = $this->takeCount;
         
         if($count < $skip){
             $int = $count;
@@ -143,12 +144,10 @@ class PageController extends Controller
                     ->take($int)
                     ->where('city_id',$city->id)
                     ->orderBy('created_at','desc')
-                    // ->paginate(Config::get('constants.pagination.lawyers'));
                     ->get();
                 $end = Lawyer::take($skip)
                     ->where('city_id',$city->id)
                     ->orderBy('created_at','desc')
-                    // ->paginate(Config::get('constants.pagination.lawyers'));
                     ->get();
                 $lawyers = $lawyers->merge($end);
             }
@@ -235,7 +234,7 @@ class PageController extends Controller
         }
 
         $skip = $_SESSION['status'];
-        $count = Company::where('city_id',$city->id)->count();
+        $count = $this->takeCount;
         if($count < $skip){
             $int = $count;
         }else{
