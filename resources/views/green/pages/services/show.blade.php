@@ -26,16 +26,17 @@ use Illuminate\Support\Facades\Input;
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<div class="head_subtitle">
-					@if(app()->getLocale() == 'ru')
-                        {!! $service->text_ru ?? "Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела"!!}
-                    @else
-                        {!! $service->text_kz ?? "Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела"!!}
-                    @endif
+					<div class="wrapperss">
+						<label for="button">подробнее</label>
+						<input type="checkbox" id="button" class="head_more">
+						<div class="xpandable-block">
+							@if(app()->getLocale() == 'ru')
+		                        {!! $service->text_ru ?? "Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела"!!}
+		                    @else
+		                        {!! $service->text_kz ?? "Мы тщательно отбираем, проверяем и собеседуем каждого нашего юриста,чтобы вы работали только с настоящими профессионалами своего дела"!!}
+		                    @endif
+						</div>
 					</div>
-				</div>
-				<div class="col-sm">
-					<div class="head_more"><a href="#">Подробнее</a></div>
 				</div>
 			</div>
 			<div class="row yurists">

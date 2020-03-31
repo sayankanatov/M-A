@@ -26,11 +26,15 @@ use Illuminate\Support\Facades\Input;
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<div class="head_subtitle">{!!$seo_desc ?? null!!}</div>
+					<div class="wrapperss">
+						<label for="button">подробнее</label>
+						<input type="checkbox" id="button" class="head_more">
+						<div class="xpandable-block">
+							{!!$seo_desc ?? null!!}
+						</div>
+					</div>
 				</div>
-				<div class="col-sm">
-					<div class="head_more"><a href="#">Подробнее</a></div>
-				</div>
+				
 			</div>
 			<div class="row yurists">
 				<div class="col-sm-5">
