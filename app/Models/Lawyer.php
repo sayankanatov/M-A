@@ -86,7 +86,7 @@ class Lawyer extends Model
 
             $skip = $_SESSION['status'];
 
-            $count = self::where('city_id',$city_id)->count();
+            $count = 20;
             
             if($count < $skip){
                 $int = $count;
