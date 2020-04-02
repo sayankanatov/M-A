@@ -32,6 +32,7 @@ return [
 		'lawyers' => 10,
 		'services' => 10,
 		'companies' => 10,
+		'optimize' => 50
 	],
 
 	'top' => [

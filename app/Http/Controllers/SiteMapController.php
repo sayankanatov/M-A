@@ -14,6 +14,7 @@ use App\Models\ServiceCategory;
 use App\Models\Faq;
 use App\Models\SeoPage;
 use App\Models\FeedBack;
+use App\Models\News;
 use App\User;
 
 use Illuminate\Support\Str;
@@ -28,6 +29,7 @@ class SiteMapController extends Controller
     public $companyUrl = 'yuridicheskaya-kompaniya';
     public $lawyersUrl = 'yuristy';
     public $lawyerUrl = 'yurist';
+    public $newsUrl = 'news/polesnoe';
     
     public function index(Request $request)
     {
@@ -37,15 +39,17 @@ class SiteMapController extends Controller
             'companies' => $this->companiesUrl,
             'company' => $this->companyUrl,
             'lawyers' => $this->lawyersUrl,
-            'lawyer' => $this->lawyerUrl
+            'lawyer' => $this->lawyerUrl,
+            'news' =>$this->newsUrl
         ];
 
         $now = Carbon::now()->format('Y-m-d\TH:i:s.uP');
         $cities = City::all();
         $services = Service::select('alias','updated_at')->get();
+        $news = News::select('alias','updated_at')->get();
 
         return response()
-            ->view('xml.sitemap', compact('now','cities','urls','services'))
+            ->view('xml.sitemap', compact('now','cities','urls','services','news'))
             ->header('Content-Type', 'text/xml');
     }
 }

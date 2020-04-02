@@ -78,4 +78,16 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 {{-- PRIORITY 0.80 END --}}
 @endif
 
+{{-- PRIORITY 0.35 START --}}
+@if(isset($news))
+@foreach($news as $newsItem)
+<url>
+  <loc>{{$urls['main']}}/{{$urls['news']}}/{{$newsItem->alias}}</loc>
+  <lastmod>{{$newsItem->updated_at->toAtomString()}}</lastmod>
+  <priority>0.35</priority>
+</url>
+@endforeach
+@endif
+{{-- PRIORITY 0.35 END --}}
+
 </urlset>

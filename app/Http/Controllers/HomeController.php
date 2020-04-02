@@ -122,7 +122,7 @@ class HomeController extends Controller
                 $destinationPath = 'uploads/lawyers/images';
                 $fileName = "image".$unique.'.'.$image->getClientOriginalExtension();
                 $uploadSuccess = $image->move($destinationPath, $fileName);
-                $src = '/'.$destinationPath.'/'.$fileName;            
+                $src = $destinationPath.'/'.$fileName;            
             }
             //Save in db row
             $lawyer->update(['image' => $src ? $src : '']);
@@ -202,7 +202,7 @@ class HomeController extends Controller
                 $destinationPath = 'uploads/companies/images';
                 $fileName = "image".$unique.'.'.$image->getClientOriginalExtension();
                 $uploadSuccess = $image->move($destinationPath, $fileName);
-                $src = '/'.$destinationPath.'/'.$fileName;            
+                $src = $destinationPath.'/'.$fileName;            
             }
             //Save in db row
             $lawyer->update(['logo' => $src ? $src : '']);

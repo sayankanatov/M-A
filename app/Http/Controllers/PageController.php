@@ -23,7 +23,12 @@ class PageController extends Controller
 {
     //
     protected $theme = 'green';
-    protected $takeCount = 20;
+    protected $takeCount;
+
+    public function __construct()
+    {
+        $this->takeCount = Config::get('constants.pagination.optimize');
+    }
     
     public function index(Request $request)
     {

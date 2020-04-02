@@ -86,7 +86,7 @@ class Lawyer extends Model
 
             $skip = $_SESSION['status'];
 
-            $count = 20;
+            $count = Config::get('constants.pagination.optimize');
             
             if($count < $skip){
                 $int = $count;
