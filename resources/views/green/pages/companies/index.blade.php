@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Input;
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="wrapperss">
-							<label for="button">подробнее</label>
+							<label class="hidetext" for="button">подробнее</label>
 							<input type="checkbox" id="button" class="head_more">
 							<div class="xpandable-block">
 								{!!$seo_desc ?? null!!}

@@ -332,14 +332,12 @@
 				<div class="col-sm">
 					<div class="info_img"><img src="{{asset('front3/image/Info/1.svg')}}" alt=""></div>
 					<div class="info_title">Выберите специализацию</div>
-					<div class="info_subtitle">Кратко опишите задачу или юриста,
-						которого вы ищете</div>
+					<div class="info_subtitle">Наш сервис автоматически подберет нужного специалиста</div>
 				</div>
 				<div class="col-sm">
 					<div class="info_img"><img src="{{asset('front3/image/Info/2.svg')}}" alt=""></div>
 					<div class="info_title">Мы подберем специалиста</div>
-					<div class="info_subtitle">Наш специалист свяжется с вами в течение
-						часа и предложит вариант</div>
+					<div class="info_subtitle">Наш сервис автоматически подберет нужного специалиста</div>
 				</div>
 				<div class="col-sm">
 					<div class="info_img"><img src="{{asset('front3/image/Info/3.svg')}}" alt=""></div>

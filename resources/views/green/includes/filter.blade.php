@@ -26,5 +26,6 @@
 				</select>
 			</span>
 		</span>
+		<button type="submit">Применить</button>
 	</form>
 </div>

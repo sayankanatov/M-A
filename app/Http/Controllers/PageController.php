@@ -181,10 +181,7 @@ class PageController extends Controller
             $service = $lawyer->services->first();
 
             if($service){
-                $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->whereHas('services',function($q) use ($service){
-                    $q->where('id',$service->id);
-                // })->inRandomOrder()->take(4)->get();
-                })->orderBy('created_at','desc')->take(4)->get();
+                $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->inRandomOrder()->take(4)->get();
             }
             else{
                 $relative_lawyers = null;
@@ -337,7 +334,9 @@ class PageController extends Controller
             $seo_desc = $company->seo_desc;
             $seo_keywords = $company->seo_keywords;
 
-            return view($this->theme.'.pages.companies.show',compact('company','city','seo_title','h_one','seo_desc','seo_keywords'));
+            $relative_lawyers = Company::select('price','name','logo','alias')->where('city_id',$city->id)->inRandomOrder()->take(4)->get();
+
+            return view($this->theme.'.pages.companies.show',compact('company','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers'));
         }else{
             return redirect(route('main'));
         }   

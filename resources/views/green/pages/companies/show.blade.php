@@ -280,75 +280,38 @@
 	</div>
 </div>
 @endif
-	<!-- Похожие Компании -->
-{{-- <div class="similar">
+<!-- Похожие Компании -->
+@if($relative_lawyers)
+<div class="similar">
 	<div class="container">
 		<div class="similar_title">
 			<h4>Похожие компании</h4>
 		</div>
 		<div class="similar_slider">
+
+			@foreach($relative_lawyers as $rel_lawyer)
 			<div class="similar_block">
-				<div class="similar_image"><img src="image/4. Compani/2.png" alt="Photo"></div>
-				<div class="similar_name">ТОО "Агентство юридических услуг"</div>
+				<div class="similar_image">
+					<img src="{{$rel_lawyer->logo ? '/'.$rel_lawyer->logo : asset('front3/image/4. Compani/0.svg')}}" alt="Photo" class="photo">
+				</div>
+				<div class="similar_name"><a href="{{route('company',['city' => $city->alias,'alias' => $rel_lawyer->alias])}}">{{$rel_lawyer->name}}</a></div>
 				<div class="similar_star">
-					<img src="image/Lawyers/icon/Icon_star.svg" alt="Star">
-					<img src="image/Lawyers/icon/Icon_star.svg" alt="Star">
-					<img src="image/Lawyers/icon/Icon_star.svg" alt="Star">
-					<img src="image/Lawyers/icon/Icon_star.svg" alt="Star">
-					<img src="image/Lawyers/icon/Icon_star.svg" alt="Star">
+					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
+					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
+					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
+					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
+					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
 					<span>5.0</span></div>
 				<div class="similar_review">
-					<span><img src="image/Lawyers/icon/Vector.svg" alt="Star"></span>
-					<span>12 отзывов</span>
+					<span><img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Star"></span>
+					<span>{{$rel_lawyer->feedbacks()->count()}} отзывов</span>
 				</div>
 			</div>
-			<div class="similar_block">
-				<div class="similar_image"><img src="image/4. Compani/0.svg" alt="Photo"></div>
-				<div class="similar_name">ТОО "ЮРИСТ 365" <br></div>
-				<div class="similar_star">
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span>5.0</span></div>
-				<div class="similar_review">
-					<span><img src="image/Lawyers/icon/Vector.svg" alt="Star"></span>
-					<span>12 отзывов</span>
-				</div>
-			</div>
-			<div class="similar_block">
-				<div class="similar_image"><img src="image/4. Compani/3.png" alt="Photo"></div>
-				<div class="similar_name">ZAN KENES</div>
-				<div class="similar_star">
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span>5.0</span></div>
-				<div class="similar_review">
-					<span><img src="image/Lawyers/icon/Vector.svg" alt="Star"></span>
-					<span>12 отзывов</span>
-				</div>
-			</div>
-			<div class="similar_block">
-				<div class="similar_image"><img src="image/4. Compani/0.svg" alt="Photo"></div>
-				<div class="similar_name">ИП «Zanger»</div>
-				<div class="similar_star">
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span><img src="image/Lawyers/icon/Icon_star.svg" alt="Star"></span>
-					<span>5.0</span></div>
-				<div class="similar_review">
-					<span><img src="image/Lawyers/icon/Vector.svg" alt="Star"></span>
-					<span>12 отзывов</span>
-				</div>
-			</div>
+			@endforeach
 
 		</div>
 	</div>
-</div> --}}
+</div>
+@endif
+
 @endsection
