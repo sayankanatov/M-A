@@ -1,4 +1,4 @@
-{
+{1px
     "private": true,
     "scripts": {
         "dev": "npm run development",

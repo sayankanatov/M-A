@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Input;
 			</div>
 			<div class="row">
 				<div class="col-sm">
-					<div class="head_title"> 
-						<h4>{{$h_one ?? $app_h_one}} ({{$count}})</h4>
+					<div class="head_title">
+						<h1>{{$h_one ?? $app_h_one}} ({{$count}})</h1>
 					</div>
 				</div>
 			</div>
@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\Input;
 				</div>
 
 				@include('green.includes.filter')
-				
+
 			</div>
 		</div>
 	</div>

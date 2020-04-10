@@ -37,7 +37,7 @@ a {
 .flex1 {
   margin-top: 30px;
   display: flex;
- 
+
 }
 
 .flex1 > a {
@@ -5012,7 +5012,7 @@ blockquote > span::after {
   position:absolute;
   padding-top:0px;
   top:0;
-  left:0; 
+  left:0;
   right:0;
   bottom:0;
   background-color:#1289aa;
@@ -5167,8 +5167,8 @@ form.catalin button {
 
 @media screen and (max-width: 650px) {
  .flex1 {
-   margin-top:30px; 
-    display: block; 
+   margin-top:30px;
+    display: block;
   }
 }
 
@@ -5280,3 +5280,136 @@ label.hidetext {
 
 
 /*# sourceMappingURL=main.css.map */
+
+/** Поправки 10.04.2020 **/
+
+.dropdown .dropdown-menu{
+    /* отступ дробаун меню в шапке */
+    margin-top: 10px;
+}
+
+.xpandable-block{
+    /* скрыть описание специализации до нажатия на "Подробнее"*/
+    height: 0;
+}
+
+label.hidetext {
+    /* Красивая кнопка подробнее */
+    padding: 10px;
+    background: #10a578;
+    color: #fff;
+    border-radius: 0;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.xpandable-block p{
+    /* страница специализации, выравнивание текста по ширине*/
+    text-align: justify;
+}
+
+.head h1 {
+    /* Заголовок на странице специализации */
+    font-size: 50px;
+    font-family: "Proxima Nova Semibold", sans-serif;
+    margin: 24px 0 9px 0;
+}
+
+@media (max-width: 768px){
+    form.catalin label{
+        /* Форма поиска на всю ширину */
+        width: 100%;
+    }
+
+    form.catalin{
+        /* Форма поиска на остальных страницах */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-bottom: 100px;
+        width: 100%;
+    }
+
+    label.hidetext{
+        /*Кнопка подробнее, для описания специализации*/
+        height: auto;
+    }
+
+    .lawyers_photo{
+        width: 100%;
+    }
+
+    .lawyers_photo a {
+        /* Картинка юриста заходит под имя. */
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lawyers_photo a img{
+        /* Картинка юриста заходит под имя. */
+        width: calc(100% - 10px);
+    }
+
+    .wrap1{
+        /* "Полезное". Виждет поиска */
+        width: 100%;
+        margin: 30px 0 0 0;
+        transform: none;
+    }
+
+    /* "Полезное", начало исправления виджета поиска */
+
+    .search1 form.catalin {
+        flex-direction: row;
+    }
+
+    .search1 input.searchTerm {
+        width: 70%;
+        margin: 0 0 0 5%;
+        -webkit-box-shadow: inset 0 0 0 1px #ccc;
+        -moz-box-shadow: inset 0 0 0 1px #ccc;
+        box-shadow: inset 0 0 0 1px #ccc;
+    }
+
+    button.searchButton1 {
+        width: 20%;
+    }
+
+    form.catalin button {
+        width: 20%;
+    }
+
+    /* "Полезное", конец исправления виджета поиска */
+
+    .rich-editor-text{
+        /* Выравнивание текста постов */
+        padding: 0 5px;
+    }
+
+    .rich-editor-text p{
+        /* Выравнивание текста постов */
+        text-align: justify;
+    }
+
+    .lawyer_block-ingo .name h1{
+        /* Имя юриста на карточке юриста */
+        font-family: "Proxima Nova Regular", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+}
+
+.lawyer_block-ingo .name h1{
+    /* Имя юриста на карточке юриста */
+    font-family: "Proxima Nova Regular", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+}
+

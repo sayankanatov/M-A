@@ -17,12 +17,12 @@
 					<div class="lawyer">
 						<div class="container">
 							<div class="row lawyer">
-					
+
 								<div class="col-2 lawyer_block-photo ">
 									<img src="{{$lawyer->image ? '/'.$lawyer->image : asset('front3/image/Lawyers/Empty.png')}}" alt="Фото" class="photo">
 								</div>
 								<div class="col-7 lawyer_block-ingo block">
-									<div class="name">{{$lawyer->fullname($lawyer->id)}}
+                                    <div class="name"><h1>{{$lawyer->fullname($lawyer->id)}}</h1>
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
@@ -80,9 +80,9 @@
 				                                    <span class="{{$lawyer->sunday == 1 ? 'weekdays' : 'output'}}">
 				                                        вс
 				                                    </span>
-													
+
 													@include('green.includes.share')
-													
+
 												</div><br>
 											</div>
 										</div>
@@ -104,11 +104,11 @@
 										<div class="{{$lawyer->is_free ? 'yes' : 'no'}}">{{$lawyer->is_free ? 'Есть' : 'Нет'}}</div>
 									</div>
 								</div>
-					
-					
-					
-					
-					
+
+
+
+
+
 							</div>
 						</div>
 					</div>
@@ -124,7 +124,7 @@
 						<div class="col-md-6 col-6">
 							<div class="lawyers_name">
 								{{$lawyer->fullname($lawyer->id)}}
-		
+
 							</div>
 							<div class="lawyers_stars">
 								<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
@@ -217,7 +217,7 @@
 						<div class="col-md-12 col-12">
 							<div class="lawyers_whtasapp">
 								<div class="whtasapp">
-		
+
 									<a href="#"><img src="{{asset('front3/image/Lawyers/icon/icon_WhatsApp.svg')}}" alt="Icon"></a>
 									<a rel="nofollow" target="_blank" href="https://api.whatsapp.com/send?phone={{$lawyer->telephone}}&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5,%20%D1%8F%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Yuristy.kz.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E." class="whtasapp-text">WhatsApp</a>
 									<span></span>
@@ -287,7 +287,7 @@
 			</div>
 		</div>
 		@endforeach
-				
+
 				{{-- <div class="row">
 					<div class="col-sm-11">
 						<div class="lawyer_btn">

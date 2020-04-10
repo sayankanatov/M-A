@@ -25,43 +25,52 @@
 					<div class="lawyer">
 						<div class="container">
 							<div class="row lawyer">
-	
+
 								<div class="col-2 lawyer_block-photo ">
 									<img src="{{$info->image ? $info->image : asset('front3/image/Lawyers/Empty.png')}}" alt="Фото" class="photo">
 									<div class="redacted"><a href="#win3" ><button>Изменить фото</button></a></div>
-	
+
 								</div>
 								<div class="col-7 lawyer_block-ingo block">
-									<div class="name name-mobile"><a href="{{route('lawyer',['id' => $info->alias,'city' => $city->alias])}}">{{$info->last_name}} {{$info->first_name}} {{$info->patronymic}}</a>
-										<div>
-										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-										<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-										<small>0.0</small>
-										<span><img class="block-span" src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Icon"></span>
-										<small class="rewyes_text">{{$info->feedbacks->count()}} отзывов</small>
-										</div>
-									</div>
-									<div class="row uslugi-inner">
-										<div class="col uslugi">
-											@foreach($info->services as $service)
-				                           	<span class="spec">{{$service->name_ru}}</span>
-				                            @endforeach
-											
-											<div class="profile_btn">
-												<a href="#win1">
-													<button>Редактировать специализацию</button>
-												</a>
-											</div>
-											<div class="profile_btn">
-												<a href="#win2" >
-													<button>Оставить отзыв</button>
-												</a>
-											</div>
-										</div>
-									</div>
+                                    <div class="name name-mobile"><a
+                                            href="{{route('lawyer',['id' => $info->alias,'city' => $city->alias])}}">{{$info->last_name}} {{$info->first_name}} {{$info->patronymic}}</a>
+                                        <div class="lawyer_block-ingo_rating">
+                                                <span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}"
+                                                           alt="Star"></span>
+                                            <span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}"
+                                                       alt="Star"></span>
+                                            <span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}"
+                                                       alt="Star"></span>
+                                            <span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}"
+                                                       alt="Star"></span>
+                                            <span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}"
+                                                       alt="Star"></span>
+                                            <small>0.0</small>
+                                        </div>
+                                        <div class="lawyer_block-ingo_reviews">
+                                                <span><img class="block-span"
+                                                           src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}"
+                                                           alt="Icon"></span>
+                                            <small class="rewyes_text">{{$info->feedbacks->count()}} отзывов</small>
+                                        </div>
+                                    </div>
+                                    <div class=" uslugi-inner">
+                                        <div class="col uslugi">
+                                            @foreach($info->services as $service)
+                                                <span class="spec">{{$service->name_ru}}</span>
+                                            @endforeach
+                                        </div>
+                                        <div class="profile_btn">
+                                            <a href="#win1">
+                                                <button>Редактировать специализацию</button>
+                                            </a>
+                                        </div>
+                                        <div class="profile_btn">
+                                            <a href="#win2">
+                                                <button>Оставить отзыв</button>
+                                            </a>
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -78,7 +87,7 @@
 			<label for="tab1">Управление профилем</label>
 			<input  id="tab2" type="radio" name="tabs">
 			<label  for="tab2">Статистика</label>
-		
+
 			<section id="content1">
 				<form role="form" action="{{route('home.lawyer.update',['id' => $info->id])}}" method="post">
 					@csrf
@@ -97,7 +106,7 @@
 								<div class="col"><input type="text" placeholder="Отчество" name="patronymic" value="{{$info->patronymic}}"></div>
 							</div>
 						</div>
-					
+
 						<div class="col">
 							<div class="profile_form">
 								<div class="col"><span class="name">Телефон</span></div>
@@ -129,9 +138,9 @@
 							<div class="profile_form">
 								<div class="col"><span class="name">График работы</span></div>
 								<div class="col"><input type="text" placeholder="" value="{{$info->timetext}}" name="timetext"></div>
-							</div>					
+							</div>
 						</div>
-							
+
 						<div class="col">
 							<div class="profile_form">
 								<div class="col"><span class="name">Образование</span></div>
@@ -158,9 +167,9 @@
 									<img src="{{asset('front3/image/Profile/plus.svg')}}" alt="icon">
 										<button>Добавить место работы</button>
 								</div>
-							</div>	 --}}	
+							</div>	 --}}
 						</div>
-								
+
 						<div class="col">
 							<div class="profile_form">
 								<div class="col"><span class="name">О себе</span></div>
@@ -249,13 +258,13 @@
                     <p class="comne">Оценка по пятибальной шкале</p>
 	               	<div class="rating-area">
 						<input type="radio" id="star-5" name="rating" value="5">
-						<label for="star-5" title="Оценка «5»"></label>	
+						<label for="star-5" title="Оценка «5»"></label>
 						<input type="radio" id="star-4" name="rating" value="4">
-						<label for="star-4" title="Оценка «4»"></label>    
+						<label for="star-4" title="Оценка «4»"></label>
 						<input type="radio" id="star-3" name="rating" value="3">
-						<label for="star-3" title="Оценка «3»"></label>  
+						<label for="star-3" title="Оценка «3»"></label>
 						<input type="radio" id="star-2" name="rating" value="2">
-						<label for="star-2" title="Оценка «2»"></label>    
+						<label for="star-2" title="Оценка «2»"></label>
 						<input type="radio" id="star-1" name="rating" value="1">
 						<label for="star-1" title="Оценка «1»"></label>
 					</div>
