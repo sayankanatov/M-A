@@ -75,7 +75,7 @@ class PageController extends Controller
     public function lawyers($city, Request $request)
     {
         $city = City::where('alias',$city)->first();
-        $sort = Input::get('sort');
+        $free = Input::get('free');
         session_start();
         if(!isset($_SESSION['status'])){
             $_SESSION['status'] = 1;
@@ -99,44 +99,34 @@ class PageController extends Controller
         $seo_keywords = $seo_data->seo_keywords;
 
         if($city){
-            if(isset($sort)){
-                switch ($sort) {
-                    case 'rating':
+            if(isset($free)){
+                switch ($free) {
+                    case '1':
                         # code...
                         $lawyers = Lawyer::skip($skip)
                             ->take($int)->where('city_id',$city->id)
-                            ->orderBy('rating','desc')
+                            ->where('is_free','1')
+                            ->orderBy('created_at','desc')
                             ->get();
 
                         $end = Lawyer::take($skip)
                             ->where('city_id',$city->id)
-                            ->orderBy('rating','desc')
-                            ->get();
-                        $lawyers = $lawyers->merge($end);
-                        break;
-                    case 'experience':
-                        # code...
-                        $lawyers = Lawyer::skip($skip)
-                            ->take($int)
-                            ->where('city_id',$city->id)
-                            ->orderBy('work_experience','desc')
-                            ->get();
-
-                        $end = Lawyer::take($skip)
-                            ->where('city_id',$city->id)
-                            ->orderBy('work_experience','desc')
+                            ->where('is_free','1')
+                            ->orderBy('created_at','desc')
                             ->get();
                         $lawyers = $lawyers->merge($end);
                         break;
                     default:
                         # code...
                         $lawyers = Lawyer::skip($skip)
-                            ->take($int)
-                            ->where('city_id',$city->id)
+                            ->take($int)->where('city_id',$city->id)
+                            ->where('is_free','0')
                             ->orderBy('created_at','desc')
                             ->get();
+
                         $end = Lawyer::take($skip)
                             ->where('city_id',$city->id)
+                            ->where('is_free','0')
                             ->orderBy('created_at','desc')
                             ->get();
                         $lawyers = $lawyers->merge($end);
@@ -227,7 +217,7 @@ class PageController extends Controller
     public function companies($city)
     {   
         $city = City::where('alias',$city)->first();
-        $sort = Input::get('sort');
+        $free = Input::get('free');
         session_start();
         if(!isset($_SESSION['status'])){
             $_SESSION['status'] = 1;
@@ -249,52 +239,36 @@ class PageController extends Controller
         $seo_keywords = $seo_data->seo_keywords;
 
         if($city){
-            if(isset($sort)){
-                switch ($sort) {
-                    case 'rating':
+            if(isset($free)){
+                switch ($free) {
+                    case '1':
                         # code...
                         $companies = Company::skip($skip)
-                            ->take($int)
-                            ->where('city_id',$city->id)
-                            ->orderBy('rating','desc')
-                            ->get();
-
-                        $end = Company::take($skip)
-                            ->where('city_id',$city->id)
-                            ->orderBy('rating','desc')
-                            ->get();
-
-                        $companies = $companies->merge($end);
-                        break;
-                    case 'experience':
-                        # code...
-                        $companies = Company::skip($skip)
-                            ->take($int)
-                            ->where('city_id',$city->id)
-                            ->orderBy('extra','desc')
-                            ->get();
-
-                        $end = Company::take($skip)
-                                ->where('city_id',$city->id)
-                                ->orderBy('extra','desc')
-                                ->get();
-
-                        $companies = $companies->merge($end);
-                        
-                        break;
-                    default:
-                        # code...
-                        $companies = Company::skip($skip)
-                            ->take($int)
-                            ->where('city_id',$city->id)
+                            ->take($int)->where('city_id',$city->id)
+                            ->where('is_free','1')
                             ->orderBy('created_at','desc')
                             ->get();
 
                         $end = Company::take($skip)
-                                ->where('city_id',$city->id)
-                                ->orderBy('created_at','desc')
-                                ->get();
+                            ->where('city_id',$city->id)
+                            ->where('is_free','1')
+                            ->orderBy('created_at','desc')
+                            ->get();
+                        $companies = $companies->merge($end);
+                        break;
+                    default:
+                        # code...
+                        $companies = Company::skip($skip)
+                            ->take($int)->where('city_id',$city->id)
+                            ->where('is_free','0')
+                            ->orderBy('created_at','desc')
+                            ->get();
 
+                        $end = Company::take($skip)
+                            ->where('city_id',$city->id)
+                            ->where('is_free','0')
+                            ->orderBy('created_at','desc')
+                            ->get();
                         $companies = $companies->merge($end);
                         break;
                 }

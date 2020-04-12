@@ -91,8 +91,7 @@
 					@foreach($cities as $c)
 					<li>
 						<a href="{{route('city',['city'=>$c->alias])}}">
-						<span class="boo-nav-city ">{{app()->getLocale() == 'ru' ? $c->name_ru : $c->name_kz}}<img src="{{asset('front3/image/Main/Icon.svg')}}"
-								alt="Стрелка"></span>
+						<span class="boo-nav-city ">{{app()->getLocale() == 'ru' ? $c->name_ru : $c->name_kz}}</span>
 							</a>
 					</li>
 					@endforeach
