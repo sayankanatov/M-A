@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="{{asset('front3/css/normalize.css')}}">
 		<link rel="stylesheet" href="{{asset('front3/css/main.css')}}">
 		<link rel="stylesheet" href="{{asset('front3/css/bootstrap-grid.css')}}">
+		<link rel="stylesheet" href="{{asset('front3/css/media.css')}}">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<title>{{$seo_title ?? $app_seo_title}}</title>
 		<meta name="description" content="{{$seo_desc ?? $app_seo_desc}}">
@@ -106,7 +107,18 @@
 					<li><a href="{{route('service',['city'=>$city->alias,'id' => 'notariusy'])}}">Нотариусы</a></li>
 					<li><a href="{{route('news')}}">Полезное</a></li>
 					@auth
-					<li><a href="{{route('home')}}" class="nav_btn btn_stroke ">Личный кабинет</a></li>
+					<li>
+						<a href="{{route('home')}}" class="nav_btn btn_stroke ">Личный кабинет</a>
+					</li>
+					<li>
+						<a href="{{ route('logout') }}" onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+                   	        {{ __('Выход') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+					</li>
 					@else
 					<li><span id="show-modal2" class="nav_btn btn_stroke ">Вход</span></li>
 					<li><span id="show-modal" class="nav_btn btn_fill ">Регистрация</span></li>
