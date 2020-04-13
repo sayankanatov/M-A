@@ -46,6 +46,14 @@
 												<a href="{{route('service',['city'=>$city->alias,'id'=>$service->alias])}}">{{$service->name_ru}}</a>
 											</span>
                                             @endforeach
+
+                                            <!--КНОПКА ОСТАВИТЬ ОТЗЫВ START-->
+				                            <div class="profile_btn">
+				                                <a href="#win{{$lawyer->id}}">
+				                                	<button>Оставить отзыв</button>
+				                                </a>
+				                            </div>
+				                            <!--КНОПКА ОСТАВИТЬ ОТЗЫВ END-->
 										</div>
 										<div class="col-12">
 											<div class="specialistik">
@@ -333,5 +341,9 @@
 	</div>
 </div>
 @endif
+
+<!--FEEDBACK MODAL WINDOW START-->
+@include('green.includes.feedback')
+<!--FEEDBACK MODAL WINDOW END-->
 
 @endsection
