@@ -131,7 +131,7 @@
 						</div>
 						<div class="col-md-6 col-6">
 							<div class="lawyers_name">
-								{{$lawyer->fullname($lawyer->id)}}
+                                <h1>{{$lawyer->fullname($lawyer->id)}}</h1>
 
 							</div>
 							<div class="lawyers_stars">

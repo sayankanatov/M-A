@@ -43,7 +43,7 @@
 		   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
 		   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
 		   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-		 
+
 		   ym(60921955, "init", {
 		        clickmap:true,
 		        trackLinks:true,
@@ -98,7 +98,7 @@
 					@endforeach
 				</ul>
 			</div>
-			@endif          
+			@endif
 			<!-- Nav items -->
 			<div class="boo-nav-collapse">
 				<ul class="boo-nav-items">
@@ -107,11 +107,11 @@
 					<li><a href="{{route('service',['city'=>$city->alias,'id' => 'notariusy'])}}">Нотариусы</a></li>
 					<li><a href="{{route('news')}}">Полезное</a></li>
 					@auth
-					<li>
+					<li class="cabLink">
 						<a href="{{route('home')}}" class="nav_btn btn_stroke ">Личный кабинет</a>
 					</li>
-					<li>
-						<a href="{{ route('logout') }}" onclick="event.preventDefault();
+					<li class="cabLogout">
+						<a href="{{ route('logout') }}" class="nav_btn btn_stroke " onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();">
                    	        {{ __('Выход') }}
                         </a>
@@ -127,7 +127,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	@include('green.includes.register')
 	@include('green.includes.login')
 

@@ -3292,7 +3292,7 @@ h4 {
     border-radius: 6px;
     display: block;
   }
-  .lawyers_name {
+  .lawyers_name h1, .lawyers_name{
     font-size: 30px;
   }
   .lawyers_name a {
@@ -5413,3 +5413,56 @@ label.hidetext {
     font-weight: 400;
 }
 
+/* Поправки 13.04.20 */
+
+.lawyers_name h1 {
+    /* Фиксированный размер h1 в названии юриста. */
+    font-size: 30px;
+}
+
+.cabLink a, .cabLogout a{
+    /* Выравнивание кнопок кабинета и выхода в десктопной версии. */
+    margin: 0;
+    padding: 15px 20px;
+}
+
+.cabLink{
+    /* Выравнивание кнопок кабинета и выхода в десктопной версии. */
+    margin-right: 20px;
+    margin-left: 18px;
+}
+
+
+@media (max-width: 768px){
+
+    .cabLink{
+        /* Выравнивание личного кабинета и выхода в МВ */
+        margin: 0;
+    }
+    .cabLink a, .cabLogout a{
+        /*  */
+        text-align: center !important;
+    }
+    .boo-nav-collapse .btn_stroke{
+        padding: 20px 0;
+    }
+
+    li.cabLogout {
+        margin-bottom: 30px;
+    }
+
+    .head_title h1{
+        font-size: 40px;
+        max-width: 450px;
+    }
+
+    .lawyers_name h1 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px){
+    .head_title h1{
+        font-size: 30px;
+    }
+}
