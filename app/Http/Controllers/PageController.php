@@ -354,6 +354,8 @@ class PageController extends Controller
 
     public function addFeedback(Request $request){
 
+        $commonStarts = 0;
+
         if($request->input('lawyer_id')){
             $lawyer = $request->input('lawyer_id');
         }elseif($request->input('company_id')){
@@ -363,8 +365,6 @@ class PageController extends Controller
         $text = $request->input('text');
         $star = $request->input('rating-star');
 
-        // dd($star);
-
         $feed = new FeedBack();
         $feed->text = $text;
         $feed->stars = $star;
@@ -372,34 +372,54 @@ class PageController extends Controller
         $feed->company_id = $company ?? null;
         $feed->save();
 
+        //save rating
+        if($request->input('lawyer_id')){
+            $fLawyer = Lawyer::find($lawyer);
+            $countFeedBacks = count($fLawyer->feedbacks);
+
+            foreach ($fLawyer->feedbacks as $key => $feedback) {
+                # code...
+                $commonStarts += $feedback->stars;
+            }
+            //save db
+            $fLawyer->rating = round($commonStarts / $countFeedBacks, 1);
+            $fLawyer->save();
+        }elseif($request->input('company_id')){
+            $fCompany = Company::find($company);
+            $countFeedBacks = count($fCompany->feedbacks);
+
+            foreach ($fCompany->feedbacks as $key => $feedback) {
+                # code...
+                $commonStarts += $feedback->stars;
+            }
+            //save db
+            $fCompany->rating = round($commonStarts / $countFeedBacks, 1);
+            $fCompany->save();
+        }
+
         return redirect()->back();
     }
 
-    public function test(Request $request)
+    public function blockUser($id,Request $request)
     {
-        
-        $lawyers = Lawyer::where('alias',null)->get();
-        $companies = Company::where('alias',null)->get();
-
-        foreach ($lawyers as $key => $lawyer) {
-            # code...
-            $cut_name = str_limit($lawyer->last_name.'-'.$lawyer->first_name.'-'.$lawyer->patronymic, $limit = 200, $end = '-');
-            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
-
-            $lawyer->alias = $alias;
+        $lawyer = Lawyer::where('id',$id)->first();
+        if($lawyer){
+            $lawyer->is_deleted = 1;
             $lawyer->save();
-        }
-
-        foreach ($companies as $key => $company) {
-            # code...
-            $cut_name = str_limit($company->name, $limit = 200, $end = '-');
-            $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
-
-            $company->alias = $alias;
+        }else{
+            $company = Company::where('id',$id)->first();
+            $company->is_deleted = 1;
             $company->save();
         }
-
+        \Auth::logout();
         return redirect(route('main'));
+    }
+
+
+    public function test(Request $request)
+    {
+        $lawyer_id = 37;
+        $commonStarts = 0;
     }
 
     public function news()

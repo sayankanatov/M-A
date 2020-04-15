@@ -16,7 +16,7 @@
 						<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 						<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 						<img class="star" src="{{asset('front3/image/Lawyers/icon/star_strouk.svg')}}" alt="Звезда">
-						<span>0.0</span>
+						<span>{{$lawyer->rating ?? '0.0'}}</span>
 					</div>
 				</div>
 				<div class="col-6 lawyer_block-ingo">
@@ -35,14 +35,6 @@
                             	<span class="spec">{{$service->name_ru}}</span>
                             </a>
                             @endforeach
-
-                            <!--КНОПКА ОСТАВИТЬ ОТЗЫВ START-->
-                            <div class="profile_btn">
-                                <a href="#win{{$lawyer->id}}">
-                                	<button>Оставить отзыв</button>
-                                </a>
-                            </div>
-                            <!--КНОПКА ОСТАВИТЬ ОТЗЫВ END-->
 						</div>
 						<div class="col-12">
 							<div class="specialistik">
@@ -105,7 +97,4 @@
 			</div>
 		</div>
 	</div>
-	<!--FEEDBACK MODAL WINDOW START-->
-	@include('green.includes.feedback')
-    <!--FEEDBACK MODAL WINDOW END-->
 @endforeach

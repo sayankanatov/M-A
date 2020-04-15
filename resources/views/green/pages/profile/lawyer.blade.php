@@ -45,7 +45,7 @@
                                                        alt="Star"></span>
                                             <span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}"
                                                        alt="Star"></span>
-                                            <small>0.0</small>
+                                            <small>{{$info->rating ?? '0.0'}}</small>
                                         </div>
                                         <div class="lawyer_block-ingo_reviews">
                                                 <span><img class="block-span"
@@ -66,10 +66,11 @@
                                             </a>
                                         </div>
                                         <div class="profile_btn">
-                                            <a href="#win2">
-                                                <button>Оставить отзыв</button>
-                                            </a>
-                                        </div>
+                                        	<form role="form" action="{{route('user.block',['id' => $info->id])}}" method="post">
+												@csrf
+												<button type="submit">Удалить анкету</button>
+											</form>
+										</div>
                                     </div>
 								</div>
 							</div>

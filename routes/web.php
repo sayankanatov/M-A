@@ -36,6 +36,8 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
 
     //Оставить отзыв
     Route::match(['get','post'],'/feedback/add','PageController@addFeedback')->name('feedback.add');
+    //Удаление анкеты
+    Route::match(['get','post'],'/user/block/{id}','PageController@blockUser')->name('user.block');
 	
     //Главная
     Route::get('/', 'PageController@index')->name('main');

@@ -28,7 +28,7 @@
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
 									<span><img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star"></span>
-									<small>0.0</small>
+									<small>{{$lawyer->rating ?? '0.0'}}</small>
 									<span><img class="block-span" src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Icon"></span>
 									<small class="rewyes_text">{{$lawyer->feedbacks()->count()}} отзывов</small>
 									</div>
@@ -47,6 +47,7 @@
 											</span>
                                             @endforeach
 
+                                            @auth
                                             <!--КНОПКА ОСТАВИТЬ ОТЗЫВ START-->
 				                            <div class="profile_btn">
 				                                <a href="#win{{$lawyer->id}}">
@@ -54,6 +55,7 @@
 				                                </a>
 				                            </div>
 				                            <!--КНОПКА ОСТАВИТЬ ОТЗЫВ END-->
+				                            @endauth
 										</div>
 										<div class="col-12">
 											<div class="specialistik">
@@ -140,7 +142,7 @@
 								<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 								<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
 								<img class="star" src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Звезда">
-								<span>0.0</span>
+								<span>{{$lawyer->rating ?? '0.0'}}</span>
 							</div>
 							<div class="lawyers_rewyes">
 								<img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="rewyes">
@@ -329,7 +331,7 @@
 					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
 					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
 					<img src="{{asset('front3/image/Lawyers/icon/Icon_star.svg')}}" alt="Star">
-					<span>5.0</span></div>
+					<span>{{$rel_lawyer->rating ?? '0.0'}}</span></div>
 				<div class="similar_review">
 					<span><img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Star"></span>
 					<span>{{$rel_lawyer->feedbacks()->count()}} отзывов</span>
@@ -342,8 +344,10 @@
 </div>
 @endif
 
+@auth
 <!--FEEDBACK MODAL WINDOW START-->
 @include('green.includes.feedback')
 <!--FEEDBACK MODAL WINDOW END-->
+@endauth
 
 @endsection
