@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Input;
 				<div class="row">
 					<div class="col-sm">
 						<div class="head_title">
-							<h4>{{$h_one ?? $app_h_one}}</h4>
+							<h1>{{$h_one ?? $app_h_one}}</h1>
 						</div>
 					</div>
 				</div>
