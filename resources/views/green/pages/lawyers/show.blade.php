@@ -17,9 +17,10 @@
                                                     alt="Стрелка"></span>
                         <span class="head_special">{{$lawyer->fullname($lawyer->id)}}</span>
                     </div>
+                    <h1 class="law_name">{{$lawyer->fullname($lawyer->id)}}</h1>
                     <div class="law_solo">
                         <div class="law_main">
-                            <a href="yurist.html" class="law_photo-link">
+                            <a href="#" class="law_photo-link">
                                 <img
                                     src="{{$lawyer->image ? '/'.$lawyer->image : asset('front3/image/Lawyers/Empty.png')}}"
                                     alt="Фото" class="photo">
@@ -44,18 +45,18 @@
                                          alt="Звезда">
                                     <span>5.0</span>
                                 </div>
-                                <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}"
-                                   class="law_name-mobile-link">
-                                    <div class="law_name">{{$lawyer->fullname($lawyer->id)}}</div>
-                                </a>
+{{--                                <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}"--}}
+{{--                                   class="law_name-mobile-link">--}}
+{{--                                    <div class="law_name">{{$lawyer->fullname($lawyer->id)}}</div>--}}
+{{--                                </a>--}}
                             </div>
                         </div>
                         <div class="law_info">
                             <div class="law_solo_head">
-                                <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}"
-                                   class="law_name-link">
-                                    <h1 class="law_name">{{$lawyer->fullname($lawyer->id)}}</h1>
-                                </a>
+{{--                                <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}"--}}
+{{--                                   class="law_name-link">--}}
+{{--                                    <h1 class="law_name">{{$lawyer->fullname($lawyer->id)}}</h1>--}}
+{{--                                </a>--}}
                                 <div class="law_revs">
                                     <img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Иконка отзывы"
                                          class="law_revs-icon">

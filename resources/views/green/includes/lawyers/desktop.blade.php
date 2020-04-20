@@ -1,7 +1,7 @@
 @foreach($lawyers as $lawyer)
     <div class="law">
         <div class="law_main">
-            <a href="yurist.html" class="law_photo-link">
+            <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}" class="law_photo-link">
                 <img
                     src="{{$lawyer->image ? '/'.$lawyer->image : asset('front3/image/Lawyers/Empty.png')}}"
                     alt="Фото" class="photo">

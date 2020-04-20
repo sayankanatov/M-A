@@ -21,23 +21,23 @@
 	    <meta property="og:url" content="{{Request::url()}}">
 	    <link href="{{Request::url()}}" rel="canonical">
 	    <script src="{{asset('front3/js/jquery.min.js')}}"></script>
-		<script>
-			var jQueryroot = jQuery("html, body");
-			jQuery('a[href*="#"]').click(function (event) {
-				if (jQuery.attr(this, "href") == "#") {
-					event.preventDefault();
-				} else {
-					jQueryroot.animate(
-						{
-							scrollTop: jQuery(jQuery.attr(this, "href")).offset().top
-						},
-						1000
-					);
-				}
+        <script>
+            var jQueryroot = jQuery("html, body");
+            jQuery('a[href*="#"]').click(function (event) {
+                if (jQuery.attr(this, "href") == "#") {
+                    event.preventDefault();
+                } else {
+                    jQueryroot.animate(
+                        {
+                            scrollTop: jQuery(jQuery.attr(this, "href")).offset().top
+                        },
+                        1000
+                    );
+                }
 
-				return false;
-			});
-		</script>
+                return false;
+            });
+        </script>
 		<!-- Yandex.Metrika counter -->
 		<script type="text/javascript" >
 		   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

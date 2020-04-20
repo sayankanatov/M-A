@@ -17,7 +17,7 @@
                                                     alt="Стрелка"></span>
                         <span class="head_special">{{$company->name}}</span>
                     </div>
-
+                    <h1 class="law_name">{{$company->name}}</h1>
                     <div class="law_solo">
                         <div class="law_main">
                             <a href="#" class="law_photo-link law_solo_img-link">
@@ -54,18 +54,18 @@
                                          alt="Звезда">
                                     <span>{{$company->rating ?? '0.0'}}</span>
                                 </div>
-                                <a href="#"
-                                   class="law_name-mobile-link">
-                                    <div class="law_name">{{$company->name}}</div>
-                                </a>
+{{--                                <a href="#"--}}
+{{--                                   class="law_name-mobile-link">--}}
+{{--                                    <div class="law_name">{{$company->name}}</div>--}}
+{{--                                </a>--}}
                             </div>
                         </div>
                         <div class="law_info">
                             <div class="law_solo_head">
-                                <a href="#"
-                                   class="law_name-link law_solo_name-link">
-                                    <h1 class="law_name">{{$company->name}}</h1>
-                                </a>
+{{--                                <a href="#"--}}
+{{--                                   class="law_name-link law_solo_name-link">--}}
+{{--                                    <h1 class="law_name">{{$company->name}}</h1>--}}
+{{--                                </a>--}}
                                 <div class="law_revs">
                                     <img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Иконка отзывы"
                                          class="law_revs-icon">
