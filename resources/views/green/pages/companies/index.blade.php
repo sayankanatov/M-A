@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Input;
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 				<div class="row yurists">
 					<div class="col-sm-5">
@@ -51,9 +51,9 @@ use Illuminate\Support\Facades\Input;
 							</ul>
 						</span>
 					</div>
-					
+
 					@include('green.includes.filter')
-					
+
 				</div>
 			</div>
 		</div>
@@ -61,12 +61,6 @@ use Illuminate\Support\Facades\Input;
 @if($companies)
 <div class="container firms">
 	@include('green.includes.companies.desktop')
-		
-		<div class="lawyers_mobile">
-			<div class="container">
-				@include('green.includes.companies.mobile')
-			</div>
-		</div>
 
 		<div class="lawyer_btn">
 			<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">

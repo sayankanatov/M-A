@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Input;
 			</div>
 			<div class="row">
 				<div class="col-sm">
-					<div class="head_title"> 
+					<div class="head_title">
 						<h4>{{$h_one ?? $app_h_one}}</h4>
 					</div>
 				</div>
@@ -33,12 +33,6 @@ use Illuminate\Support\Facades\Input;
 <section class=" container low_2">
 
 	@include('green.includes.lawyers.desktop')
-
-	<div class="lawyers_mobile">
-		<div class="container">
-			@include('green.includes.lawyers.mobile')
-		</div>
-	</div>
 
 	<div class="lawyer_btn">
 		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">

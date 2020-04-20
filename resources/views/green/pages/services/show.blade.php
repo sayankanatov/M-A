@@ -64,12 +64,6 @@ use Illuminate\Support\Facades\Input;
 
 	@include('green.includes.lawyers.desktop')
 
-	<div class="lawyers_mobile">
-		<div class="container">
-			@include('green.includes.lawyers.mobile')
-		</div>
-	</div>
-
 	<div class="lawyer_btn">
 		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
 		<button id="loadMore">Показать больше</button>
