@@ -75,6 +75,15 @@
                                          alt="Звезда">
                                     <span>5.0</span>
                                 </div>
+                            @auth
+                                <!--КНОПКА ОСТАВИТЬ ОТЗЫВ START-->
+                                    <div class="profile_btn">
+                                        <a href="#win{{ $lawyer->id }}">
+                                            <button>Оставить отзыв</button>
+                                        </a>
+                                    </div>
+                                    <!--КНОПКА ОСТАВИТЬ ОТЗЫВ END-->
+                                @endauth
                             </div>
                             <div class="law_specs">
                                 <div class="law_head">
@@ -114,7 +123,9 @@
                                     <span class="{{$lawyer->saturday == 1 ? 'weekdays' : 'output'}}">СБ</span>
                                     <span class="{{$lawyer->sunday == 1 ? 'weekdays' : 'output'}}">ВС</span></div>
                                 <br>
+
                             </div>
+                            @include('green.includes.share')
                         </div>
                         <div class="law_contacts">
                             <div class="ph_plus_wa">
