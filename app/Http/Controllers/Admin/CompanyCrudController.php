@@ -248,8 +248,18 @@ class CompanyCrudController extends CrudController
             'type' => 'text'
         ]);
 
+        $this->crud->addField([ //
+            'name' => "is_deleted",
+            'label' => "Заблокировать",
+            'type' => 'select_from_array',
+            'options' => [0 => 'Нет', 1 => 'Да'],
+            'allows_null' => false,
+            'default' => 0,
+        ]);
+
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
+        $this->crud->addClause('where', 'is_deleted', 0);
 
         // add asterisk for fields that are required in GalleryRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');

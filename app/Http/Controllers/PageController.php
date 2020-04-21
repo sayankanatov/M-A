@@ -36,7 +36,7 @@ class PageController extends Controller
         $city = City::find(Config::get('constants.city'));
         $services = Service::all();
         $faq = Faq::all();
-        $lawyers = Lawyer::where('city_id',$city->id)->take(4)->inRandomOrder()->get();
+        $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->take(4)->inRandomOrder()->get();
         $news = News::orderBy('created_at','desc')->take(4)->get();
 
         $h_one = $city->h_one;
@@ -58,7 +58,7 @@ class PageController extends Controller
             $cities = City::all();
             $services = Service::all();
             $faq = Faq::all();
-            $lawyers = Lawyer::where('city_id',$city->id)->take(4)->inRandomOrder()->get();
+            $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->take(4)->inRandomOrder()->get();
             $news = News::orderBy('created_at','desc')->take(4)->get();
 
             $h_one = $city->h_one;
@@ -106,12 +106,14 @@ class PageController extends Controller
                         $lawyers = Lawyer::skip($skip)
                             ->take($int)->where('city_id',$city->id)
                             ->where('is_free','1')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
 
                         $end = Lawyer::take($skip)
                             ->where('city_id',$city->id)
                             ->where('is_free','1')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
                         $lawyers = $lawyers->merge($end);
@@ -121,12 +123,14 @@ class PageController extends Controller
                         $lawyers = Lawyer::skip($skip)
                             ->take($int)->where('city_id',$city->id)
                             ->where('is_free','0')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
 
                         $end = Lawyer::take($skip)
                             ->where('city_id',$city->id)
                             ->where('is_free','0')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
                         $lawyers = $lawyers->merge($end);
@@ -138,10 +142,12 @@ class PageController extends Controller
                 $lawyers = Lawyer::skip($skip)
                     ->take($int)
                     ->where('city_id',$city->id)
+                    ->where('is_deleted',0)
                     ->orderBy('created_at','desc')
                     ->get();
                 $end = Lawyer::take($skip)
                     ->where('city_id',$city->id)
+                    ->where('is_deleted',0)
                     ->orderBy('created_at','desc')
                     ->get();
                 $lawyers = $lawyers->merge($end);
@@ -171,7 +177,7 @@ class PageController extends Controller
             $service = $lawyer->services->first();
 
             if($service){
-                $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->inRandomOrder()->take(4)->get();
+                $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->where('is_deleted',0)->inRandomOrder()->take(4)->get();
             }
             else{
                 $relative_lawyers = null;
@@ -204,7 +210,7 @@ class PageController extends Controller
 
             $service_id = $service->id;
 
-            $count = Lawyer::where('city_id',$city->id)->whereHas('services', function($query) use ($service_id){
+            $count = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->whereHas('services', function($query) use ($service_id){
                 $query->where('id',$service_id);
             })->count();
             
@@ -246,12 +252,14 @@ class PageController extends Controller
                         $companies = Company::skip($skip)
                             ->take($int)->where('city_id',$city->id)
                             ->where('is_free','1')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
 
                         $end = Company::take($skip)
                             ->where('city_id',$city->id)
                             ->where('is_free','1')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
                         $companies = $companies->merge($end);
@@ -261,12 +269,14 @@ class PageController extends Controller
                         $companies = Company::skip($skip)
                             ->take($int)->where('city_id',$city->id)
                             ->where('is_free','0')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
 
                         $end = Company::take($skip)
                             ->where('city_id',$city->id)
                             ->where('is_free','0')
+                            ->where('is_deleted',0)
                             ->orderBy('created_at','desc')
                             ->get();
                         $companies = $companies->merge($end);
@@ -277,11 +287,13 @@ class PageController extends Controller
                 $companies = Company::skip($skip)
                     ->take($int)
                     ->where('city_id',$city->id)
+                    ->where('is_deleted',0)
                     ->orderBy('created_at','desc')
                     ->get();
 
                 $end = Company::take($skip)
                         ->where('city_id',$city->id)
+                        ->where('is_deleted',0)
                         ->orderBy('created_at','desc')
                         ->get();
 
@@ -308,7 +320,7 @@ class PageController extends Controller
             $seo_desc = $company->seo_desc;
             $seo_keywords = $company->seo_keywords;
 
-            $relative_lawyers = Company::select('price','name','logo','alias')->where('city_id',$city->id)->inRandomOrder()->take(4)->get();
+            $relative_lawyers = Company::select('price','name','logo','alias')->where('city_id',$city->id)->where('is_deleted',0)->inRandomOrder()->take(4)->get();
 
             return view($this->theme.'.pages.companies.show',compact('company','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers'));
         }else{

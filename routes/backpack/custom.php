@@ -15,7 +15,9 @@ Route::group([
     CRUD::resource('service_category', 'ServiceCategoryCrudController');
     CRUD::resource('service', 'ServiceCrudController');
     CRUD::resource('company', 'CompanyCrudController');
+    CRUD::resource('company_blocked', 'CompanyBlockedCrudController');
     CRUD::resource('lawyer', 'LawyerCrudController');
+    CRUD::resource('lawyer_blocked', 'LawyerBlockedCrudController');
     CRUD::resource('user', 'UserCrudController');
     CRUD::resource('role', 'RoleCrudController');
     CRUD::resource('permission', 'PermisssionCrudController');

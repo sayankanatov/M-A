@@ -27,8 +27,10 @@
 </li>
 
 <li><a href='{{ backpack_url('company') }}'><i class='fa fa-building'></i> <span>Компании</span></a></li>
+<li><a href='{{ backpack_url('company_blocked') }}'><i class='fa fa-building'></i> <span>Удаленные компании</span></a></li>
 
 <li><a href='{{ backpack_url('lawyer') }}'><i class='fa fa-address-book'></i> <span>Юристы</span></a></li>
+<li><a href='{{ backpack_url('lawyer_blocked') }}'><i class='fa fa-address-book'></i> <span>Удаленные юристы</span></a></li>
 
 <li class="treeview">
     <a href="#"><i class="fa fa-balance-scale"></i> <span>Фиксированные</span> <i class="fa fa-angle-left pull-right"></i></a>

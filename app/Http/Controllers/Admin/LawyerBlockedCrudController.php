@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class LawyerCrudController extends CrudController
+class LawyerBlockedCrudController extends CrudController
 {
     public function setup()
     {
@@ -26,7 +26,7 @@ class LawyerCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('App\Models\Lawyer');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/lawyer');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/lawyer_blocked');
         $this->crud->setEntityNameStrings('юриста', 'юристы');
 
         /*
@@ -297,7 +297,8 @@ class LawyerCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
-        $this->crud->addClause('where', 'is_deleted', 0);
+        $this->crud->addClause('where', 'is_deleted', 1);
+        $this->crud->denyAccess(['create']);
 
         // add asterisk for fields that are required in FactRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');

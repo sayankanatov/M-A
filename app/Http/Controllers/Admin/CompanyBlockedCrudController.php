@@ -5,18 +5,19 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\LawyerRequest as StoreRequest;
-use App\Http\Requests\LawyerRequest as UpdateRequest;
+use App\Http\Requests\CompanyRequest as StoreRequest;
+use App\Http\Requests\CompanyRequest as UpdateRequest;
 use Backpack\CRUD\CrudPanel;
 use Config;
+use App\Models\Company;
 use Illuminate\Support\Str;
 
 /**
- * Class FactCrudController
+ * Class GalleryCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class LawyerCrudController extends CrudController
+class CompanyBlockedCrudController extends CrudController
 {
     public function setup()
     {
@@ -25,50 +26,29 @@ class LawyerCrudController extends CrudController
         | CrudPanel Basic Information
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Lawyer');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/lawyer');
-        $this->crud->setEntityNameStrings('юриста', 'юристы');
+        $this->crud->setModel('App\Models\Company');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/company_blocked');
+        $this->crud->setEntityNameStrings('компанию', 'компании');
 
         /*
         |--------------------------------------------------------------------------
         | CrudPanel Configuration
         |--------------------------------------------------------------------------
         */
-        $this->crud->addColumn('last_name');
-        $this->crud->addColumn('first_name');
+
+        $this->crud->addColumn('name');
 
         $this->crud->addField([
-            'name' => 'last_name',
-            'label' => "Фамилия",
+            'name' => 'name',
+            'label' => "Название",
             'type' => 'text'
         ]);
 
         $this->crud->addField([
-            'name' => 'first_name',
-            'label' => "Имя",
-            'type' => 'text'
-        ]);
-
-        $this->crud->addField([
-            'name' => 'patronymic',
-            'label' => "Отчество",
-            'type' => 'text'
-        ]);
-
-        $this->crud->addField([
-            'label' => "Фотография",
-            'name' => 'image',
+            'label' => "Логотип",
+            'name' => 'logo',
             'type' => 'browse',
-            'hint' => 'Желательно загружать в папку lawyers во вкладке "Файловый менеджер" '
-        ]);
-
-        $this->crud->addField([  // Select
-           'label' => "Компания",
-           'type' => 'select',
-           'name' => 'company', // the db column for the foreign key
-           'entity' => 'company', // the method that defines the relationship in your Model
-           'attribute' => 'name', // foreign key attribute that is shown to user
-           'model' => "App\Models\Company" // foreign key model
+            'hint' => 'Желательно загружать в папку companies во вкладке "Файловый менеджер" '
         ]);
 
         $this->crud->addField([
@@ -162,12 +142,6 @@ class LawyerCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name' => 'education',
-            'label' => "Образование",
-            'type' => 'textarea'
-        ]);
-
-        $this->crud->addField([
             'name' => 'extra',
             'label' => "Дополнительная информация",
             'type' => 'textarea'
@@ -187,18 +161,6 @@ class LawyerCrudController extends CrudController
             'options'     => Config::get('constants.langs'),
             // optional
             //'inline'      => false, // show the radios all on the same line?
-        ]);
-
-        $this->crud->addField([
-            'name' => 'work_experience',
-            'label' => "Стаж работы",
-            'type' => 'text'
-        ]);
-
-        $this->crud->addField([
-            'name' => 'practice',
-            'label' => "Опыт работы",
-            'type' => 'textarea'
         ]);
 
         $this->crud->addField([
@@ -297,9 +259,10 @@ class LawyerCrudController extends CrudController
 
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
-        $this->crud->addClause('where', 'is_deleted', 0);
+        $this->crud->addClause('where', 'is_deleted', 1);
+        $this->crud->denyAccess(['create']);
 
-        // add asterisk for fields that are required in FactRequest
+        // add asterisk for fields that are required in GalleryRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
     }
@@ -307,7 +270,7 @@ class LawyerCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $cut_name = str_limit($request->input('last_name').'-'.$request->input('first_name').'-'.$request->input('patronymic'), $limit = 200, $end = '-');
+        $cut_name = str_limit($request->input('name'), $limit = 200, $end = '-');
         $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
         $request->request->set('alias', $alias);
 
@@ -320,6 +283,9 @@ class LawyerCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         // your additional operations before save here
+        // $company = Company::find($request->id);
+        // $company->services = json_encode($request->services,JSON_UNESCAPED_UNICODE);
+        // $company->save();
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
