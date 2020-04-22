@@ -44,15 +44,19 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
     Route::get('/{city}', 'PageController@city')->name('city');
 
     //Юристы
-    Route::get('/{city}/yuristy', 'PageController@lawyers')->name('lawyers');
-    Route::get('/{city}/yurist/{alias}', 'PageController@lawyer')->name('lawyer');
+    Route::get('/{city}/yuristy', 'LawyerController@index')->name('lawyers');
+    Route::get('/{city}/yurist/{alias}', 'LawyerController@show')->name('lawyer');
+    //Load more lawyers
+    Route::post('/lawyers/load_more', 'LawyerController@loadMore')->name('lawyers.loadmore');
 
     //Юристы по специализацией
     Route::get('/{city}/specializaciya/{alias}', 'PageController@service')->name('service');
 
     //Компании
-    Route::get('/{city}/yuridicheskie-kompanii', 'PageController@companies')->name('companies');
-    Route::get('/{city}/yuridicheskaya-kompaniya/{alias}', 'PageController@company')->name('company');
+    Route::get('/{city}/yuridicheskie-kompanii', 'CompanyController@index')->name('companies');
+    Route::get('/{city}/yuridicheskaya-kompaniya/{alias}', 'CompanyController@show')->name('company');
+    //Load more companies
+    Route::post('/companies/load_more', 'CompanyController@loadMore')->name('companies.loadmore');
 
     //Новости
     Route::get('/news/polesnoe', 'NewsController@index')->name('news');

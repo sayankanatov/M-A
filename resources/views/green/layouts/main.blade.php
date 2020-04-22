@@ -21,6 +21,7 @@
 	    <meta property="og:url" content="{{Request::url()}}">
 	    <link href="{{Request::url()}}" rel="canonical">
 	    <script src="{{asset('front3/js/jquery.min.js')}}"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script>
             var jQueryroot = jQuery("html, body");
             jQuery('a[href*="#"]').click(function (event) {

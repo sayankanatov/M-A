@@ -30,6 +30,7 @@ class PageController extends Controller
         $this->takeCount = Config::get('constants.pagination.optimize');
     }
     
+    
     public function index(Request $request)
     {
         $cities = City::all();
@@ -51,6 +52,7 @@ class PageController extends Controller
         );
     }
 
+
     public function city($city)
     {
         $city = City::where('alias',$city)->first();
@@ -71,124 +73,7 @@ class PageController extends Controller
             return redirect(route('main'));
         }
     }
-
-    public function lawyers($city, Request $request)
-    {
-        $city = City::where('alias',$city)->first();
-        $free = Input::get('free');
-        session_start();
-        if(!isset($_SESSION['status'])){
-            $_SESSION['status'] = 1;
-        }else{
-            $_SESSION['status'] = $_SESSION['status'] + 1;
-        }
-        $skip = $_SESSION['status'];
-        $count = $this->takeCount;
-        
-        if($count < $skip){
-            $int = $count;
-        }else{
-            $int = $count - $skip;
-        }
-
-        $seo_data = SeoPage::where('title','lawyers')->first();
-
-        $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_title = $seo_data->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_desc = $seo_data->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_keywords = $seo_data->seo_keywords;
-
-        if($city){
-            if(isset($free)){
-                switch ($free) {
-                    case '1':
-                        # code...
-                        $lawyers = Lawyer::skip($skip)
-                            ->take($int)->where('city_id',$city->id)
-                            ->where('is_free','1')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-
-                        $end = Lawyer::take($skip)
-                            ->where('city_id',$city->id)
-                            ->where('is_free','1')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-                        $lawyers = $lawyers->merge($end);
-                        break;
-                    default:
-                        # code...
-                        $lawyers = Lawyer::skip($skip)
-                            ->take($int)->where('city_id',$city->id)
-                            ->where('is_free','0')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-
-                        $end = Lawyer::take($skip)
-                            ->where('city_id',$city->id)
-                            ->where('is_free','0')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-                        $lawyers = $lawyers->merge($end);
-                        break;
-                }
-
-            }else{
-                
-                $lawyers = Lawyer::skip($skip)
-                    ->take($int)
-                    ->where('city_id',$city->id)
-                    ->where('is_deleted',0)
-                    ->orderBy('created_at','desc')
-                    ->get();
-                $end = Lawyer::take($skip)
-                    ->where('city_id',$city->id)
-                    ->where('is_deleted',0)
-                    ->orderBy('created_at','desc')
-                    ->get();
-                $lawyers = $lawyers->merge($end);
-            }
-
-            return view($this->theme.'.pages.lawyers.index',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
-        }else{
-            return redirect(route('main'));
-        }   
-        
-    }
-
-    public function lawyer($city, $alias)
-    {
-        $city = City::where('alias',$city)->first();
-        
-        if($city){
-            $lawyer = Lawyer::where('alias',$alias)->first();
-            $lawyer->hits += 1;
-            $lawyer->save();
-
-            $h_one = $lawyer->h_one ?? '';
-            $seo_title = $lawyer->seo_title ?? '';
-            $seo_desc = $lawyer->seo_desc ?? '';
-            $seo_keywords = $lawyer->seo_keywords ?? '';
-
-            $service = $lawyer->services->first();
-
-            if($service){
-                $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->where('is_deleted',0)->inRandomOrder()->take(4)->get();
-            }
-            else{
-                $relative_lawyers = null;
-            }
-
-            return view($this->theme.'.pages.lawyers.show',compact('lawyer','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers','service'));
-        }else{
-            return redirect(route('main'));
-        }   
-        
-    }
+    
 
     public function service($city, $alias)
     {
@@ -220,114 +105,6 @@ class PageController extends Controller
         }
     }
 
-    public function companies($city)
-    {   
-        $city = City::where('alias',$city)->first();
-        $free = Input::get('free');
-        session_start();
-        if(!isset($_SESSION['status'])){
-            $_SESSION['status'] = 1;
-        }else{
-            $_SESSION['status'] = $_SESSION['status'] + 1;
-        }
-
-        $skip = $_SESSION['status'];
-        $count = $this->takeCount;
-        if($count < $skip){
-            $int = $count;
-        }else{
-            $int = $count - $skip;
-        }
-        $seo_data = SeoPage::where('title','companies')->first();
-        $h_one = $seo_data->h_one.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_title = $seo_data->seo_title.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_desc = $seo_data->seo_desc.' '.(app()->getLocale() == 'ru' ? $city->prepositional_ru : $city->prepositional_kz );
-        $seo_keywords = $seo_data->seo_keywords;
-
-        if($city){
-            if(isset($free)){
-                switch ($free) {
-                    case '1':
-                        # code...
-                        $companies = Company::skip($skip)
-                            ->take($int)->where('city_id',$city->id)
-                            ->where('is_free','1')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-
-                        $end = Company::take($skip)
-                            ->where('city_id',$city->id)
-                            ->where('is_free','1')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-                        $companies = $companies->merge($end);
-                        break;
-                    default:
-                        # code...
-                        $companies = Company::skip($skip)
-                            ->take($int)->where('city_id',$city->id)
-                            ->where('is_free','0')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-
-                        $end = Company::take($skip)
-                            ->where('city_id',$city->id)
-                            ->where('is_free','0')
-                            ->where('is_deleted',0)
-                            ->orderBy('created_at','desc')
-                            ->get();
-                        $companies = $companies->merge($end);
-                        break;
-                }
-
-            }else{
-                $companies = Company::skip($skip)
-                    ->take($int)
-                    ->where('city_id',$city->id)
-                    ->where('is_deleted',0)
-                    ->orderBy('created_at','desc')
-                    ->get();
-
-                $end = Company::take($skip)
-                        ->where('city_id',$city->id)
-                        ->where('is_deleted',0)
-                        ->orderBy('created_at','desc')
-                        ->get();
-
-                $companies = $companies->merge($end);
-            }
-
-            return view($this->theme.'.pages.companies.index',compact('city','companies','seo_title','h_one','seo_desc','seo_keywords'));
-        }else{
-            return redirect(route('main'));
-        }
-    }
-
-    public function company($city, $alias)
-    {
-        $city = City::where('alias',$city)->first();
-        
-        if($city){
-            $company = Company::where('alias',$alias)->first();
-            $company->hits += 1;
-            $company->save();
-
-            $h_one = $company->h_one;
-            $seo_title = $company->seo_title;
-            $seo_desc = $company->seo_desc;
-            $seo_keywords = $company->seo_keywords;
-
-            $relative_lawyers = Company::select('price','name','logo','alias')->where('city_id',$city->id)->where('is_deleted',0)->inRandomOrder()->take(4)->get();
-
-            return view($this->theme.'.pages.companies.show',compact('company','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers'));
-        }else{
-            return redirect(route('main'));
-        }   
-        
-    }
 
     public function search(Request $request)
     {
@@ -357,12 +134,14 @@ class PageController extends Controller
         return view($this->theme.'.pages.search',compact('lawyers','companies','services','search','city','seo_title','h_one','seo_desc','seo_keywords','result'));
     }
 
+
     public function sendMail(Request $request){
 
         User::sendMail(10);
 
         return redirect(route('lawyers',['city' => 'almaty']));
     }
+
 
     public function addFeedback(Request $request){
 
@@ -412,6 +191,7 @@ class PageController extends Controller
         return redirect()->back();
     }
 
+
     public function blockUser($id,Request $request)
     {
         $lawyer = Lawyer::where('id',$id)->first();
@@ -432,21 +212,6 @@ class PageController extends Controller
     {
         $lawyer_id = 37;
         $commonStarts = 0;
-    }
-
-    public function news()
-    {
-        $news = News::orderBy('created_at','desc')->paginate(10);
-
-        return view($this->theme.'.pages.news.index',compact('news'));
-    }
-
-    public function showNews($alias)
-    {
-        $news = News::where('alias',$alias)->firstOrFail();
-
-        return view( $this->theme.'.pages.news.show',compact('news')
-        );
     }
 
 }
