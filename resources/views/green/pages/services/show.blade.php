@@ -61,17 +61,51 @@ use Illuminate\Support\Facades\Input;
 @if($lawyers)
 <!-- Карточки юристов -->
 <section class=" container low_2">
-
-	@include('green.includes.lawyers.desktop')
+	@csrf
+	<div id="post_data"></div>
+	{{-- @include('green.includes.lawyers.desktop')
 
 	<div class="lawyer_btn">
 		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
 		<button id="loadMore">Показать больше</button>
-	</div>
+	</div> --}}
 </section>
 
 </div>
 
 @endif
+
+<script>
+	$(document).ready(function(){
+	 
+	 	var _token = $('@csrf').val();
+	 	var city_id = {{$city->id}};
+
+	 	load_data('', _token,city_id);
+
+	 	function load_data(id='', _token,city_id){
+			$.ajax({
+			   	url:"{{ route('lawyers.loadmore') }}",
+			   	method:"POST",
+			   	data:{
+			   		id:id,
+			   		_token:_token,
+			   		city_id:city_id
+			   	},
+			   	success:function(data){
+			    	$('#loadMore').remove();
+			    	$('#post_data').append(data);
+			   	}
+			})
+		}
+
+		$(document).on('click', '#loadMore', function(){
+		  	var id = $(this).data('id');
+			$('#loadMore').html('<b>Loading...</b>');
+		  	load_data(id, _token,city_id);
+		});
+
+	});
+</script>
 
 @endsection

@@ -51,7 +51,8 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
 
     //Юристы по специализацией
     Route::get('/{city}/specializaciya/{alias}', 'PageController@service')->name('service');
-
+    //Load more lawyers by service
+    Route::post('/service/load_more', 'PageController@loadMore')->name('service.loadmore');
     //Компании
     Route::get('/{city}/yuridicheskie-kompanii', 'CompanyController@index')->name('companies');
     Route::get('/{city}/yuridicheskaya-kompaniya/{alias}', 'CompanyController@show')->name('company');

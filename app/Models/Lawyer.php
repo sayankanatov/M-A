@@ -72,7 +72,7 @@ class Lawyer extends Model
     |--------------------------------------------------------------------------
     */
 
-    public static function outputByCity($city_id,$id = false)
+    public static function outputByCity($city_id,$id = false,$service_id = false)
     {
         $city = City::find($city_id);
         $free = Input::get('free');
@@ -92,41 +92,91 @@ class Lawyer extends Model
         }
 
         if($id){
-            $items = self::skip($skip)
-                ->take($take)->where('city_id',$city_id)
-                ->where('is_deleted',0)
-                ->where('id','<',$id)
-                ->orderBy('created_at','desc')
-                ->get();
 
-            if(count($items) < 10){
-                $howMany = 10 - count($items);
-                $end = self::take($howMany)->where('city_id',$city_id)
+            if($service_id){
+                $items = self::skip($skip)
+                    ->take($take)->where('city_id',$city_id)
+                    ->where('is_deleted',0)
+                    ->where('id','<',$id)
+                    ->whereHas('services', function($query) use ($service_id){
+                        $query->where('id',$service_id);
+                    })->orderBy('created_at','desc')
+                    ->get();
+
+                if(count($items) < 10){
+                    $howMany = 10 - count($items);
+                    $end = self::take($howMany)->where('city_id',$city_id)
+                        ->where('is_deleted',0)
+                        ->where('id','<',$id)
+                        ->whereHas('services', function($query) use ($service_id){
+                            $query->where('id',$service_id);
+                        })->orderBy('created_at','desc')
+                        ->get();
+
+                    $items = $items->merge($end);
+                    $skip = $howMany;
+                }
+            }else{
+                $items = self::skip($skip)
+                    ->take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
                     ->where('id','<',$id)
                     ->orderBy('created_at','desc')
                     ->get();
 
-                $items = $items->merge($end);
+                if(count($items) < 10){
+                    $howMany = 10 - count($items);
+                    $end = self::take($howMany)->where('city_id',$city_id)
+                        ->where('is_deleted',0)
+                        ->where('id','<',$id)
+                        ->orderBy('created_at','desc')
+                        ->get();
 
-                $skip = $howMany;
+                    $items = $items->merge($end);
+
+                    $skip = $howMany;
+                }    
             }
+            
         }else{
-            $items = self::skip($skip)
-                ->take($take)->where('city_id',$city_id)
-                ->where('is_deleted',0)
-                ->orderBy('created_at','desc')
-                ->get();
+            if($service_id){
+                $items = self::skip($skip)
+                    ->take($take)->where('city_id',$city_id)
+                    ->where('is_deleted',0)
+                    ->whereHas('services', function($query) use ($service_id){
+                        $query->where('id',$service_id);
+                    })->orderBy('created_at','desc')
+                    ->get();
 
-            if(count($items) < 10){
-                $howMany = 10 - count($items);
-                $end = self::take($howMany)->where('city_id',$city_id)
+                if(count($items) < 10){
+                    $howMany = 10 - count($items);
+                    $end = self::take($howMany)->where('city_id',$city_id)
+                        ->where('is_deleted',0)
+                        ->whereHas('services', function($query) use ($service_id){
+                            $query->where('id',$service_id);
+                        })->orderBy('created_at','desc')
+                        ->get();
+
+                    $items = $items->merge($end);
+                    $skip = $howMany;
+                }
+            }else{
+                $items = self::skip($skip)
+                    ->take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
                     ->orderBy('created_at','desc')
                     ->get();
 
-                $items = $items->merge($end);
-                $skip = $howMany;
+                if(count($items) < 10){
+                    $howMany = 10 - count($items);
+                    $end = self::take($howMany)->where('city_id',$city_id)
+                        ->where('is_deleted',0)
+                        ->orderBy('created_at','desc')
+                        ->get();
+
+                    $items = $items->merge($end);
+                    $skip = $howMany;
+                }
             }
         }
 
@@ -221,40 +271,12 @@ class Lawyer extends Model
                 $query->where('id',$service_id);
             })->count();
         }else{
-            session_start();
 
-            if(!isset($_SESSION['status'])){
-                $_SESSION['status'] = 1;
-            }else{
-                $_SESSION['status'] = $_SESSION['status'] + 1;
-            }
-
-            $skip = $_SESSION['status'];
-
-            $count = Config::get('constants.pagination.optimize');
-            
-            if($count < $skip){
-                $int = $count;
-            }else{
-                $int = $count - $skip;
-            }
-
-            $query = self::skip($skip)
-                    ->take($int)
-                    ->where('city_id',$city_id)
+            $query = self::where('city_id',$city_id)
                     ->where('is_deleted',0)
                     ->whereHas('services', function($query) use ($service_id){
                         $query->where('id',$service_id);
                     })->orderBy('created_at','desc')->get();
-
-            $end = self::take($skip)
-                    ->where('city_id',$city_id)
-                    ->where('is_deleted',0)
-                    ->whereHas('services', function($query) use ($service_id){
-                        $query->where('id',$service_id);
-                    })->orderBy('created_at','desc')
-                    ->get();
-            $query = $query->merge($end);
 
             return $query;
         }

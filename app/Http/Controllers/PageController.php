@@ -106,6 +106,20 @@ class PageController extends Controller
     }
 
 
+    function loadMore(Request $request)
+    {
+        if($request->ajax()){
+            if($request->id > 0){
+                $output = Lawyer::outputByCity($request->city_id,$request->id,$service_id);
+            }else{
+                $output = Lawyer::outputByCity($request->city_id,$service_id);
+            }
+
+            echo $output;
+        }
+    }
+
+
     public function search(Request $request)
     {
         $result = true;
