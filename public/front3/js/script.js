@@ -6,20 +6,6 @@ jQuery(document).ready(function ($) {
         (c) 2013 @ElmahdiMahmoud
     */
 
-    $(function () {
-        $(".lawyer").slice(0, 5).show();
-        $("#loadMore").on('click', function (e) {
-            e.preventDefault();
-            $(".lawyer:hidden").slice(0, 5).slideDown();
-            if ($(".lawyer:hidden").length == 0) {
-                $("#load").fadeOut('slow');
-            }
-            // $('html,body').animate({
-            // 	// scrollTop: $(this).offset().top
-            // }, 15000);
-        });
-    });
-
     // $('a[href=#top]').click(function () {
     // 	$('body,html').animate({
     // 		scrollTop: 0

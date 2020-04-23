@@ -242,7 +242,7 @@ class Lawyer extends Model
                 $output .= "<div class='law_contacts'><div class='ph_plus_wa'><div class='phone'>";
                 $output .= "<a href='tel:".$lawyer->telephone."' class='phone_link'>";
                 $output .= "<span class='hide-tail'>".$lawyer->telephone."</span></a>";
-                $output .= "<a href='#' class='click-tel'>Показать</a></div>";
+                $output .= "<a href='#' class='click-tel' onclick='telToggler()'>Показать</a></div>";
                 $output .= "<div class='WhatsApp_block'>";
                 $output .= "<a href='#' class='wa_icon'><img class='wa_icon' src='".asset('front3/image/Lawyers/icon/icon_WhatsApp.svg')."' alt='Wa_icon'></a>";
                 $output .= "<a rel='nofollow' target='_blank'
@@ -259,6 +259,29 @@ class Lawyer extends Model
             $output .= "<img src='".asset('front3/image/2. Main/Arrows.svg')."' alt='Стрелки'>";
             $output .= "<button type='button' name='load_more_button' id='loadMore' data-id=".$last_id.">Показать больше</button>";
             $output .= '</div>';
+
+            $output .= '<script>';
+            $output .= "$.fn.textToggle = function (d, b, e) {
+                    return this.each(function (f, a) {
+                        a = $(a);
+                        var c = $(d).eq(f),
+                            g = [b, c.text()],
+                            h = [a.text(), e];
+                        c.text(b).show();
+                        $(a).click(function (b) {
+                            b.preventDefault();
+                            c.text(g.reverse()[0]);
+                            a.text(h.reverse()[0])
+                        })
+                    })
+                };
+                $(function () {
+                    $('.click-tel').textToggle('.hide-tail', '8 7XX XX XX', 'Скрыть')
+                });
+                $(function () {
+                    $('.click-telMobile').textToggle('.hide-tailMobile', '8 7 ', 'Скрыть')
+                });";
+            $output .= '</script>';
         }
 
         return $output;
