@@ -29,9 +29,9 @@ return [
 	'city' => 1,
 
 	'pagination' => [
-		'lawyers' => 10,
-		'services' => 10,
-		'companies' => 10,
+		'lawyers' => 5,
+		'services' => 5,
+		'companies' => 5,
 		'optimize' => 50
 	],
 
