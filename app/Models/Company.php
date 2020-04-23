@@ -92,8 +92,8 @@ class Company extends Model
                 ->orderBy('created_at','desc')
                 ->get();
 
-            if(count($items) < 10){
-                $howMany = 10 - count($items);
+            if(count($items) < Config::get('constants.pagination.companies')){
+                $howMany = Config::get('constants.pagination.companies') - count($items);
                 $end = self::take($howMany)->where('city_id',$city_id)
                     ->where('is_deleted',0)
                     ->where('id','<',$id)
@@ -111,8 +111,8 @@ class Company extends Model
                 ->orderBy('created_at','desc')
                 ->get();
 
-            if(count($items) < 10){
-                $howMany = 10 - count($items);
+            if(count($items) < Config::get('constants.pagination.companies')){
+                $howMany = Config::get('constants.pagination.companies') - count($items);
                 $end = self::take($howMany)->where('city_id',$city_id)
                     ->where('is_deleted',0)
                     ->orderBy('created_at','desc')
