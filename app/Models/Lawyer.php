@@ -194,7 +194,7 @@ class Lawyer extends Model
                 $output .= "<div class='inner_mobile'>";
                 $output .= "<div class='law_revs'>";
                 $output .= "<img src='".asset('front3/image/Lawyers/icon/Vector.svg')."' alt='Иконка отзывы' class='law_revs-icon'>";
-                $output .= "<a href='#'><span class='law_revs-text'>".$lawyer->feedbacks->count()." отзывов</span></a>";
+                $output .= "<a href='".route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])."'><span class='law_revs-text'>".$lawyer->feedbacks->count()." отзывов</span></a>";
                 $output .= "</div>";
                 $output .= "<div class='rev_stars'>";
                 $output .= "<img class='r_star' src='".asset('front3/image/Lawyers/icon/Icon_star.svg')."' alt='Звезда'>";

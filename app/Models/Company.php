@@ -137,7 +137,7 @@ class Company extends Model
                 $output .= "<div class='inner_mobile'>";
                 $output .= "<div class='law_revs'>";
                 $output .= "<img src='".asset('front3/image/Lawyers/icon/Vector.svg')."' alt='Иконка отзывы' class='law_revs-icon'>";
-                $output .= "<a href='#'><span class='law_revs-text'>".$company->feedbacks->count()." отзывов</span></a>";
+                $output .= "<a href='".route('company',['id'=>$company->alias,'city' => $city->alias])."'><span class='law_revs-text'>".$company->feedbacks->count()." отзывов</span></a>";
                 $output .= "</div>";
                 $output .= "<div class='rev_stars'>";
                 $output .= "<img class='r_star' src='".asset('front3/image/Lawyers/icon/Icon_star.svg')."' alt='Звезда'>";
@@ -147,7 +147,7 @@ class Company extends Model
                 $output .= "<img class='r_star' src='".asset('front3/image/Lawyers/icon/Icon_star.svg')."' alt='Звезда'>";
                 $output .= "<span>".$company->rating ?? '0.0'."</span>";
                 $output .= "</div>";
-                $output .= "<a href='".route('lawyer',['id'=>$company->alias,'city' => $city->alias])."' class='law_name-mobile-link'>";
+                $output .= "<a href='".route('company',['id'=>$company->alias,'city' => $city->alias])."' class='law_name-mobile-link'>";
                 $output .= "<div class='law_name'>".$company->name."</div>";
                 $output .= "</a></div></div>";
                 $output .= "<div class='law_info'>";

@@ -26,15 +26,13 @@
                                     alt="Фото" class="photo">
                             </a>
                             <div class="inner_mobile">
-                            @auth
-                                <!--КНОПКА ОСТАВИТЬ ОТЗЫВ START-->
-                                    <div class="profile_btn">
-                                        <a href="#win{{$company->id}}">
-                                            <button>Оставить отзыв</button>
-                                        </a>
-                                    </div>
-                                    <!--КНОПКА ОСТАВИТЬ ОТЗЫВ END-->
-                                @endauth
+                            <!--КНОПКА ОСТАВИТЬ ОТЗЫВ START-->
+                                <div class="profile_btn">
+                                    <a href="#win{{$company->id}}">
+                                        <button>Оставить отзыв</button>
+                                    </a>
+                                </div>
+                            <!--КНОПКА ОСТАВИТЬ ОТЗЫВ END-->
                                 <div class="law_revs">
                                     <img src="{{asset('front3/image/Lawyers/icon/Vector.svg')}}" alt="Иконка отзывы"
                                          class="law_revs-icon">
@@ -273,10 +271,8 @@
         </div>
     @endif
 
-    @auth
-        <!--FEEDBACK MODAL WINDOW START-->
-        @include('green.includes.feedback')
-        <!--FEEDBACK MODAL WINDOW END-->
-    @endauth
+    <!--FEEDBACK MODAL WINDOW START-->
+    @include('green.includes.feedback')
+    <!--FEEDBACK MODAL WINDOW END-->
 
 @endsection

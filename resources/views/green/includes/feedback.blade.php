@@ -39,7 +39,12 @@
 
     					    <textarea class="form-control" name="text"></textarea>
     					</div>
+
+                        @auth
             			<button type="submit" class="butot">Отправить отзыв</button>
+                        @else
+                        <button type="button" id="show-modal2" class="butot">Авторизуйтесь, чтобы оставить отзыв</button>
+                        @endauth
                     </div>
                 </div>
             </div>
