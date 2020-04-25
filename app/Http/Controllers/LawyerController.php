@@ -51,8 +51,6 @@ class LawyerController extends Controller
                 ->orderBy('created_at','desc')
                 ->get();
 
-            dd($lawyers);
-
             return view($this->theme.'.pages.lawyers.index',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{
             return redirect(route('main'));
