@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Input;
 		<div class="head">
 			<div class="row">
 				<div class="col-sm">
-					<a href="{{route('main')}}">Главная</a>
+					<a href="{{route('city',['city'=>$city->alias])}}">Главная</a>
 				<span class="head_img"><img src="{{asset('front3/image/2. Main/Arrows1.svg')}}" alt="Стрелка"></span>
 				<span class="head_special">Поиск</span></div>
 			</div>

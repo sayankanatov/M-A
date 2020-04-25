@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Input;
 		<div class="head">
 			<div class="row">
 				<div class="col-sm">
-					<a href="{{route('main')}}">Главная</a>
+					<a href="{{route('city',['city'=>$city->alias])}}">Главная</a>
 					<span class="head_img"><img src="{{asset('front3/image/2. Main/Arrows1.svg')}}" alt="Стрелка"></span>
 					<span class="head_special">Компании</span>
 				</div>
@@ -58,7 +58,7 @@ use Illuminate\Support\Facades\Input;
 			</div>
 		</div>
 </div>
-@if($companies)
+@if($companies->count() > Config::get('constants.pagination.companies'))
 <div class="container firms">
 	@csrf
 	<div id="post_data"></div>
@@ -68,6 +68,10 @@ use Illuminate\Support\Facades\Input;
 		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
 		<button id="loadMore">Показать больше</button>
 	</div> --}}
+</div>
+@else
+<div class="container firms">
+	@include('green.includes.companies.desktop')
 </div>
 @endif
 

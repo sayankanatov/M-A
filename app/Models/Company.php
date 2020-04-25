@@ -132,7 +132,7 @@ class Company extends Model
                 $output .= "<div class='law company'>";
                 $output .= "<div class='law_main'>";
                 $output .= "<a href='".route('company',['id'=>$company->alias,'city' => $city->alias])."' class='law_photo-link'>";
-                $output .= "<img src='".($company->image ? '/'.$company->image : asset('front3/image/4. Compani/0.svg'))."' alt='Фото' class='photo'>";
+                $output .= "<img src='".($company->logo ? '/'.$company->logo : asset('front3/image/4. Compani/0.svg'))."' alt='Фото' class='photo'>";
                 $output .= "</a>";
                 $output .= "<div class='inner_mobile'>";
                 $output .= "<div class='law_revs'>";

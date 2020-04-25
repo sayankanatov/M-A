@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Input;
 		<div class="head">
 			<div class="row">
 				<div class="col-sm">
-					<a href="{{route('main')}}">Главная</a>
+					<a href="{{route('city',['city'=>$city->alias])}}">Главная</a>
 				<span class="head_img"><img src="{{asset('front3/image/2. Main/Arrows1.svg')}}" alt="Стрелка"></span>
 				<span class="head_special">Специалисты</span></div>
 			</div>
@@ -55,7 +55,7 @@ use Illuminate\Support\Facades\Input;
 	</div>
 </div>
 </div>
-@if($lawyers)
+@if($lawyers->count() > Config::get('constants.pagination.lawyers'))
 <!-- Карточки юристов -->
 <section class=" container low_2">
 	@csrf
@@ -66,6 +66,11 @@ use Illuminate\Support\Facades\Input;
 		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
 		<button id="loadMore">Показать больше</button>
 	</div> --}}
+</section>
+
+@else
+<section class=" container low_2">
+	@include('green.includes.lawyers.desktop')
 </section>
 
 </div>

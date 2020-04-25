@@ -61,7 +61,7 @@
 		<div class="container">
 			<!-- Mobile -->
 			<div class="boo-nav-collapsed">
-				<a href="{{route('main')}}">
+				<a href="{{route('city',['city'=>$city->alias])}}">
 					<img class="mobile-logo" src="{{asset('front3/image/Main/image 1.svg')}}" alt="Logo" />
 				</a>
 				<button class="boo-nav-toggle">
@@ -78,7 +78,7 @@
 			</div>
 			<!-- Brand -->
 			<div class="boo-nav-brand">
-				<a href="{{route('main')}}">
+				<a href="{{route('city',['city'=>$city->alias])}}">
 					<img src="{{asset('front3/image/Main/image 1.svg')}}" alt="Logo" />
 				</a>
 			</div>

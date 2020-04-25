@@ -127,11 +127,12 @@ class PageController extends Controller
         $search = $request->get('search');
         $city = City::where('alias',$request->get('city'))->first();
 
-        $lawyers = Lawyer::where('last_name','like','%'.$search.'%')
+        $lawyers = Lawyer::where('is_deleted',0)
+                    ->where('last_name','like','%'.$search.'%')
                     ->orWhere('first_name','like','%'.$search.'%')
                     ->orWhere('patronymic','like','%'.$search.'%')
                     ->get();
-        $companies = Company::where('name','like','%'.$search.'%')->where('city_id',$city->id)->get();
+        $companies = Company::where('name','like','%'.$search.'%')->where('city_id',$city->id)->where('is_deleted',0)->get();
         $services = Service::where($lang == 'ru' ? 'name_ru' : 'name_kz','like','%'.$search.'%')->get();
 
         if(count($lawyers) == 0){
@@ -226,6 +227,10 @@ class PageController extends Controller
     {
         $lawyer_id = 37;
         $commonStarts = 0;
+
+        // $lawyers = Lawyer::getByServiceInCity(65,2);
+        // $output = Lawyer::outputByCity(2);
+        // dd($output);
     }
 
 }
