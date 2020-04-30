@@ -75,14 +75,13 @@ class Company extends Model
         }else{
             $_SESSION['status'] = $_SESSION['status'] + 1;
         }
-        $skip = $_SESSION['status'];
         $take = Config::get('constants.pagination.companies');
+        $count = self::where('city_id',$city_id)->where('is_deleted',0)->count();
 
-        $count = self::where('city_id',$city_id)->count();
-
-        if($count < $skip){
-            $skip = 1;
+        if($count < $_SESSION['status']){
+            $_SESSION['status'] = 1;
         }
+        $skip = $_SESSION['status'];
 
         if($id){
             $items = self::skip($skip)

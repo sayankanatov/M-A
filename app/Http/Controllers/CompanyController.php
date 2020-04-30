@@ -47,7 +47,7 @@ class CompanyController extends Controller
             $companies = Company::where('city_id',$city->id)
                 ->where('is_deleted',0)
                 ->orderBy('created_at','desc')
-                ->get();
+                ->count();
 
             return view($this->theme.'.pages.companies.index',compact('city','companies','seo_title','h_one','seo_desc','seo_keywords'));
         }else{

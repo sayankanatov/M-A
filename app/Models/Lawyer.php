@@ -82,14 +82,15 @@ class Lawyer extends Model
         }else{
             $_SESSION['status'] = $_SESSION['status'] + 1;
         }
-        $skip = $_SESSION['status'];
         $take = Config::get('constants.pagination.lawyers');
-
         $count = self::where('city_id',$city_id)->count();
 
-        if($count < $skip){
-            $skip = 1;
+        if($count < $_SESSION['status']){
+            $_SESSION['status'] = 1;
         }
+        $skip = $_SESSION['status'];
+
+        // dd($skip);
 
         if($id){
 

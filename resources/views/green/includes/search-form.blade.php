@@ -8,6 +8,7 @@
 					<input type="text" placeholder="Юрист, фирма или услуга" name="search" required>
 					<button type="submit">Найти</button>
 				</form>
+				<a href="{{ URL::previous() }}" class="btn back-button">Назад</a>
 			</div>
 		</div>
 	</div>

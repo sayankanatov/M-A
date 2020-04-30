@@ -49,7 +49,7 @@ class LawyerController extends Controller
             $lawyers = Lawyer::where('city_id',$city->id)
                 ->where('is_deleted',0)
                 ->orderBy('created_at','desc')
-                ->get();
+                ->count();
 
             return view($this->theme.'.pages.lawyers.index',compact('lawyers','city','seo_title','h_one','seo_desc','seo_keywords'));
         }else{

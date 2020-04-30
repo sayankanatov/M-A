@@ -58,7 +58,7 @@ use Illuminate\Support\Facades\Input;
 			</div>
 		</div>
 </div>
-@if($companies->count() > Config::get('constants.pagination.companies'))
+@if($companies > Config::get('constants.pagination.companies'))
 <div class="container firms">
 	@csrf
 	<div id="post_data"></div>

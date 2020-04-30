@@ -55,7 +55,7 @@ use Illuminate\Support\Facades\Input;
 	</div>
 </div>
 </div>
-@if($lawyers->count() > Config::get('constants.pagination.lawyers'))
+@if($lawyers > Config::get('constants.pagination.lawyers'))
 <!-- Карточки юристов -->
 <section class=" container low_2">
 	@csrf
