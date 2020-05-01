@@ -1,4 +1,4 @@
-@foreach($companies as $company)
+@foreach(App\Models\Company::where('city_id',$city->id)->where('is_deleted',0)->get() as $company)
     <div class="law company">
         <div class="law_main">
             <a href="{{route('company',['id'=>$company->alias,'city' => $city->alias])}}" class="law_photo-link">
