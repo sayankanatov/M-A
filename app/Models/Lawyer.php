@@ -76,19 +76,20 @@ class Lawyer extends Model
     {
         $city = City::find($city_id);
         $free = Input::get('free');
+        $count = self::where('city_id',$city_id)->where('is_deleted',0)->count();
         session_start();
         if(!isset($_SESSION['status'])){
-            $_SESSION['status'] = 1;
+            $_SESSION['status'] = 0;
         }else{
             $_SESSION['status'] = $_SESSION['status'] + 1;
+
+            if($count < $_SESSION['status']){
+                $_SESSION['status'] = 0;
+            }
         }
         $take = Config::get('constants.pagination.lawyers');
-        $count = self::where('city_id',$city_id)->count();
-
-        if($count < $_SESSION['status']){
-            $_SESSION['status'] = 1;
-        }
         $skip = $_SESSION['status'];
+        // dd($skip);
 
         if($id){
 
@@ -99,18 +100,24 @@ class Lawyer extends Model
                     ->whereHas('services', function($query) use ($service_id){
                         $query->where('id',$service_id);
                     })->get();
-            }else{
-                $items = self::take($take)->where('city_id',$city_id)
-                    ->where('is_deleted',0)
-                    ->where('id','>',$id)
-                    ->get();
 
                 if(count($items) < Config::get('constants.pagination.lawyers')){
                     $end = self::take($skip)->where('city_id',$city_id)
                         ->where('is_deleted',0)
                         ->where('id','>',$id)
                         ->get();
-
+                    $items = $items->merge($end);
+                }
+            }else{
+                $items = self::take($take)->where('city_id',$city_id)
+                    ->where('is_deleted',0)
+                    ->where('id','>',$id)
+                    ->get();
+                if(count($items) < Config::get('constants.pagination.lawyers')){
+                    $end = self::take($skip)->where('city_id',$city_id)
+                        ->where('is_deleted',0)
+                        ->where('id','>',$id)
+                        ->get();
                     $items = $items->merge($end);
                 }    
             }
@@ -123,6 +130,15 @@ class Lawyer extends Model
                     ->whereHas('services', function($query) use ($service_id){
                         $query->where('id',$service_id);
                     })->get();
+
+                if(count($items) < Config::get('constants.pagination.lawyers')){
+                    $end = self::take($skip)->where('city_id',$city_id)
+                        ->where('is_deleted',0)
+                        ->where('id','>',$id)
+                        ->get();
+
+                    $items = $items->merge($end);
+                }
             }else{
                 $items = self::skip($skip)
                     ->take($take)->where('city_id',$city_id)

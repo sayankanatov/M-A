@@ -69,18 +69,18 @@ class Company extends Model
     {
         $city = City::find($city_id);
         $free = Input::get('free');
+        $count = self::where('city_id',$city_id)->where('is_deleted',0)->count();
         session_start();
         if(!isset($_SESSION['status'])){
-            $_SESSION['status'] = 1;
+            $_SESSION['status'] = 0;
         }else{
             $_SESSION['status'] = $_SESSION['status'] + 1;
+
+            if($count < $_SESSION['status']){
+                $_SESSION['status'] = 0;
+            }
         }
         $take = Config::get('constants.pagination.companies');
-        $count = self::where('city_id',$city_id)->where('is_deleted',0)->count();
-
-        if($count < $_SESSION['status']){
-            $_SESSION['status'] = 1;
-        }
         $skip = $_SESSION['status'];
 
         if($id){
