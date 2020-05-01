@@ -86,21 +86,16 @@ class Company extends Model
         if($id){
             $items = self::take($take)->where('city_id',$city_id)
                 ->where('is_deleted',0)
-                ->where('id','<',$id)
-                ->orderBy('created_at','desc')
+                ->where('id','>',$id)
                 ->get();
 
             if(count($items) < Config::get('constants.pagination.companies')){
-                $howMany = Config::get('constants.pagination.companies') - count($items);
-                $end = self::take($howMany)->where('city_id',$city_id)
+                $end = self::take($skip)->where('city_id',$city_id)
                     ->where('is_deleted',0)
-                    ->where('id','<',$id)
-                    ->orderBy('created_at','desc')
+                    ->where('id','>',$id)
                     ->get();
 
                 $items = $items->merge($end);
-
-                $skip = $howMany;
             }
         }else{
             $items = self::skip($skip)

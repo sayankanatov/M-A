@@ -95,29 +95,23 @@ class Lawyer extends Model
             if($service_id){
                 $items = self::take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
-                    ->where('id','<',$id)
+                    ->where('id','>',$id)
                     ->whereHas('services', function($query) use ($service_id){
                         $query->where('id',$service_id);
-                    })->orderBy('created_at','desc')
-                    ->get();
+                    })->get();
             }else{
                 $items = self::take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
-                    ->where('id','<',$id)
-                    ->orderBy('created_at','desc')
+                    ->where('id','>',$id)
                     ->get();
 
                 if(count($items) < Config::get('constants.pagination.lawyers')){
-                    $howMany = Config::get('constants.pagination.lawyers') - count($items);
-                    $end = self::take($howMany)->where('city_id',$city_id)
+                    $end = self::take($skip)->where('city_id',$city_id)
                         ->where('is_deleted',0)
-                        ->where('id','<',$id)
-                        ->orderBy('created_at','desc')
+                        ->where('id','>',$id)
                         ->get();
 
                     $items = $items->merge($end);
-
-                    $skip = $howMany;
                 }    
             }
             
@@ -128,24 +122,19 @@ class Lawyer extends Model
                     ->where('is_deleted',0)
                     ->whereHas('services', function($query) use ($service_id){
                         $query->where('id',$service_id);
-                    })->orderBy('created_at','desc')
-                    ->get();
+                    })->get();
             }else{
                 $items = self::skip($skip)
                     ->take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
-                    ->orderBy('created_at','desc')
                     ->get();
 
                 if(count($items) < Config::get('constants.pagination.lawyers')){
-                    $howMany = Config::get('constants.pagination.lawyers') - count($items);
-                    $end = self::take($howMany)->where('city_id',$city_id)
+                    $end = self::take($skip)->where('city_id',$city_id)
                         ->where('is_deleted',0)
-                        ->orderBy('created_at','desc')
                         ->get();
 
                     $items = $items->merge($end);
-                    $skip = $howMany;
                 }
             }
         }
