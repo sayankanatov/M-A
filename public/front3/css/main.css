@@ -5895,6 +5895,10 @@ h1.law_name {
         width: 100%;
     }
 
+    .main form.catalin{
+        margin-bottom: 100px;
+    }
+
     label.hidetext {
         /*Кнопка подробнее, для описания специализации*/
         height: auto;
