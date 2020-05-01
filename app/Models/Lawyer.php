@@ -90,13 +90,10 @@ class Lawyer extends Model
         }
         $skip = $_SESSION['status'];
 
-        // dd($skip);
-
         if($id){
 
             if($service_id){
-                $items = self::skip($skip)
-                    ->take($take)->where('city_id',$city_id)
+                $items = self::take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
                     ->where('id','<',$id)
                     ->whereHas('services', function($query) use ($service_id){
@@ -104,8 +101,7 @@ class Lawyer extends Model
                     })->orderBy('created_at','desc')
                     ->get();
             }else{
-                $items = self::skip($skip)
-                    ->take($take)->where('city_id',$city_id)
+                $items = self::take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
                     ->where('id','<',$id)
                     ->orderBy('created_at','desc')

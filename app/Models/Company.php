@@ -84,8 +84,7 @@ class Company extends Model
         $skip = $_SESSION['status'];
 
         if($id){
-            $items = self::skip($skip)
-                ->take($take)->where('city_id',$city_id)
+            $items = self::take($take)->where('city_id',$city_id)
                 ->where('is_deleted',0)
                 ->where('id','<',$id)
                 ->orderBy('created_at','desc')

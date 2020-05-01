@@ -62,16 +62,14 @@ use Illuminate\Support\Facades\Input;
 <div class="container firms">
 	@csrf
 	<div id="post_data"></div>
-	{{-- @include('green.includes.companies.desktop')
-
-	<div class="lawyer_btn">
-		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
-		<button id="loadMore">Показать больше</button>
-	</div> --}}
 </div>
 @else
 <div class="container firms">
 	@include('green.includes.companies.desktop')
+	{{-- <div class="lawyer_btn">
+		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
+		<button id="loadMore">Показать больше</button>
+	</div> --}}
 </div>
 @endif
 

@@ -60,17 +60,15 @@ use Illuminate\Support\Facades\Input;
 <section class=" container low_2">
 	@csrf
 	<div id="post_data"></div>
-	{{-- @include('green.includes.lawyers.desktop') --}}
-
-	{{-- <div class="lawyer_btn">
-		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
-		<button id="loadMore">Показать больше</button>
-	</div> --}}
 </section>
 
 @else
 <section class=" container low_2">
 	@include('green.includes.lawyers.desktop')
+	{{-- <div class="lawyer_btn">
+		<img src="{{asset('front3/image/2. Main/Arrows.svg')}}" alt="Стрелки">
+		<button id="loadMore">Показать больше</button>
+	</div> --}}
 </section>
 
 </div>
@@ -97,6 +95,7 @@ use Illuminate\Support\Facades\Input;
 			   	success:function(data){
 			    	$('#loadMore').remove();
 			    	$('#post_data').append(data);
+			    	// console.log(id)
 			   	}
 			})
 		}
