@@ -227,10 +227,6 @@ class PageController extends Controller
     {
         $lawyer_id = 37;
         $commonStarts = 0;
-
-        // $lawyers = Lawyer::getByServiceInCity(65,2);
-        // $output = Lawyer::outputByCity(2);
-        // dd($output);
     }
 
 }

@@ -1,4 +1,8 @@
+@if(isset($result))
+@foreach($lawyers as $lawyer)
+@else
 @foreach(App\Models\Lawyer::where('city_id',$city->id)->where('is_deleted',0)->get() as $lawyer)
+@endif
     <div class="law">
         <div class="law_main">
             <a href="{{route('lawyer',['id'=>$lawyer->alias,'city' => $city->alias])}}" class="law_photo-link">
