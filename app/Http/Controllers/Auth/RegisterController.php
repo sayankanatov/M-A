@@ -129,7 +129,7 @@ class RegisterController extends Controller
             $user->save();
 
             $user_id = $user->id;
-            User::sendMail($user_id);
+            // User::sendMail($user_id);
             return $user;
         }
         elseif( isset($data['check2']) && $data['check2'] == 'on' ){
@@ -159,7 +159,7 @@ class RegisterController extends Controller
             $lawyer->user_id = $user_id;
             $lawyer->save();
 
-            User::sendMail($user_id);
+            // User::sendMail($user_id);
             return $user;
         }
         elseif( isset($data['check3']) && $data['check3'] == 'on'){
@@ -187,7 +187,7 @@ class RegisterController extends Controller
             $company->user_id = $user_id;
             $company->save();
 
-            User::sendMail($user_id);
+            // User::sendMail($user_id);
             return $user;
         }
     }
