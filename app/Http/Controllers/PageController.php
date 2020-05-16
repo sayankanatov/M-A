@@ -149,15 +149,6 @@ class PageController extends Controller
         return view($this->theme.'.pages.search',compact('lawyers','companies','services','search','city','seo_title','h_one','seo_desc','seo_keywords','result'));
     }
 
-
-    public function sendMail(Request $request){
-
-        User::sendMail(10);
-
-        return redirect(route('lawyers',['city' => 'almaty']));
-    }
-
-
     public function addFeedback(Request $request){
 
         $commonStarts = 0;
@@ -225,8 +216,7 @@ class PageController extends Controller
 
     public function test(Request $request)
     {
-        $lawyer_id = 37;
-        $commonStarts = 0;
+        dd('Good');
     }
 
 }

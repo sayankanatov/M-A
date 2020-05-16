@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Register;
 
 class User extends Authenticatable
 {
@@ -80,19 +82,10 @@ class User extends Authenticatable
 
     public static function sendMail($user_id)
     {
-        $user ="info@yuristy.kz";
-        $subject = 'Зарегистрирован новый пользователь';
-        $message = 'Зарегистрирован новый пользователь '.$user->email;
-
-        $headers  = "From: yuristy.kz < info@yuristy.kz >\n";
-        $headers .= "Cc: yuristy.kz < info@yuristy.kz >\n"; 
-        $headers .= "X-Sender: yuristy.kz < info@yuristy.kz >\n";
-        $headers .= 'X-Mailer: PHP/' . phpversion();
-        $headers .= "X-Priority: 1\n"; // Urgent message!
-        $headers .= "Return-Path: info@yuristy.kz\n"; // Return path for errors
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
-
-        return mail($to, $subject, $message, $headers);
+        $user = self::find($user_id);
+        $obj = new \stdClass();
+        $obj->name = $user->name;
+        $obj->email = $user->email;
+        return Mail::to(env('MAIL_USERNAME'))->send(new Register($obj));
     }
 }
