@@ -99,6 +99,10 @@ class RegisterController extends Controller
 
             $this->guard()->login($user);
 
+            $userId = User::select('id')->where('email',$email)->first();
+
+            User::sendMail($userId->id);
+
             return $this->registered($request, $user)
                             ?: redirect($this->redirectPath());
 
@@ -116,6 +120,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        try{ //Catch exception
 
         if( isset($data['check1']) && $data['check1'] == 'on' ){
 
@@ -127,9 +132,6 @@ class RegisterController extends Controller
             $user->password = Hash::make($data['password'.$role]);
             $user->role_id = $role;
             $user->save();
-
-            $user_id = $user->id;
-            // User::sendMail($user_id);
             return $user;
         }
         elseif( isset($data['check2']) && $data['check2'] == 'on' ){
@@ -141,8 +143,6 @@ class RegisterController extends Controller
             $user->password = Hash::make($data['password'.$role]);
             $user->role_id = $role;
             $user->save();
-
-            $user_id = $user->id;
 
             $lawyer = new Lawyer();
             $lawyer->last_name = $data['last_name'.$role];
@@ -158,8 +158,6 @@ class RegisterController extends Controller
             $lawyer->city_id = $data['city_id'.$role];
             $lawyer->user_id = $user_id;
             $lawyer->save();
-
-            // User::sendMail($user_id);
             return $user;
         }
         elseif( isset($data['check3']) && $data['check3'] == 'on'){
@@ -186,9 +184,12 @@ class RegisterController extends Controller
             $company->city_id = $data['city_id'.$role];
             $company->user_id = $user_id;
             $company->save();
-
-            // User::sendMail($user_id);
             return $user;
+        }
+
+        }catch(Exception $e){ //Catch exception
+            Session::flash('message', 'Не верно введены данные');
+            return redirect(route('main'));
         }
     }
 }
