@@ -71,7 +71,7 @@ class RegisterController extends Controller
                 $role = Config::get('constants.roles.individual');
             }elseif( $request->check2 == 'on' ){
                 $role = Config::get('constants.roles.entity');
-            }else{
+            }elseif( $request->check3 == 'on' ){
                 $role = Config::get('constants.roles.company');
             }
 
@@ -101,7 +101,9 @@ class RegisterController extends Controller
 
             $userId = User::select('id')->where('email',$email)->first();
 
-            User::sendMail($userId->id);
+            if($userId){
+                User::sendMail($userId->id);
+            }
 
             return $this->registered($request, $user)
                             ?: redirect($this->redirectPath());
@@ -120,8 +122,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        try{ //Catch exception
-
         if( isset($data['check1']) && $data['check1'] == 'on' ){
 
             $role = Config::get('constants.roles.individual');
@@ -143,6 +143,8 @@ class RegisterController extends Controller
             $user->password = Hash::make($data['password'.$role]);
             $user->role_id = $role;
             $user->save();
+
+            $user_id = $user->id;
 
             $lawyer = new Lawyer();
             $lawyer->last_name = $data['last_name'.$role];
@@ -185,11 +187,6 @@ class RegisterController extends Controller
             $company->user_id = $user_id;
             $company->save();
             return $user;
-        }
-
-        }catch(Exception $e){ //Catch exception
-            Session::flash('message', 'Не верно введены данные');
-            return redirect(route('main'));
         }
     }
 }
