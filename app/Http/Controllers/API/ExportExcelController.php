@@ -36,8 +36,6 @@ class ExportExcelController extends Controller
             $headers = Config::get('excel.headers');
             $exportData = (array)json_decode($request->get('data'),true);
 
-            dd($exportData);
-
             $export = new StudentExport([
                 $headers,
                 $exportData,
