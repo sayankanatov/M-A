@@ -29,4 +29,21 @@ class ExportExcelController extends Controller
             return json_encode(['status' => 'error', 'msg' => $e->getMessage()]);
         }
     }
+
+    public function postStudentTable(Request $request)
+    {
+        try{
+            $headers = Config::get('excel.headers');
+            $exportData = (array)json_decode($request->get('data'),true);
+
+            $export = new StudentExport([
+                $headers,
+                $exportData,
+            ]);
+            return Excel::download($export, 'students.xls');
+
+        }catch (\Exception $e) {
+            return json_encode(['status' => 'error', 'msg' => $e->getMessage()]);
+        }
+    }
 }

@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => '/v1', 'namespace' => 'API'], function(){
     Route::get('student_table', 'ExportExcelController@studentTable');
+    Route::post('post_student_table', 'ExportExcelController@studentTable');
 });
