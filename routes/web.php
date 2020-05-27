@@ -14,6 +14,10 @@ Route::get('/', function () {
 	return redirect('/'. App\Http\Middleware\LocaleMiddleware::$mainLanguage);
 });
 
+Route::get('/login', function () {
+    return redirect('/');
+});
+
 Route::get('/send-mail', 'PageController@sendMail')->name('send-mail');
 Route::get('/test', 'PageController@test')->name('test');
 Route::get('/activate/{user_id}', 'PageController@activateUser')->name('activate.user');
