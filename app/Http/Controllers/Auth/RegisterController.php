@@ -97,7 +97,7 @@ class RegisterController extends Controller
             // Copy the default behaviour here
             event(new Registered($user = $this->create($request->all())));
 
-            // $this->guard()->login($user);
+            $this->guard()->login($user);
             $userId = User::select('id')->where('email',$email)->first();
             if($userId){
                 User::sendMailToAdmin($userId->id);
