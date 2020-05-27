@@ -24,7 +24,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="form_btn">
+                        <button type="submit" name="send-mail" class="form_btn">
                             {{ __('Получить сгенерированный пароль') }}
                         </button>
                     </div>
