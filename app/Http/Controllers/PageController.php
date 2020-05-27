@@ -37,7 +37,7 @@ class PageController extends Controller
         $city = City::find(Config::get('constants.city'));
         $services = Service::all();
         $faq = Faq::all();
-        $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->take(4)->inRandomOrder()->get();
+        $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->take(4)->inRandomOrder()->get();
         $news = News::orderBy('created_at','desc')->take(4)->get();
 
         $h_one = $city->h_one;
@@ -60,7 +60,7 @@ class PageController extends Controller
             $cities = City::all();
             $services = Service::all();
             $faq = Faq::all();
-            $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->take(4)->inRandomOrder()->get();
+            $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->take(4)->inRandomOrder()->get();
             $news = News::orderBy('created_at','desc')->take(4)->get();
 
             $h_one = $city->h_one;
@@ -95,7 +95,7 @@ class PageController extends Controller
 
             $service_id = $service->id;
 
-            $count = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->whereHas('services', function($query) use ($service_id){
+            $count = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->whereHas('services', function($query) use ($service_id){
                 $query->where('id',$service_id);
             })->count();
             
@@ -128,11 +128,12 @@ class PageController extends Controller
         $city = City::where('alias',$request->get('city'))->first();
 
         $lawyers = Lawyer::where('is_deleted',0)
+                    ->where('is_active',1)
                     ->where('last_name','like','%'.$search.'%')
                     ->orWhere('first_name','like','%'.$search.'%')
                     ->orWhere('patronymic','like','%'.$search.'%')
                     ->get();
-        $companies = Company::where('name','like','%'.$search.'%')->where('city_id',$city->id)->where('is_deleted',0)->get();
+        $companies = Company::where('name','like','%'.$search.'%')->where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->get();
         $services = Service::where($lang == 'ru' ? 'name_ru' : 'name_kz','like','%'.$search.'%')->get();
 
         if(count($lawyers) == 0){
@@ -211,6 +212,24 @@ class PageController extends Controller
         }
         \Auth::logout();
         return redirect(route('main'));
+    }
+
+    public function activateUser($hash,$user_id)
+    {
+        $user = User::find($user_id);
+        $lawyer = Lawyer::where('user_id',$user_id)->first();
+        $company = Company::where('user_id',$user_id)->first();
+        if($lawyer !== null && $hash == $user->password){
+            $lawyer->is_active = 1;
+            $lawyer->save();
+            return redirect(route('main'));
+        }elseif($company !== null && $hash == $user->password){
+            $company->is_active = 1;
+            $company->save();
+            return redirect(route('main'));
+        }else{
+            return redirect()->back();
+        }  
     }
 
 

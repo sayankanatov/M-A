@@ -16,6 +16,7 @@ Route::get('/', function () {
 
 Route::get('/send-mail', 'PageController@sendMail')->name('send-mail');
 Route::get('/test', 'PageController@test')->name('test');
+Route::get('/activate/{hash}/{user_id}', 'PageController@activateUser')->name('activate.user');
 //sitemap.xml
 Route::get('/sitemap.xml', 'SiteMapController@index')->name('sitemap');
 

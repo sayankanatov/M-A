@@ -48,6 +48,7 @@ class LawyerController extends Controller
         if($city){
             $lawyers = Lawyer::where('city_id',$city->id)
                 ->where('is_deleted',0)
+                ->where('is_active',1)
                 ->orderBy('created_at','desc')
                 ->count();
 
@@ -76,7 +77,7 @@ class LawyerController extends Controller
             $service = $lawyer->services->first();
 
             if($service){
-                $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->where('is_deleted',0)->inRandomOrder()->take(4)->get();
+                $relative_lawyers = Lawyer::select('price','first_name','last_name','patronymic','image','alias')->where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->inRandomOrder()->take(4)->get();
             }
             else{
                 $relative_lawyers = null;

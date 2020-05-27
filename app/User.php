@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Register;
+use App\Mail\Activate;
 
 class User extends Authenticatable
 {
@@ -80,12 +81,21 @@ class User extends Authenticatable
         return $user->role_id ?? false;
     }
 
-    public static function sendMail($user_id)
+    public static function sendMailToAdmin($user_id)
     {
         $user = self::find($user_id);
         $obj = new \stdClass();
         $obj->name = $user->name;
         $obj->email = $user->email;
         return Mail::to(env('MAIL_USERNAME'))->send(new Register($obj));
+    }
+
+    public static function sendMailToUser($user_id)
+    {
+        $user = self::find($user_id);
+        $obj = new \stdClass();
+        $obj->name = $user->name;
+        $obj->link = 'https://yuristy.kz/activate/'.$user->password.'/'.$user->id;
+        return Mail::to($user->email)->send(new Activate($obj));
     }
 }

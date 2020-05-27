@@ -76,7 +76,7 @@ class Lawyer extends Model
     {
         $city = City::find($city_id);
         $free = Input::get('free');
-        $count = self::where('city_id',$city_id)->where('is_deleted',0)->count();
+        $count = self::where('city_id',$city_id)->where('is_deleted',0)->where('is_active',1)->count();
         session_start();
         if(!isset($_SESSION['status'])){
             $_SESSION['status'] = 0;
@@ -271,6 +271,7 @@ class Lawyer extends Model
         }else{
             $query = self::where('city_id',$city_id)
                 ->where('is_deleted',0)
+                ->where('is_active',1)
                 ->whereHas('services', function($query) use ($service_id){
                     $query->where('id',$service_id);
                 })->orderBy('created_at','desc')->get();
