@@ -95,7 +95,7 @@ class User extends Authenticatable
         $user = self::find($user_id);
         $obj = new \stdClass();
         $obj->name = $user->name;
-        $obj->link = 'https://yuristy.kz/activate/'.$user->password.'/'.$user->id;
+        $obj->link = 'https://yuristy.kz/activate/'.$user->id;
         return Mail::to($user->email)->send(new Activate($obj));
     }
 }

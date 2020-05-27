@@ -214,16 +214,16 @@ class PageController extends Controller
         return redirect(route('main'));
     }
 
-    public function activateUser($hash,$user_id)
+    public function activateUser($user_id)
     {
         $user = User::find($user_id);
         $lawyer = Lawyer::where('user_id',$user_id)->first();
         $company = Company::where('user_id',$user_id)->first();
-        if($lawyer !== null && $hash == $user->password){
+        if($lawyer !== null){
             $lawyer->is_active = 1;
             $lawyer->save();
             return redirect(route('main'));
-        }elseif($company !== null && $hash == $user->password){
+        }elseif($company !== null){
             $company->is_active = 1;
             $company->save();
             return redirect(route('main'));
