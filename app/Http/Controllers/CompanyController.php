@@ -47,6 +47,7 @@ class CompanyController extends Controller
             $companies = Company::where('city_id',$city->id)
                 ->where('is_deleted',0)
                 ->where('is_active',1)
+                ->where('is_admin_activate',1)
                 ->orderBy('created_at','desc')
                 ->count();
 
@@ -71,7 +72,7 @@ class CompanyController extends Controller
             $seo_desc = $company->seo_desc;
             $seo_keywords = $company->seo_keywords;
 
-            $relative_lawyers = Company::select('price','name','logo','alias')->where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->inRandomOrder()->take(4)->get();
+            $relative_lawyers = Company::select('price','name','logo','alias')->where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->where('is_admin_activate',1)->inRandomOrder()->take(4)->get();
 
             return view($this->theme.'.pages.companies.show',compact('company','city','seo_title','h_one','seo_desc','seo_keywords','relative_lawyers'));
         }else{

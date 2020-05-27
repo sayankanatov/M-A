@@ -16,8 +16,9 @@ use App\Models\SeoPage;
 use App\Models\FeedBack;
 use App\Models\News;
 use App\User;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Mail\ForgotPassword;
 
 class PageController extends Controller
 {
@@ -37,7 +38,7 @@ class PageController extends Controller
         $city = City::find(Config::get('constants.city'));
         $services = Service::all();
         $faq = Faq::all();
-        $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->take(4)->inRandomOrder()->get();
+        $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->where('is_admin_activate',1)->take(4)->inRandomOrder()->get();
         $news = News::orderBy('created_at','desc')->take(4)->get();
 
         $h_one = $city->h_one;
@@ -60,7 +61,7 @@ class PageController extends Controller
             $cities = City::all();
             $services = Service::all();
             $faq = Faq::all();
-            $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->take(4)->inRandomOrder()->get();
+            $lawyers = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->where('is_admin_activate',1)->take(4)->inRandomOrder()->get();
             $news = News::orderBy('created_at','desc')->take(4)->get();
 
             $h_one = $city->h_one;
@@ -95,7 +96,7 @@ class PageController extends Controller
 
             $service_id = $service->id;
 
-            $count = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->whereHas('services', function($query) use ($service_id){
+            $count = Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->where('is_admin_activate',1)->whereHas('services', function($query) use ($service_id){
                 $query->where('id',$service_id);
             })->count();
             
@@ -129,11 +130,12 @@ class PageController extends Controller
 
         $lawyers = Lawyer::where('is_deleted',0)
                     ->where('is_active',1)
+                    ->where('is_admin_activate',1)
                     ->where('last_name','like','%'.$search.'%')
                     ->orWhere('first_name','like','%'.$search.'%')
                     ->orWhere('patronymic','like','%'.$search.'%')
                     ->get();
-        $companies = Company::where('name','like','%'.$search.'%')->where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->get();
+        $companies = Company::where('name','like','%'.$search.'%')->where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)->where('is_admin_activate',1)->get();
         $services = Service::where($lang == 'ru' ? 'name_ru' : 'name_kz','like','%'.$search.'%')->get();
 
         if(count($lawyers) == 0){
@@ -232,6 +234,26 @@ class PageController extends Controller
         }  
     }
 
+    public function forgotPassword(Request $request)
+    {
+        if($request->has('send-mail')){
+            $user = User::where('email',$request->get('email'))->first();
+
+            if($user){
+                $randText = substr(md5(mt_rand()), 0, 7);
+                $user->password = Hash::make($randText);
+                $user->save();
+
+                $obj = new \stdClass();
+                $obj->name = $user->name;
+                $obj->password = $randText;
+                Mail::to($user->email)->send(new ForgotPassword($obj));
+
+                return redirect(route('main'));
+            }
+        }
+        return view($this->theme.'.pages.forgot-password');  
+    }
 
     public function test(Request $request)
     {

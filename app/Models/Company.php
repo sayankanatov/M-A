@@ -55,6 +55,7 @@ class Company extends Model
         'seo_desc',
         'seo_keywords',
         'is_deleted',
+        'is_admin_activate'
     ];
     // protected $hidden = [];
     // protected $dates = [];
@@ -69,7 +70,7 @@ class Company extends Model
     {
         $city = City::find($city_id);
         $free = Input::get('free');
-        $count = self::where('city_id',$city_id)->where('is_deleted',0)->count();
+        $count = self::where('city_id',$city_id)->where('is_deleted',0)->where('is_active',1)->where('is_admin_activate',1)->count();
         session_start();
         if(!isset($_SESSION['status'])){
             $_SESSION['status'] = 0;
@@ -86,12 +87,16 @@ class Company extends Model
         if($id){
             $items = self::take($take)->where('city_id',$city_id)
                 ->where('is_deleted',0)
+                ->where('is_active',1)
+                ->where('is_admin_activate',1)
                 ->where('id','>',$id)
                 ->get();
 
             if(count($items) < Config::get('constants.pagination.companies')){
                 $end = self::take($skip)->where('city_id',$city_id)
                     ->where('is_deleted',0)
+                    ->where('is_active',1)
+                    ->where('is_admin_activate',1)
                     ->where('id','>',$id)
                     ->get();
 
@@ -101,6 +106,8 @@ class Company extends Model
             $items = self::skip($skip)
                 ->take($take)->where('city_id',$city_id)
                 ->where('is_deleted',0)
+                ->where('is_active',1)
+                ->where('is_admin_activate',1)
                 ->orderBy('created_at','desc')
                 ->get();
 
@@ -108,6 +115,8 @@ class Company extends Model
                 $howMany = Config::get('constants.pagination.companies') - count($items);
                 $end = self::take($howMany)->where('city_id',$city_id)
                     ->where('is_deleted',0)
+                    ->where('is_active',1)
+                    ->where('is_admin_activate',1)
                     ->orderBy('created_at','desc')
                     ->get();
 
@@ -228,11 +237,13 @@ class Company extends Model
     public static function getByServiceInCity($service_id,$city_id,$count = false)
     {
         if($count == true){
-            return self::where('city_id',$city_id)->where('is_deleted',0)->whereHas('services', function($query) use ($service_id){
+            return self::where('city_id',$city_id)->where('is_deleted',0)->where('is_active',1)
+                    ->where('is_admin_activate',1)->whereHas('services', function($query) use ($service_id){
                 $query->where('id',$service_id);
             })->count();
         }else{
-            return self::where('city_id',$city_id)->where('is_deleted',0)->whereHas('services', function($query) use ($service_id){
+            return self::where('city_id',$city_id)->where('is_deleted',0)->where('is_active',1)
+                    ->where('is_admin_activate',1)->whereHas('services', function($query) use ($service_id){
                 $query->where('id',$service_id);
             // })->inRandomOrder()->get();
             })->orderBy('created_at','desc')

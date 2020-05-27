@@ -30,6 +30,7 @@
 						<div class="form_btn">
 							<button type="submit">Войти</button>
 						</div>
+						<a href="{{route('forgot.password')}}">Забыли пароль?</a>
 					</div>
 				</form>
 				<div class="model_social">

@@ -14,19 +14,15 @@ Route::get('/', function () {
 	return redirect('/'. App\Http\Middleware\LocaleMiddleware::$mainLanguage);
 });
 
-Route::get('/login', function () {
-    return redirect('/');
-});
-
-Route::get('/send-mail', 'PageController@sendMail')->name('send-mail');
 Route::get('/test', 'PageController@test')->name('test');
 Route::get('/activate/{user_id}', 'PageController@activateUser')->name('activate.user');
 //sitemap.xml
 Route::get('/sitemap.xml', 'SiteMapController@index')->name('sitemap');
 
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
-
+    
     Auth::routes();
+    Route::match(['get','post'],'/forgot-password','PageController@forgotPassword')->name('forgot.password');
     //Личный кабинет пользователя
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/home/lawyer/{id}/update', 'HomeController@updateLawyer')->name('home.lawyer.update');
@@ -38,7 +34,6 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
     Route::post('/home/company/{id}/services', 'HomeController@updateCompanyServices')->name('home.company.services');
     //Поиск
     Route::match(['get','post'],'/search','PageController@search')->name('search');
-
     //Оставить отзыв
     Route::match(['get','post'],'/feedback/add','PageController@addFeedback')->name('feedback.add');
     //Удаление анкеты

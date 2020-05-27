@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -71,3 +71,6 @@
     </div>
 </div>
 @endsection
+ --}}
+<div>Проверьте свою почту!</div>
+<div>Вернуться на <a href="{{route('main')}}">главную</a></div>

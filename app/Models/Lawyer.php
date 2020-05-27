@@ -62,6 +62,7 @@ class Lawyer extends Model
         'seo_desc',
         'seo_keywords',
         'is_deleted',
+        'is_admin_activate'
     ];
     // protected $hidden = [];
     // protected $dates = [];
@@ -76,7 +77,7 @@ class Lawyer extends Model
     {
         $city = City::find($city_id);
         $free = Input::get('free');
-        $count = self::where('city_id',$city_id)->where('is_deleted',0)->where('is_active',1)->count();
+        $count = self::where('city_id',$city_id)->where('is_deleted',0)->where('is_active',1)->where('is_admin_activate',1)->count();
         session_start();
         if(!isset($_SESSION['status'])){
             $_SESSION['status'] = 0;
@@ -96,6 +97,8 @@ class Lawyer extends Model
             if($service_id){
                 $items = self::take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
+                    ->where('is_active',1)
+                    ->where('is_admin_activate',1)
                     ->where('id','>',$id)
                     ->whereHas('services', function($query) use ($service_id){
                         $query->where('id',$service_id);
@@ -104,6 +107,8 @@ class Lawyer extends Model
                 if(count($items) < Config::get('constants.pagination.lawyers')){
                     $end = self::take($skip)->where('city_id',$city_id)
                         ->where('is_deleted',0)
+                        ->where('is_active',1)
+                        ->where('is_admin_activate',1)
                         ->where('id','>',$id)
                         ->get();
                     $items = $items->merge($end);
@@ -111,11 +116,15 @@ class Lawyer extends Model
             }else{
                 $items = self::take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
+                    ->where('is_active',1)
+                    ->where('is_admin_activate',1)
                     ->where('id','>',$id)
                     ->get();
                 if(count($items) < Config::get('constants.pagination.lawyers')){
                     $end = self::take($skip)->where('city_id',$city_id)
                         ->where('is_deleted',0)
+                        ->where('is_active',1)
+                        ->where('is_admin_activate',1)
                         ->where('id','>',$id)
                         ->get();
                     $items = $items->merge($end);
@@ -127,6 +136,8 @@ class Lawyer extends Model
                 $items = self::skip($skip)
                     ->take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
+                    ->where('is_active',1)
+                    ->where('is_admin_activate',1)
                     ->whereHas('services', function($query) use ($service_id){
                         $query->where('id',$service_id);
                     })->get();
@@ -134,6 +145,8 @@ class Lawyer extends Model
                 if(count($items) < Config::get('constants.pagination.lawyers')){
                     $end = self::take($skip)->where('city_id',$city_id)
                         ->where('is_deleted',0)
+                        ->where('is_active',1)
+                        ->where('is_admin_activate',1)
                         ->where('id','>',$id)
                         ->get();
 
@@ -143,11 +156,15 @@ class Lawyer extends Model
                 $items = self::skip($skip)
                     ->take($take)->where('city_id',$city_id)
                     ->where('is_deleted',0)
+                    ->where('is_active',1)
+                    ->where('is_admin_activate',1)
                     ->get();
 
                 if(count($items) < Config::get('constants.pagination.lawyers')){
                     $end = self::take($skip)->where('city_id',$city_id)
                         ->where('is_deleted',0)
+                        ->where('is_active',1)
+                        ->where('is_admin_activate',1)
                         ->get();
 
                     $items = $items->merge($end);
@@ -272,6 +289,7 @@ class Lawyer extends Model
             $query = self::where('city_id',$city_id)
                 ->where('is_deleted',0)
                 ->where('is_active',1)
+                ->where('is_admin_activate',1)
                 ->whereHas('services', function($query) use ($service_id){
                     $query->where('id',$service_id);
                 })->orderBy('created_at','desc')->get();
