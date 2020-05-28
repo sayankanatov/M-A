@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $app_seo_keywords = "Бесплатный сервис по поиску адвокатов/юристов по всему Казахстану";
         $services = Service::all();
         $cities = City::all();
-        $city = City::find(Config::get('constants.city'));
+        // $city = City::find(Config::get('constants.city'));
 
         view()->composer('*', function($view) use(
             $app_h_one,
@@ -43,8 +43,8 @@ class AppServiceProvider extends ServiceProvider
             $app_seo_desc,
             $app_seo_keywords,
             $services,
-            $cities,
-            $city
+            $cities
+            // $city
         ) {
             $view->with('app_h_one', $app_h_one);
             $view->with('app_seo_title', $app_seo_title);
@@ -52,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('app_seo_keywords', $app_seo_keywords);
             $view->with('services', $services);
             $view->with('cities', $cities);
-            $view->with('city', $city);
+            // $view->with('city', $city);
         });
     }
 }

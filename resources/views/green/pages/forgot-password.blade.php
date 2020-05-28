@@ -1,6 +1,6 @@
-@extends('green.layouts.main')
+{{-- @extends('green.layouts.main') --}}
 
-@section('content')
+{{-- @section('content') --}}
 <div class="mo2">
     <div class="wrapper">
         <form method="POST" action="{{ route('forgot.password') }}">
@@ -33,4 +33,5 @@
         </form>
     </div>
 </div>
-@endsection
+<div>Вернуться на <a href="{{route('main')}}">главную</a></div>
+{{-- @endsection --}}
