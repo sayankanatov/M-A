@@ -91,13 +91,13 @@ jQuery(document).ready(function ($) {
 
     /*Dropdown Menu Города*/
     $('.dropdown').click(function () {
-        $(this).attr('tabindex', 1).focus();
+        //$(this).attr('tabindex', 1).focus();
         $(this).find('.dropdown-menu').slideToggle(300);
-        $(this).toggleClass('active');
+        $(this).addClass('active');
     });
     $('.dropdown').focusout(function () {
         $(this).removeClass('active');
-        $(this).find('.dropdown-menu').slideUp(300);
+        $(this).find('.dropdown-menu').fadeOut(300);
     });
     // $('.dropdown .dropdown-menu li').click(function () {
     // 	// $(this).parents('.dropdown').find('span').text($(this).text());
