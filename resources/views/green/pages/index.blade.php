@@ -28,7 +28,8 @@
                     <div class="factodes_text">
                         <div class="factodes_textt">Юристы</div>
                         <div class="factodes_fact"><a
-                                href="{{route('lawyers',['city'=>$city->alias])}}"><span>{{App\Models\Lawyer::where('city_id',$city->id)->where('is_deleted',0)->count() ?? '538'}}</span>
+                                href="{{route('lawyers',['city'=>$city->alias])}}"><span>{{App\Models\Lawyer::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)
+                ->where('is_admin_activate',1)->count() ?? '538'}}</span>
                                 юриста</a></div>
                     </div>
                 </div>
@@ -37,7 +38,8 @@
                     <div class="factodes_text">
                         <div class="factodes_textt">Юридические компании</div>
                         <div class="factodes_fact"><a
-                                href="{{route('companies',['city'=>$city->alias])}}"><span>{{App\Models\Company::where('city_id',$city->id)->where('is_deleted',0)->count() ?? '538'}}</span>
+                                href="{{route('companies',['city'=>$city->alias])}}"><span>{{App\Models\Company::where('city_id',$city->id)->where('is_deleted',0)->where('is_active',1)
+                ->where('is_admin_activate',1)->count() ?? '538'}}</span>
                                 компании</a></div>
                     </div>
                 </div>

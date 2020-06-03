@@ -310,6 +310,10 @@ class LawyerCrudController extends CrudController
         $cut_name = str_limit($request->input('last_name').'-'.$request->input('first_name').'-'.$request->input('patronymic'), $limit = 200, $end = '-');
         $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
         $request->request->set('alias', $alias);
+        $request->request->set('alias', $alias);
+        $request->request->set('is_deleted', 0);
+        $request->request->set('is_active', 1);
+        $request->request->set('is_admin_activate', 1);
 
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -320,6 +324,10 @@ class LawyerCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         // your additional operations before save here
+        $request->request->set('alias', $alias);
+        $request->request->set('is_deleted', 0);
+        $request->request->set('is_active', 1);
+        $request->request->set('is_admin_activate', 1);
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

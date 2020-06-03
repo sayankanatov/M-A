@@ -295,6 +295,15 @@ class LawyerActivatedCrudController extends CrudController
             'default' => 0,
         ]);
 
+        $this->crud->addField([ //
+            'name' => "is_active",
+            'label' => "Активировать через почту",
+            'type' => 'select_from_array',
+            'options' => [0 => 'Нет', 1 => 'Да'],
+            'allows_null' => false,
+            'default' => 0,
+        ]);
+
         // TODO: remove setFromDb() and manually define Fields and Columns
         // $this->crud->setFromDb();
         $this->crud->addClause('where', 'is_admin_activate', 0);

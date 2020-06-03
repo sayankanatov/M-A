@@ -272,6 +272,9 @@ class CompanyCrudController extends CrudController
         $cut_name = str_limit($request->input('name'), $limit = 200, $end = '-');
         $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
         $request->request->set('alias', $alias);
+        $request->request->set('is_deleted', 0);
+        $request->request->set('is_active', 1);
+        $request->request->set('is_admin_activate', 1);
 
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -285,6 +288,9 @@ class CompanyCrudController extends CrudController
         // $company = Company::find($request->id);
         // $company->services = json_encode($request->services,JSON_UNESCAPED_UNICODE);
         // $company->save();
+        $request->request->set('is_deleted', 0);
+        $request->request->set('is_active', 1);
+        $request->request->set('is_admin_activate', 1);
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

@@ -62,6 +62,7 @@ class Lawyer extends Model
         'seo_desc',
         'seo_keywords',
         'is_deleted',
+        'is_active',
         'is_admin_activate'
     ];
     // protected $hidden = [];
