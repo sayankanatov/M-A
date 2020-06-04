@@ -324,6 +324,8 @@ class LawyerCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         // your additional operations before save here
+        $cut_name = str_limit($request->input('last_name').'-'.$request->input('first_name').'-'.$request->input('patronymic'), $limit = 200, $end = '-');
+        $alias = Str::slug($cut_name.'-'.rand(1,9999), '-');
         $request->request->set('alias', $alias);
         $request->request->set('is_deleted', 0);
         $request->request->set('is_active', 1);
